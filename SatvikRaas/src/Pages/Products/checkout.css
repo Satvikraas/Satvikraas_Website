@@ -1,0 +1,232 @@
+/* checkout.css */
+.checkout-container {
+  /* max-width: 64rem; */
+  margin: 0 auto;
+
+  padding: 0px 50px;
+  width: 100%;
+}
+.header-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  color: #9ca3af;
+}
+.products {
+  display: flex;
+  flex-direction: column;
+}
+.step.active {
+  color: #16a34a;
+}
+
+.step-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+}
+
+.icon-package {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4'/%3E%3C/svg%3E");
+}
+
+.icon-location {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'/%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'/%3E%3C/svg%3E");
+}
+
+.icon-payment {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z'/%3E%3C/svg%3E");
+}
+
+/*  */
+.step {
+  display: flex;
+  flex-direction: column; /* Stack the icon and text vertically */
+  align-items: center; /* Center-align the items */
+  justify-content: center;
+  padding: 10px 20px;
+  margin: 10px 0; /* Add space between steps */
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.step-icon {
+  width: 50px; /* Size of the icon container */
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Circular icon background */
+  background-color: #f0f0f0; /* Light grey background for the icon */
+  font-size: 24px; /* Icon size */
+  color: #333; /* Icon color */
+  margin-bottom: 8px; /* Space between icon and text */
+  transition: all 0.3s ease;
+}
+
+.step span {
+  font-size: 18px;
+  font-family: "Satoshi-Regular";
+  font-weight: 500;
+  color: #666; /* Text color */
+  transition: color 0.3s ease;
+}
+
+.step.active .step-icon {
+  background-color: #226160; /* Active state background color */
+  color: white; /* Active state icon color */
+  transform: scale(1.1); /* Slightly enlarge icon on active */
+}
+
+.step.active span {
+  color: #226160; /* Active state text color */
+}
+
+.step:hover .step-icon {
+  background-color: #2e8b74; /* Hover background color */
+  color: white; /* Hover icon color */
+  transform: scale(1.05); /* Slight hover effect */
+}
+/*  */
+.product-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-image {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
+.product-details h3 {
+  font-weight: 500;
+}
+
+.product-quantity {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.button {
+  padding: 0.5rem 1.5rem;
+  background-color: #16a34a;
+  color: white;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.button:hover {
+  background-color: #15803d;
+}
+
+.address-card {
+  padding: 1rem;
+  border: 5px solid #e5e7eb;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.address-card.selected {
+  border-color: #16a34a;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.alert-error {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #fee2e2;
+  color: #dc2626;
+  margin: 1rem 0;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.summary-section {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.section-title {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.price-info {
+  margin: 20px 0;
+  font-size: 16px;
+}
+.price-info span {
+  /* margin: 30px 0; */
+  font-size: 24px;
+
+}
+/* Saved Address  */
+
+.section-title{
+  font-size: 24px;
+}
+
+.address-card{
+  background-color: #2261600b ;
+  max-width: 300px; border: none;  border: 2px solid #226160;
+}
+
+/* .header-grid{
+  background-color: #666;
+  display: flex;
+} */
+
+.savedaddresshead{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0px; margin: 0;
+  padding: 1rem 0;
+ 
+}
