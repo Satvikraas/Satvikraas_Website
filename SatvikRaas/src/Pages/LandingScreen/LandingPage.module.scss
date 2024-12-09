@@ -423,10 +423,11 @@
 // -------------------------------------------------------------------------------------
 //  Trending Products
 
-.trendingProducts {
+.tcontainer {
   padding: 2rem;
   max-width: 1200px;
-  margin: auto;
+  margin: auto;display: none;
+  @media (max-width: 700px)    {display: none;}
 
   .heading {
     font-family: Zodiak-Regular;

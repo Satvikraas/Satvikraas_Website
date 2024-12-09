@@ -184,7 +184,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import img from "../../Assets/Images/chillipowder.svg" 
 import img2 from "../../Assets/Images/redchillib.png" 
-// import img2 from "../../Assets/Images/mascott.svg" 
+import certified from "../../Assets/Images/certified.svg" 
 const ProductDetailPage = () => {
   const [mainImage, setMainImage] = useState(img);
   const subImages = [
@@ -194,10 +194,6 @@ const ProductDetailPage = () => {
   const location = useLocation();
     const navigate = useNavigate();
     const product = location.state.product;
-  
-  //   const [selectedVariant, setSelectedVariant] = useState(product?.variants?.[0] || {});
-  //   const [currentView, setCurrentView] = useState('main');
-  //   const [subImageIndex, setSubImageIndex] = useState(0);
 
   const [selectedVariant, setSelectedVariant] = useState(product?.variants?.[0] || {});
   const [currentView, setCurrentView] = useState('main'); // 'main' or 'sub'
@@ -226,42 +222,7 @@ const ProductDetailPage = () => {
       }
     };
   
-    // const handleVariantChange = (variant) => {
-    //   setSelectedVariant(variant);
-    // };
-  
-    // const handlePrevImage = () => {
-    //   if (currentView === 'sub') {
-    //     setSubImageIndex((prev) =>
-    //       prev === 0 ? selectedVariant.subImages.length - 1 : prev - 1
-    //     );
-    //   }
-    // };
-  
-    // const handleNextImage = () => {
-    //   if (currentView === 'sub') {
-    //     setSubImageIndex((prev) =>
-    //       prev === selectedVariant.subImages.length - 1 ? 0 : prev + 1
-    //     );
-    //   }
-    // };
-  
-    // const handleShare = async () => {
-    //   if (navigator.share) {
-    //     try {
-    //       await navigator.share({
-    //         title: product.name,
-    //         text: product.description,
-    //         url: window.location.href,
-    //       });
-    //     } catch (error) {
-    //       console.error('Error sharing:', error);
-    //     }
-    //   } else {
-    //     navigator.clipboard.writeText(window.location.href);
-    //   }
-    // };
-  
+ 
     const getAccessToken = () => {
       return sessionStorage.getItem('accessToken');
     };
@@ -288,31 +249,73 @@ if(!accessToken){
           
         }
       }); }
-    };
+    }; 
   
   return (
     <div className={styles.productPage}>
       <div className={styles.productContainer}>
+
+    
         {/* Left Section: Image Carousel */}
         <div className={styles.imageSection}>
-          <img      src={`data:image/jpeg;base64,${
-          currentView === 'main' 
-            ? selectedVariant.mainImage 
-            : selectedVariant.subImages[subImageIndex]
-        }`} alt="Main Product" className={styles.mainImage} />
-          <Swiper slidesPerView={4} spaceBetween={5} className={styles.imageCarousel}>
-            {subImages.map((img, index) => (
-              <SwiperSlide key={index}>
-              <div className={styles.thumbnaildiv}>  <img
-                  src={img}
-                  alt={`Product Thumbnail ${index + 1}`}
-                  onClick={() => setMainImage(img)}
-                  className={styles.thumbnail}
-                /></div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+      {/* Main Image Display */}
+      <div className={styles.mainImageContainer}>
+        <img
+          src={
+            currentView === 'main' ? mainImage : subImages[subImageIndex]
+          }
+          alt={product.name}
+          className={styles.mainImage}
+        />
+        {currentView === 'sub' && (
+          <span className={styles.imageCounter}>
+            {/* {subImageIndex + 1}/{subImages.length} */}
+          </span>
+        )}
+      </div>
+
+      {/* Image Carousel */}
+      <Swiper slidesPerView={4} spaceBetween={50} className={styles.imageCarousel}>
+        {/* Main Thumbnail */}
+        <SwiperSlide>
+          <div
+            className={`${styles.thumbnaildiv} ${
+              currentView === 'main' ? styles.active : ''
+            }`}
+          >
+            <img
+              src={mainImage}
+              alt="Main Thumbnail"
+              onClick={() => setCurrentView('main')}
+              className={styles.thumbnail}
+            />
+          </div>
+        </SwiperSlide>
+
+        {/* Sub Thumbnails */}
+        {subImages.map((img, index) => (
+          <SwiperSlide key={index}>
+            <div
+              className={`${styles.thumbnaildiv} ${
+                currentView === 'sub' && subImageIndex === index
+                  ? styles.active
+                  : ''
+              }`}
+            >
+              <img
+                src={img}
+                alt={`Thumbnail ${index + 1}`}
+                onClick={() => {
+                  setCurrentView('sub');
+                  setSubImageIndex(index);
+                }}
+                className={styles.thumbnail}
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
 
         {/* Right Section: Product Details */}
         <div className={styles.detailsSection}>
@@ -345,7 +348,7 @@ if(!accessToken){
 
 
   <div className={styles.quantityContainer}>
-  <button
+  <button 
     onClick={() => handleQuantityChange('decrement')}
     className={styles.quantityButton}
   >
@@ -363,54 +366,14 @@ if(!accessToken){
           </div>
 
           <button className={styles.buyNow} onClick={handleBuyNow}>Buy Now</button>
-          {/* <p className={styles.bulkLink}>
-            Or do you need bulk quantity? <a href="/">Click here</a>
-          </p> */}
-
-          {/* Payment Options */}
-          {/* <div className={styles.paymentMethods}>
-            <img src="https://via.placeholder.com/50x30?text=Visa" alt="Visa" />
-            <img src="https://via.placeholder.com/50x30?text=MasterCard" alt="MasterCard" />
-            <img src="https://via.placeholder.com/50x30?text=GPay" alt="Google Pay" />
-          </div> */}
-
-          {/* Certification Info */}
-          <div className={styles.certification}>
-            <h3>CERTIFIED & VERIFIED</h3>
-            <ul>
-              <li>Satvik Raas products are crafted with care and backed by rigorous quality checks.</li>
-              <li>Handpicked, sun-dried, expertly ground to lock in natural oils and nutrients.</li>
-              <li>Orders are carefully packed and shipped nationwide with trusted delivery service.</li>
-            </ul>
+       
+          <div>
+            <img src={certified} alt=""  className={styles.certimg}/>
           </div>
         </div>
       </div>
 
-      {/* Reviews Section */}
-      {/* <div className={styles.reviewsSection}>
-        <h2>Total Score: 4.5 | 490 reviews</h2>
-        <div className={styles.review}>
-          <h3>Super Spicy Powder</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.</p>
-          <p>Shikawath, Oct 5 2024</p>
-        </div>
-       
-        <div className={styles.writeReview}>
-          <h3>Give Reviews Here</h3>
-          <div className={styles.ratingInput}>
-            <span>My Rating (required):</span>
-            <span>⭐⭐⭐⭐☆</span>
-          </div>
-          <textarea
-            placeholder="What did you think about this product? Any changes or notes?"
-            className={styles.reviewInput}
-          />
-          <div className={styles.reviewActions}>
-            <button className={styles.cancel}>Cancel</button>
-            <button className={styles.submit}>Submit</button>
-          </div>
-        </div>
-      </div> */}
+  
     </div>
   );
 };

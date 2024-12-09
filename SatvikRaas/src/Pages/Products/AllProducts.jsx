@@ -72,7 +72,7 @@ const Product = ({ product, filters }) => {
       if (error.response?.status === 409) {
         alert('Item already in cart!');
       } else {
-        setError('Failed to add product to cart');
+        alert('Failed to add product to cart');
       }
     } finally {
       setLoading(false);
@@ -98,6 +98,7 @@ const Product = ({ product, filters }) => {
 
   return (
     <div className={styles.productCard}>
+    
       {error && <div className={styles.errorMessage}>{error}</div>}
       <img
         src={`data:image/jpeg;base64,${selectedVariant?.mainImage}`}

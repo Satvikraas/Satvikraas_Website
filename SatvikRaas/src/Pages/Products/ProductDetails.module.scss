@@ -2,36 +2,46 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 2rem;
+  padding: 0 5rem;
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 1rem; /* Reduce padding for mobile */
+  }
 }
 
 .productContainer {
+ 
   display: flex; position: relative;
   gap: 2rem;
+  @media (max-width: 768px) {
+    flex-direction: column; /* Stack sections vertically on mobile */
+    gap: 1rem;
+  }
 
-
-  .imageSection {
+  .imageSection { 
     position: relative;
     flex: 1;
     background-color: #FFF4E9;
-    width: 612px;
-    height: 412px;
-    border-radius: 30px;
+    max-width: 612px !important;
+    max-height: 412px;
+    border-radius: 30px;   
 
     .mainImage {
       // width: 100%;
-      height: 100%;
+     
       border-radius: 10px;
+  
+      margin: auto auto;
+      width: 300px;
+      height: 360px;
       object-fit: contain;
-      margin: 0 auto;
-      width: 100%;
     }
 
     .imageCarousel {
-      // margin-top: 1rem;
 margin: 10px;
 padding: 10px;
-gap: 0;
+gap: 10; 
+margin-top: 4rem;
 // background-color: #555;
       .thumbnaildiv {
      padding: 10px;
@@ -42,6 +52,11 @@ gap: 0;
         cursor: pointer;
       background-color: #FFF4E9;  border-radius: 30px;
         transition: transform 0.2s;
+        @media (max-width: 768px) {
+          width: 150px;
+          margin: 0 20px;
+          height: 162px;
+        }
 
         img{
           width: 80%;
@@ -51,41 +66,58 @@ gap: 0;
         }
         &:hover {
           transform: scale(1.05);
+        } @media (max-width: 768px) {
+          width: 80px; /* Smaller thumbnails on mobile */
+          height: 80px;
+          border-radius: 5px;
         }
       }
     }
   }
 
   .detailsSection {
-    flex: 1;
+    flex: 1;     @media (max-width: 768px) {
+     margin-top: 100px;
+     
+    }
 
     .productTitle {
       font-size: 48px;
-      font-weight: bold;
+      font-weight: bold;    @media (max-width: 768px) {
+      font-size: 32px;
+      }
     }
 
     .description {
       margin: 1rem 0;
       font-size: 18px;
    
-      color: #555;
+      color: #555; @media (max-width: 768px) {
+        font-size: 16px;
+        }
     }
 
     .pricing {
       display: flex;
       align-items: center;
       gap: 1rem;
-      font-size: 20px;
+      font-size: 20px; @media (max-width: 768px) {
+        font-size: 18px;
+        }
 
       .originalPrice {
         text-decoration: line-through;
-        color: #999;
+        color: #999;  @media (max-width: 768px) {
+          font-size: 18px;
+          }
       }
 
       .discountedPrice {
 
         font-size: 1.5rem;
-        font-weight: bold;
+        font-weight: bold;  @media (max-width: 768px) {
+          font-size: 18px;
+          }
       }
     }
 
@@ -94,43 +126,64 @@ gap: 0;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      font-size: 18px;  @media (max-width: 768px) {
+        font-size: 18px;
+        }
     }
 
     .quantity {
+      font-size: 20px;
       display: flex;
       gap: 1rem;
-      align-items: center;
-
+      align-items: center;  @media (max-width: 768px) {
+        font-size: 18px;
+        }
+.quantitySelect{
+  font-size: 20px;
+  padding: 5px 10px;
+  border-radius: 20px;  @media (max-width: 768px) {
+    font-size: 18px;
+    }
+}
       .counter {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+        border: 2px solid #555;  @media (max-width: 768px) {
+          font-size: 18px;
+          }
+      
 
         button {
           background: #ddd;
           padding: 0.5rem;
           border: none;
-          cursor: pointer;
+          cursor: pointer;  @media (max-width: 768px) {
+            font-size: 18px;
+            }
         }
 
         input {
           text-align: center;
           width: 2rem;
-          border: none;
+          border: none; 
         }
       }
     }
 
     .buyNow {
-      background-color: green;
+      background-color: #226160;
       color: white;
       border: none;
       padding: 1rem 2rem;
       cursor: pointer;
       border-radius: 5px;
-
+      width: 640px;
+      margin: 20px;
+      border-radius: 30px;  font-size: 20px;
+      @media (max-width: 768px) {
+   width: 90vw;
+   margin: 20px auto;
+        }
       &:hover {
-        background-color: darkgreen;
+        background-color: #2c8a88;
       }
     }
 
@@ -160,7 +213,18 @@ gap: 0;
     }
   }
 }
-
+.quantityContainer{
+  width: 90px;
+  text-align: center;
+  margin:0 10px; border: 1.5px solid grey;
+  display: flex;  display: flex;
+  align-items: center;position: relative;
+  gap: 0.5rem;  justify-content: space-evenly;
+  border-radius: 20px;
+  font-size: 20px;
+  padding: 3px 10px;
+  
+}
 .reviewsSection {
   margin-top: 200px;
   position: relative;
@@ -182,10 +246,13 @@ gap: 0;
         color: black;
       }
 
-      .submit {
-        background-color: green;
-        color: white;
-      }
+   
     }
   }
+}
+.certimg{
+  width: 80%;
+  margin: 0 auto;  @media (max-width: 768px) {
+   width: 100%;
+    }
 }

@@ -50,33 +50,6 @@ import goodness from "../../Assets/Images/goodness.svg"
 const HeroSection = () => {
   const imageRef = useRef(null);
 
-  // useEffect(() => {
-  //   if (imageRef.current) {
-  //     const tl = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: imageRef.current,
-  //         start: "top 80%", // Animation starts when image enters viewport
-  //         end: "bottom top", // Ends when image exits viewport
-  //         scrub: 0.6, // Smooth scrubbing effect
-  //         markers: true, // Debugging markers, remove in production
-  //       },
-  //     });
-
-  //     // Animation sequence
-  //     tl.to(imageRef.current, {
-  //       width: "100%", // Scale up width
-  //       translateY: "100%", // Move vertically by 100%
-  //       opacity: 1, // Full opacity
-  //       ease: "power1.inOut", // Smooth easing function
-  //     });
-
-  //     // Cleanup function
-  //     return () => {
-  //       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-  //     };
-  //   }
-  // }, [imageRef]); // Add imageRef to dependencies
-
   // products
 const products = [
   {
@@ -339,7 +312,7 @@ const faqs = [
       <img className={styles.goodnessimg} src={goodness} alt="" />
     </section>
     {/* Trending pro */}
-    <div className={styles.container}>
+    <div className={styles.tcontainer}>
       <h2>Trending Products</h2>
       <div className={styles.trendingcardd}>
     <div> <img src={chillyimg}  className={styles.chillyimgt} alt="" />

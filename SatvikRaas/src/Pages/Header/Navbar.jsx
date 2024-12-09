@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import styles from "./Navbar.module.scss";
+import   "./Navbar.scss";
 import { useLocation, useNavigate } from "react-router-dom";
+import logo from "../../Assets/Logo/logo.png"
+import cart from "../../Assets/Logo/cart.png"
+import login from "../../Assets/Logo/admin.png"
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState("Home"); // Default active tab
   const navigate = useNavigate();
@@ -22,11 +25,21 @@ const Navbar = () => {
       navigate("/cart");
 
     }
-  };
+  }; const menuLinks = document.querySelectorAll(".menu-link");
+
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      menuLinks.forEach((link) => {
+        link.classList.remove("is-active");
+      });
+      link.classList.add("is-active");
+    });
+  });
+  
 
   return (
-    <nav className={styles.navbar}>
-      <ul className={styles.navLinks}>
+    <nav >
+      {/* <ul className={styles.navLinks}>
         <li
           className={`${styles.navItem} ${
             activeTab === "Home" ? styles.active : ""
@@ -88,7 +101,52 @@ const Navbar = () => {
           {" "}
           <span className={styles.icon}>&#128100;</span>{" "}
         </a>
-      </div>
+      </div> */} <header class="header" id="header">
+	<nav class="navbar container">
+		<a href="./index.html" class="brand"><img src={logo} alt="" /></a>
+		<div class="menu" id="menu">
+			<ul class="menu-list">
+				<li class="menu-item">
+					<a href="/" class="menu-link ">
+						<i class="menu-icon ion-md-home"></i>
+						<span class="menu-name">Home</span>
+					</a>
+				</li>
+				<li class="menu-item">
+					<a href="/products" class="menu-link ">
+						<i class="menu-icon ion-md-pricetags"></i>
+						<span class="menu-name">Our Products</span>
+					</a>
+				</li>
+				<li class="menu-item">
+					<a href="/about" class="menu-link ">
+						<i class="menu-icon ion-md-people"></i>
+						<span class="menu-name">About Us</span>
+					</a>
+				</li>
+				<li class="menu-item">
+					<a href="/contact" class="menu-link">
+						<i class="menu-icon ion-md-call"></i>
+						<span class="menu-name">Contact Us</span>
+					</a>
+				</li>
+			
+			</ul>
+		</div> <ul className="rightdiv">	<li class="menu-item">
+					<a onClick={handlecartopen} class="menu-link">
+						
+						<span class="menu-name"><i class="menu-iconz ion-md-cart"></i></span>
+					</a>
+				</li>
+				<li class="menu-item">
+					<a href="/login" class="menu-link">
+					
+						<span class="menu-name"> 	<i  class="menu-iconz ion-md-contact"></i></span>
+					</a>
+				</li>
+		</ul>
+	</nav>
+</header>
     </nav>
   );
 };

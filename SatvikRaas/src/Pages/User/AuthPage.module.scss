@@ -1,3 +1,6 @@
+body{
+  padding-top: 0;
+}
 .loginPage {
   display: flex;
   justify-content: center;
@@ -15,6 +18,8 @@
     text-align: center;
     width: 100%;
     max-width: 500px;
+    
+   
 
     .logo {
       width: 80px;

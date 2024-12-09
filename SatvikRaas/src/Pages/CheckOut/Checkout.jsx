@@ -450,6 +450,8 @@ const handlePayment = async () => {
   };
 
   const handleUseAddress = () => {
+
+    closeAddressModal()
     const transformedAddress = {
       name: newAddress.name,
       phone: newAddress.phone,

@@ -175,7 +175,7 @@ const ShoppingCart = () => {
       <div className="carts-div">
       
       {cartItems.map((cartItem,i) => (
-        <CartItemRow key={i} cartItem={cartItem} isSingleProduct={isSingleProduct} updateQuantity={updateQuantity} removeItem={removeItem} />
+        <CartItemRow key={i} cartItem={cartItem}  updateQuantity={updateQuantity} removeItem={removeItem} />
       ))}
     </div>
     <div className='checkoutbtndiv'> 
