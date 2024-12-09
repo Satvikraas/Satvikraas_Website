@@ -705,9 +705,20 @@ const removeItem = async (cartItemId) => {
           <p>{address.landmark}</p>
         </div>
       ))}
-    </div>
+    </div> 
 </div>  <div className={styles.addformdiv}>
-  <button className={styles.addbtn} onClick={openAddressModal}>+</button>
+  <button className={styles.addbtn} onClick={openAddressModal}>+</button> <div className={styles.addressContainer}>
+    
+      <ul>
+        {Object.entries(newAddress)
+          .filter(([key, value]) => value) // Filter out null or empty values
+          .map(([key, value], index) => (
+            <li key={index} className={styles.addressItem}>
+              {`${key}: ${value}`}
+            </li>
+          ))}
+      </ul>
+    </div>
   {isAddressModalVisible && (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
@@ -811,12 +822,12 @@ const removeItem = async (cartItemId) => {
             className={styles.checkoutBtn}
           >
             Proceed to Payment
-          </button>
-        </div>
-      )}
+          </button> 
+        </div> 
+      )}  
     {/* <button onClick={() => setCurrentStep('products')} className={styles.button}>
       Back
-    </button> */}
+    </button> */} 
   </div>
 )}
 

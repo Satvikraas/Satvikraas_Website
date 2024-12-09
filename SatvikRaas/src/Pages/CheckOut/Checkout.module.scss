@@ -22,13 +22,13 @@
         flex-direction: row;
     gap: 200px;
     text-align: center;
-    @media (max-width: 768px) {
-      gap: 50px;  text-align: center;
-       }
+   
     
         display: flex;
         align-items: center;
-      
+        @media (max-width: 768px) {
+          gap: 50px;  text-align: center;
+           }
         .icondiv { 
             position: relative;
             display: flex;
@@ -87,7 +87,17 @@
       
 
 }
-
+.addressContainer{
+  position: absolute;
+  right: 50px;
+  font-size: 16px;
+  color: grey;  @media (max-width: 768px) {
+    // position: relative;
+    // width: 100%;
+  left: 0px;
+bottom: -200px;
+  }
+}
 
 // address Section
 .addressSection {
