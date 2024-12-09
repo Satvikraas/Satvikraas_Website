@@ -36,7 +36,7 @@ const CartItemRow = ({isSingleProduct, cartItem,updateQuantity,removeItem }) => 
       {/* Product Row */}
       <div className="product-row">
         <div className="product-info">
-          <div className="product-image">
+          <div className="product-image1">
           <img 
         src={`data:image/jpeg;base64,${productVariantDTO?.mainImage}`} 
         className="product-image" 

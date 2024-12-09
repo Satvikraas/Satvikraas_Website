@@ -180,7 +180,7 @@ const App = () => {
             <option value="100">100g</option>
             <option value="500">500g</option>
           </select>
-          <select name="price" value={filters.price} onChange={handleFilterChange}>
+          <select className={styles.pricefilter} name="price" value={filters.price} onChange={handleFilterChange}>
             <option value="">Price</option>
             <option value="low">Low to High</option>
             <option value="high">High to Low</option>

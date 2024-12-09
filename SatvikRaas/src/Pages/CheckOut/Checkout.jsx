@@ -450,8 +450,7 @@ const handlePayment = async () => {
   };
 
   const handleUseAddress = () => {
-
-    closeAddressModal()
+   closeAddressModal()
     const transformedAddress = {
       name: newAddress.name,
       phone: newAddress.phone,
@@ -787,7 +786,7 @@ const removeItem = async (cartItemId) => {
           <button onClick={closeAddressModal}className={styles.cancelButton}>
             Cancel
           </button>
-          <button onClick={handleUseAddress} className={styles.saveButton}>
+          <button onClick={() => handleUseAddress()}className={styles.saveButton}>
             Save
           </button>
         </div>

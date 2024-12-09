@@ -120,7 +120,7 @@ const ShoppingCart = () => {
       console.error('Error removing item:', error);
       handleError(error);
     }
-  };
+  }; 
   
   const handleError = (error) => {
     if (error.response) {
