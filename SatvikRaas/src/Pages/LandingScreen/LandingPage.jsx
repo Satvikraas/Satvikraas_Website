@@ -20,7 +20,7 @@ import yellowmandala from "../../Assets/Images/redmandala.png";
 import coriamder from "../../Assets/Images/redmandala.png";
 import greenmandala from "../../Assets/Images/redmandala.png";
 import dhaniya from "../../Assets/Images/redmandala.png";
-import darkgreenamndala from "../../Assets/Images/redmandala.png";
+import darkgreenamndala from "../../Assets/Images/redmandala.png"; 
 
 
 
@@ -30,6 +30,23 @@ import abtbg from "../../Assets/Images/aboutbackgoundimg.svg";
 import mascott from "../../Assets/Images/mascott.svg";
 import chillipacket from "../../Assets/Images/chillipowder.svg";
 import articalimg from "../../Assets/Images/artical.png";
+
+
+// Natural img 
+import noAdditives from '../../Assets/Images/no-additives.svg'; // Example path, replace with your actual image paths
+import handpicked from '../../Assets/Images/handpicked.svg';
+import madeWithLove from '../../Assets/Images/made-with-love.svg';
+import packedWithNutrients from '../../Assets/Images/packed-with-nutrients.svg';
+// processimg 
+import processImage from '../../Assets/Images/howitwork.svg';// Replace with the path to your image
+// top products 
+import pimg1 from "../../Assets/Images/pcard1.svg"
+import pimg2 from "../../Assets/Images/pcard2.svg"
+import pimg3 from "../../Assets/Images/pcard3.svg"
+import pimg4 from "../../Assets/Images/pcard4.svg"
+
+// goodness
+import goodness from "../../Assets/Images/goodness.svg"
 const HeroSection = () => {
   const imageRef = useRef(null);
 
@@ -61,26 +78,28 @@ const HeroSection = () => {
   // }, [imageRef]); // Add imageRef to dependencies
 
   // products
-  const products = [
-    {
-      id: 1,
-      name: "Kashmiri Chilli Powder",
-      image: chillipacket,
-     
-      bgColor: "#DFF5D8",
-    },
-    { id: 2, name: "Turmeric Powder", image: chillipacket, bgColor: "#FFF1D8" },
-    { id: 3, name: "Kasuri Methi", image: chillipacket, bgColor: "#E4F0D4" },
-    {
-      id: 4,
-      name: "Kashmiri Chilli Powder",
-      image: chillipacket,
-      bgColor: "#FFE3D8",
-    },
-    { id: 5, name: "Kasuri Methi", image: chillipacket, bgColor: "#E4F0D4" },
-  ];
-  //
-
+const products = [
+  {
+    id: 1,
+    image: pimg1, // Replace with actual image paths
+  },
+  {
+    id: 2,
+    image: pimg2,
+  },
+  {
+    id: 3,
+    image: pimg3,
+  },
+  {
+    id: 4,
+    image: pimg4,
+  },
+  {
+    id: 5,
+    image: pimg1,
+  },
+];
   // products
   const productssection = [
     {
@@ -109,33 +128,114 @@ const HeroSection = () => {
     },
   ];
 
-  // Articles and news
-  const articles = [
+
+// faq 
+const [openIndex, setOpenIndex] = useState(null);
+
+const toggleFAQ = (index) => {
+  setOpenIndex(openIndex === index ? null : index);
+};
+
+const faqs = [
+  { question: "What makes Satvik Raas spices different from other brands?", answer: "Satvik Raas spices are uniquely crafted with authentic, organic, and high-quality ingredients." },
+  { question: "Are Satvik Raas products certified organic?", answer: "Yes, all our products are certified organic by reputable agencies." },
+  { question: "How do I store Satvik Raas spices to keep them fresh?", answer: "Store them in a cool, dry place away from sunlight, ideally in airtight containers." },
+  { question: "Does Satvik Raas offer free shipping?", answer: "Yes, we offer free shipping on orders above $50." },
+  { question: "What if I'm not satisfied with my purchase?", answer: "We offer a hassle-free return policy within 30 days of purchase." },
+];
+  // 
+
+  // REVIEWS 
+  const reviews = [
     {
-      image: "https://via.placeholder.com/400x300", // Replace with your actual image URL
-      title: "The Underrated Super Spice in Your Kitchen",
-      description:
-        "Explore the surprising health benefits and culinary versatility of coriander (dhaniya) powder, from boosting digestion to enhancing your favorite dishes.",
-      author: "Rohit Verma",
-      date: "September 28, 2024",
+      text: "As a restaurant owner, quality spices are essential. Satvik Raas' pure and natural ingredients ensure my dishes have the authentic taste of tradition that my customers love.",
+      author: "Anil Kapoor, Restaurant Owner",
+      image: "https://via.placeholder.com/80", // Replace with real images
     },
     {
-      image: "https://via.placeholder.com/400x300",
-      title: "Why Freshness Matters in Spices",
-      description:
-        "Discover how the freshness of spices like red chilly powder can transform your cooking.",
-      author: "Anjali Mehra",
-      date: "October 12, 2024",
+      text: "I have been using Satvik Raas spices for years, and the freshness is unmatched. It has truly elevated my cooking.",
+      author: "Priya Sharma, Home Chef",
+      image: "https://via.placeholder.com/80", // Replace with real images
     },
     {
-      image: "https://via.placeholder.com/400x300",
-      title: "Unlocking the Secrets of Turmeric",
-      description:
-        "Discover the health and culinary benefits of turmeric in everyday cooking.",
-      author: "Anjali Mehra",
-      date: "October 12, 2024",
+      text: "Satvik Raas spices are the best! They bring out the true flavors of Indian cuisine, and my guests always appreciate the aroma.",
+      author: "Rahul Verma, Food Blogger",
+      image: "https://via.placeholder.com/80", // Replace with real images
+    },
+    {
+      text: "The organic quality and purity of Satvik Raas spices are exceptional. I trust them completely for my family's health.",
+      author: "Neha Mehta, Nutritionist",
+      image: "https://via.placeholder.com/80", // Replace with real images
     },
   ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+    }, 10000); // Change every 10 seconds
+    return () => clearInterval(timer);
+  }, [reviews.length]);
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+  };
+  // 
+  // Dedication natural 
+
+
+    const features = [
+      {
+        image: noAdditives,
+        title: "No Artificial Colors or Additives",
+      },
+      {
+        image: handpicked,
+        title: "Handpicked Ingredients",
+      },
+      {
+        image: madeWithLove,
+        title: "Made with Love and Tradition",
+      },
+      {
+        image: packedWithNutrients,
+        title: "Packed with Nutrients",
+      },
+    ];
+  // 
+
+  // trending
+   const topproducts = [
+    {
+      id: 1,
+      title: "Red Chilly Powder",
+      description:
+        "Bold heat with intense flavor. Elevate your dishes with the fiery touch of 100% pure red chilies.",
+      img: chillyimg,
+    
+    },
+    {
+      id: 2,
+      title: "Turmeric Powder",
+      img: pimg1 ,isLarge: false,
+    },
+    {
+      id: 3,
+      title: "Coriander Powder",
+      img:pimg2 ,isLarge: false
+    },
+    {
+      id: 4,
+      title: "Kashmiri Chilli Powder",
+      img: pimg3 ,isLarge: false
+    }
+  ];
+
   return (
     <div className={styles.landingPage}>
       <section className={styles.heroSection}>
@@ -177,47 +277,27 @@ const HeroSection = () => {
           <img src={mascott} alt="Satvik Raas" className={styles.about__img} />
         </div>
       </section>{" "}
-      <section className={styles.container}>
-        {" "}
-        <div className={styles.swiperContainer}>
-          <h2 className={styles.title}>Top Products</h2>
-          <img src={productsimg}></img>
-          {/* <Swiper
-            slidesPerView={1}
-            spaceBetween={20}
-            navigation={false}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-              },
-              768: {
-                slidesPerView: 3,
-              },
-              1024: {
-                slidesPerView: 4,
-              },
-            }}
-            modules={[Navigation]}
-            className={styles.swiper}
-          >
-            {products.map((product) => (
-              <SwiperSlide key={product.id}>
-                <div
-                  className={styles.card}
-                  style={{ backgroundColor: product.bgColor }}
-                >
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className={styles.image}
-                  />
-                  <p className={styles.productName}>{product.name}</p>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper> */}
-        </div>
-      </section>
+     <section>
+     <div className={styles.topProductsSection}>
+      <h2 className={styles.title}>Top Products</h2>
+      <Swiper
+        spaceBetween={20}
+        slidesPerView={4}
+        breakpoints={{
+          320: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
+          1024: { slidesPerView: 4 },
+        }}
+        className={styles.swiperContainer}
+      >
+        {products.map((product) => (
+          <SwiperSlide key={product.id} className={styles.cardWrapper}>
+            <img src={product.image} alt={`Product ${product.id}`} className={styles.productImage} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+     </section>
       <section className={styles.container}>
         <h2 className={styles.title}>Unique Products for you</h2>
         <div className={styles.cards}>
@@ -235,20 +315,142 @@ const HeroSection = () => {
                 <div className={styles.overlay}>
                   <h3 className={styles.name}>{product.name}</h3>
                   <p className={styles.description}>{product.description}</p>
-                  <button className={styles.button}>
+                  {/* <button className={styles.button}>
                     {product.buttonText}
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
           ))}
         </div>
       </section>
+{/* process */}
+<section className={styles.howItWorksSection}>
+      <h2 className={styles.title}>How Satvik Raas Works</h2>
+      <div className={styles.imageContainer}>
+        <img
+          src={processImage}
+          alt="How Satvik Raas Works"
+          className={styles.processImage}
+        />
+      </div>
+    </section>
+    <section>
+      <img className={styles.goodnessimg} src={goodness} alt="" />
+    </section>
+    {/* Trending pro */}
+    <div className={styles.container}>
+      <h2>Trending Products</h2>
+      <div className={styles.trendingcardd}>
+    <div> <img src={chillyimg}  className={styles.chillyimgt} alt="" />
+    </div>
+    <div className={styles.trendcard}>
+      <Swiper
+        spaceBetween={90}
+        slidesPerView={4}
+        breakpoints={{
+          320: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
+          1024: { slidesPerView: 4 },
+        }}
+        className={styles.swiperContainer}
+      >
+        {products.map((product) => (
+          <SwiperSlide key={product.id} className={styles.cardWrapper}>
+            <img src={product.image} alt={`Product ${product.id}`} className={styles.productImage} />
+          </SwiperSlide>
+        ))}
+      </Swiper> </div>      </div>
+    </div>
+      {/* Dedication section */}
+<section>
+<div className={styles.dedicationSection}>
+      <h2 className={styles.title}>Dedication to Natural</h2>
+      <div className={styles.features}>
+        {features.map((feature, index) => (
+          <div key={index} className={styles.feature}>
+            <img src={feature.image} alt={feature.title} className={styles.image} />
+            <p className={styles.text}>{feature.title}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+{/* REVIEWS  */}
+<section>
+<div className={styles.reviewsSection}>
+      <h2 className={styles.title}>
+        Read Our Customers <span className={styles.highlight}>Reviews</span>
+      </h2>
+      <div className={styles.reviewContainer}>
+        <div className={styles.reviewContent}>
+          <p className={styles.text}>"{reviews[currentIndex].text}"</p>
+          <p className={styles.author}>{reviews[currentIndex].author}</p>
+          <div className={styles.stars}>
+            {[...Array(5)].map((_, index) => (
+              <span key={index}>⭐</span>
+            ))}
+          </div>
+        </div>
+        {/* <div className={styles.reviewImages}>
+          {reviews.map((review, index) => (
+            <img
+              key={index}
+              src={review.image}
+              alt={review.author}
+              className={`${styles.image} ${
+                currentIndex === index ? styles.active : ''
+              }`}
+            />
+          ))}
+        </div> */}
+        <div className={styles.controls}>
+          <button onClick={handlePrev} className={styles.arrow}>
+            ←
+          </button>
+          <button onClick={handleNext} className={styles.arrow}>
+            →
+          </button>
+        </div>
+      </div>
+    </div>
+</section>
+      {/* FAQ */}
+      <section>
+      <div className={styles.faqSection}>
+      <h2 className={styles.heading}>FAQ's</h2>
+      <div className={styles.faqList}>
+        {faqs.map((faq, index) => (
+          <div
+            className={`${styles.faqItem} ${
+              openIndex === index ? styles.open : ""
+            }`}
+            key={index}
+          >
+            <div
+              className={styles.question}
+              onClick={() => toggleFAQ(index)}
+            >
+              <span>{index + 1}. {faq.question}</span>
+              <span className={styles.toggleIcon}>
+                {openIndex === index ? "−" : "+"}
+              </span>
+            </div>
+            <div
+              className={styles.answer}
+              style={{
+                maxHeight: openIndex === index ? "200px" : "0",
+              }}
+            >
+              <p>{faq.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+      </section>
      
-      {/* news and articles  */}
-      {/* <Cardswiper /> */}
-      <img src={group} alt="" />
-      <img src={group2} alt="" />
+
     </div>
   );
 };

@@ -2,9 +2,8 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  margin-top: -100px; 
+  margin-top: -100px;
 }
-
 
 * {
   scroll-behavior: smooth;
@@ -111,14 +110,16 @@
     max-width: 100%;
     height: auto;
   }
-  &_chillipacket { //mirchi packet 
+  &_chillipacket {
+    //mirchi packet
     position: absolute;
     bottom: -10%;
     width: auto;
-      animation: slideUppacket 3s 3s forwards;
-      height: auto; 
+    animation: slideUppacket 3s 3s forwards;
+    height: auto;
 
-    img { //mirchi packet 
+    img {
+      //mirchi packet
       max-width: 100%;
       width: 150px;
       // transform: rotate(-38deg);
@@ -126,7 +127,7 @@
     @keyframes slideUppacket {
       0% {
         bottom: -20%;
-      
+
         opacity: 1;
         transform: scale(1) rotate(-38deg);
       }
@@ -157,6 +158,7 @@
   @media (max-width: 768px) {
     flex-direction: column;
     padding: 2rem;
+    height: auto;
   }
   .abtbgimg {
     position: absolute;
@@ -181,15 +183,21 @@
     font-size: 64px;
     font-weight: bold;
     margin-bottom: 1rem;
+    color: #0a0c0c;
 
     @media (max-width: 768px) {
-      font-size: 2rem;
+      font-size: 48px;
     }
   }
 
   &__description {
-    font-size: 1.25rem;
+    font-size: 20px;
+    font-family: "Corbel";
+    text-align: justify;
     line-height: 1.5;
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
   }
 
   &__image {
@@ -197,67 +205,71 @@
 
     @media (max-width: 768px) {
       flex-basis: auto;
-      margin-top: 2rem;
+      margin-top: 2rem; margin: -2rem;;
     }
   }
 
   &__img {
     max-width: 100%;
     height: auto;
+
+    @media (max-width: 768px) {
+    width: 100vw;  
+    }
   }
 }
 
 // products cards
-
-.swiperContainer {
-  padding: 20px;
+.topProductsSection {
+  padding: 40px 20px;
   text-align: center;
+  font-family: Arial, sans-serif;
 
   .title {
     font-family: Zodiak-Regular;
     font-size: 64px;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem;      @media (max-width: 768px) {  font-size: 48px;}
   }
 
-  .swiper {
-    padding: 10px 0;
-    .swiper-button-next,
-    .swiper-button-prev {
-      color: #333;
-    }
-
-    .swiper-wrapper {
-      display: flex;
-    }
+  .swiperContainer {
+    overflow: hidden;
+    padding-bottom: 20px;
   }
 
-  .card {
+  .cardWrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-    height: 380px;
-    width: 260px;
 
-    &:hover {
-      transform: translateY(-5px);
-    }
+    img {
+      width: 100%; // Full width of the card
+      height: auto;
+      max-width: 250px; // Limit size for consistent card dimensions
+      border-radius: 12px; // Add rounded corners if needed
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
 
-    .image {
-      width: 162px;
-      height: 208px;
-      margin-bottom: 10px;
+      &:hover {
+        transform: scale(1.05); // Slight zoom effect on hover
+      }
     }
+  }
+}
 
-    .productName {
-      font-size: 16px;
-      font-weight: 500;
-    }
+// Responsive styling (Optional adjustments for mobile)
+@media (max-width: 768px) {
+  .swiperContainer {
+    padding-bottom: 10px;
+  }
+
+  .cardWrapper img {
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardWrapper img {
+    max-width: 100px;
   }
 }
 
@@ -270,32 +282,51 @@
     font-family: Zodiak-Regular;
     font-size: 64px;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem;      @media (max-width: 768px) {  font-size: 48px;}
   }
-
   .cards {
     display: grid;
     grid-template-columns: 2fr 1fr; // Left column twice the width of the right column
     gap: 1.5rem;
-
+   
     > .card1,
     > .card2 {
+      // height: 320px;
+      // width: 790px;
       grid-column: 1; // Left column
+        @media (max-width: 768px) {
+          height: auto;
+          width: auto;
     }
-
+    }
+  
     .card1 {
       grid-row: 1;
     }
-
+  
     .card2 {
       grid-row: 2;
     }
-
+  
     > .card3 {
       grid-column: 2; // Right column
       grid-row: span 2; // Occupies the full height of both rows in the left column
     }
+  
+    // Add responsive styling for mobile
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr; // Single column layout
+      grid-template-rows: auto; // Rows adjust to content height
+  
+      > .card1,
+      > .card2,
+      > .card3 {
+        grid-column: 1; // All cards take the full width
+        grid-row: auto; // Automatic row positioning
+      }
+    }
   }
+  
 
   .card {
     position: relative;
@@ -410,15 +441,17 @@
     gap: 1.5rem;
 
     .largeCard {
-      flex: 1 1 48%;
+      width: 200px;
+      flex: 1 1 1 1 30%;
       position: relative;
       overflow: hidden;
       border-radius: 10px;
-      max-height: 400px;
+      max-height: 200px;
 
       .cardImage {
         width: 100%;
         height: 100%;
+        width: 200px;
         object-fit: cover;
         transition: transform 0.5s ease;
       }
@@ -524,8 +557,23 @@
       background-color: #00796b;
     }
   }
+} .trendingcardd{
+  position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  .trendcard{
+    width: 70%;
+    margin: auto;gap: 20px;
+    // background-color: red;
+  }
+  
+.chillyimgt{
+  width: 350px;
+  height: 500px;
+  object-fit: cover;
 }
-
 // -------------------------------------------------------------------------------------------------------------
 // news and article
 
@@ -716,4 +764,554 @@
   .read-more {
     font-size: 0.8rem;
   }
+}
+
+// FAQ 
+.faqSection {
+  padding: 20px;
+  background: #f7f7f7;
+  font-family: "Arial, sans-serif";
+
+  .heading {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .faqList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .faqItem {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &.open {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .question {
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      color: #333;
+      background: #eef3f7;
+
+      &:hover {
+        background: #dde9f1;
+      }
+    }
+
+    .toggleIcon {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease;
+      padding: 0 20px;
+      background: #fff;
+
+      p {
+        margin: 10px 0;
+        font-size: 14px;
+        color: #666;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .faqSection {
+    padding: 15px;
+
+    .heading {
+      font-size: 20px;
+    }
+
+    .faqItem {
+      .question {
+        font-size: 14px;
+      }
+
+      .answer {
+        p {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .faqSection {
+    padding: 10px;
+
+    .heading {
+      font-size: 18px;
+    }
+
+    .faqItem {
+      .question {
+        font-size: 13px;
+      }
+
+      .answer {
+        p {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+// FQ ENDS
+
+
+// REVIEWS
+
+.reviewsSection {
+  padding: 40px 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+
+  .title {
+    font-size: 28px;
+    margin-bottom: 20px;
+
+    .highlight {
+      color: #007acc;
+      background-color: #fff0d4;
+      padding: 0 5px;
+    }
+  }
+
+  .reviewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    .reviewContent {
+      max-width: 600px;
+      margin-bottom: 20px;
+
+      .text {
+        font-size: 18px;
+        font-style: italic;
+        margin-bottom: 10px;
+      }
+
+      .author {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .stars {
+        color: #ffcc00;
+      }
+    }
+
+    .reviewImages {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+
+      .image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+
+        &.active {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+    }
+
+    .controls {
+      display: flex;
+      gap: 15px;
+
+      .arrow {
+        background: #007acc;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background 0.3s;
+
+        &:hover {
+          background: #005f99;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .reviewsSection {
+    .title {
+      font-size: 22px;
+    }
+
+    .reviewContainer {
+      .reviewContent {
+        .text {
+          font-size: 16px;
+        }
+        .author {
+          font-size: 14px;
+        }
+      }
+
+      .reviewImages {
+        .image {
+          width: 50px;
+          height: 50px;
+        }
+      }
+
+      .controls {
+        .arrow {
+          padding: 8px 12px;
+        }
+      }
+    }
+  }
+}
+
+// REVIES ENDS 
+
+// Dedication natural 
+.dedicationSection {
+  padding: 40px 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+
+  .title {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .image {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    .text {
+      font-size: 16px;
+      color: #333;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .dedicationSection {
+    .title {
+      font-size: 22px;
+    }
+
+    .features {
+      gap: 15px;
+    }
+
+    .feature {
+      .image {
+        width: 50px;
+        height: 50px;
+      }
+
+      .text {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+// dedication natural 
+
+// how its works 
+.howItWorksSection {
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+
+  .title {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .imageContainer {
+    position: relative;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  .processImage {
+    width: 100%;
+    max-width: 100%; // Ensures full-width display for desktop
+    display: block;
+
+    @media (max-width: 768px) {
+      width: auto; // Allows horizontal scrolling
+      min-width: 200%;
+    }
+  }
+}
+
+
+// trending 
+.faqSection {
+  padding: 20px;
+  background: #f8f6f2;
+  font-family: Arial, sans-serif;
+
+  .title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .faqList {
+    list-style: none;
+    padding: 0;
+
+    .faqItem {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+
+      .question {
+        width: 100%;
+        background: none;
+        border: none;
+        text-align: left;
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        padding: 10px;
+        transition: background 0.3s;
+
+        &:hover {
+          background: #eee;
+        }
+
+        .icon {
+          font-size: 18px;
+        }
+
+        &.active {
+          font-weight: bold;
+        }
+      }
+
+      .answer {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+        padding: 0 10px;
+
+        &.show {
+          max-height: 100px;
+          opacity: 1;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .faqSection {
+    .title {
+      font-size: 20px;
+    }
+
+    .faqList {
+      .faqItem {
+        .question {
+          font-size: 14px;
+        }
+        .answer {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+// trend
+.trendingSection {
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+
+  .title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  // Highlighted card styling
+  .highlightedCard {
+    flex: 1 1 50%;
+    position: relative;
+    background-color: #fef5e7;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: left;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .highlightContent {
+      padding: 20px;
+
+      h3 {
+        font-size: 20px;
+        color: #d23f3f;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 14px;
+        margin-bottom: 15px;
+      }
+
+      .exploreButton {
+        background-color: #1b5e20;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        &:hover {
+          background-color: #155d1d;
+        }
+      }
+    }
+  }
+
+  // Swiper wrapper styling
+  .swiperWrapper {
+    flex: 1 1 45%;
+
+    .swiper {
+      padding-bottom: 20px;
+    }
+
+    .productCard {
+      text-align: center;
+
+      img {
+        width: 100px;
+        height: auto;
+        margin-bottom: 10px;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+
+      .productName {
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+
+    .seeAllButton {
+      display: block;
+      margin: 10px auto 0;
+      background-color: #1b5e20;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background-color: #155d1d;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .highlightedCard {
+      width: 100%;
+    }
+
+    .swiperWrapper {
+      width: 100%;
+
+      .productCard img {
+        width: 80px;
+      }
+    }
+  }
+}
+
+
+// goodnemss
+
+.goodnessimg{
+  width: 100vw;
+  object-fit: contain;
 }
