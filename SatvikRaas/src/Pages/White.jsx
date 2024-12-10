@@ -12,7 +12,7 @@ const CenteredLogo = () => {
     },
     logo: {
       maxWidth: "80%", // Responsive width
-      maxHeight: "300px", // Limit the height
+      maxHeight: "400px", // Limit the height
     },
     mobile: {
       maxWidth: "60%", // Smaller width for mobile
