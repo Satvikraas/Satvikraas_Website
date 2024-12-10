@@ -7,7 +7,6 @@ import { Navigation, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
-import Cardswiper from "../Cardswiper.jsx";
 
 import dhaniyaimg from "../../Assets/Images/dhaniyacard.svg";
 import chillyimg from "../../Assets/Images/chillycard.svg";

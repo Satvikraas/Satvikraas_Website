@@ -11,6 +11,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
 import Navbar from "./Pages/Header/Navbar.jsx";
 import CheckoutPage from "./Pages/Products/Checkout.jsx";
 import Checkout from "./Pages/CheckOut/Checkout.jsx";
+import Footer from "./Pages/Header/Footer.jsx";
 export default function App() {
   return (
     <div className="App">
@@ -29,6 +30,7 @@ export default function App() {
             <Route path="/checkout" element={<CheckoutPage />} />      
             <Route path="/checkout1" element={<Checkout />} />      
         </Routes>
+        <Footer/>
       </main>
       {/* <Footer /> */}
     </Router>
