@@ -33,7 +33,7 @@ export default function Footer() { const links = [
               <a href="mailto:satvikraas@gmail.com">satvikraas@gmail.com</a>
             </div>
             <div className={styles.SocialMediaLinks}>
-              {/* <p>s</p> */}
+              <p>6262454595</p>
             </div>
           </div>
         </div>

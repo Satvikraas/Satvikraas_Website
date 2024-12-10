@@ -2,7 +2,7 @@ import React from 'react';
 import './ResponsiveImages.scss'; // For styling
 
 import img1 from "./abtusimg.png"
-import img2 from "./abtusimg.png"
+import img2 from "./abt2.png"
 const ResponsiveImages = () => {
   return (
     <div className="responsive-images-container">
