@@ -13,13 +13,13 @@ import CheckoutPage from "./Pages/Products/Checkout.jsx";
 import Checkout from "./Pages/CheckOut/Checkout.jsx";
 import Footer from "./Pages/Header/Footer.jsx";
 import ContactUs from "./Pages/Extra/ContactUs.jsx";
-import Blankpage from "./Pages/White.jsx";
+// import Blankpage from "./Pages/White.jsx";
 export default function App() {
   return (
     <div className="App">
 
-      <Blankpage/>
-    {/* <Router>
+      {/* <Blankpage/> */}
+    <Router>
     
       <main>
         <Navbar/>  
@@ -38,7 +38,7 @@ export default function App() {
         <Footer/>
       </main>
       
-    </Router> */}
+    </Router>
     </div>
   );
 }
