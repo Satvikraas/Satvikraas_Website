@@ -74,7 +74,7 @@ export default function ContactUs() {
               <input
                 className="FirstName"
                 type="text"
-                placeholder="Ex. Dhawal"
+                placeholder="Ex. Ramesh"
               />
             </label>
 
@@ -83,7 +83,7 @@ export default function ContactUs() {
               <input
                 className="FirstName"
                 type="text"
-                placeholder="Ex. Patel"
+                placeholder="Ex. Birajdar"
               />
             </label>
 
@@ -92,7 +92,7 @@ export default function ContactUs() {
               <input
                 className="FirstName"
                 type="tel"
-                placeholder="8239487390"
+                placeholder="7788995566"
                 maxLength={10}
                 required
               />
