@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import logo from "./SatvikRaasLogo.svg";
 import cart from "../../Assets/Logo/cart.png"
 import login from "../../Assets/Logo/admin.png"
+ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState("Home"); // Default active tab
   const navigate = useNavigate();
@@ -139,10 +140,10 @@ const Navbar = () => {
 					</a>
 				</li>
 				<li class="menu-item">
-					<a href="/login" class="menu-link">
+        <Link to="/login" class="menu-link">
 					
 						<span class="menu-name"> 	<i  class="menu-iconz ion-md-contact"></i></span>
-					</a>
+					</Link>
 				</li>
 		</ul>
 	</nav>

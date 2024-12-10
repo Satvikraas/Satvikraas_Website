@@ -20,6 +20,7 @@ import coriamder from "../../Assets/Images/redmandala.png";
 import greenmandala from "../../Assets/Images/redmandala.png";
 import dhaniya from "../../Assets/Images/redmandala.png";
 import darkgreenamndala from "../../Assets/Images/redmandala.png"; 
+import redchilli from "../../Assets/Images/Red Chilli.png"; 
 
 
 
@@ -227,7 +228,7 @@ const faqs = [
         <div className={styles.heroSection_chillipacket}>
           <img
             className={styles.herosection_chillipack}
-            src={chillipacket}
+            src={redchilli}
             alt="chilli powder"
           />
         </div>
