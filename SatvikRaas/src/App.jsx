@@ -12,7 +12,8 @@ import Navbar from "./Pages/Header/Navbar.jsx";
 import CheckoutPage from "./Pages/Products/Checkout.jsx";
 import Checkout from "./Pages/CheckOut/Checkout.jsx";
 import Footer from "./Pages/Header/Footer.jsx";
-import ContactUs from "./Pages/Extra/ContactUs.jsx";
+import ContactUs from "./Pages/Extra/ContactUs.jsx"; 
+import Aboutpage  from "./Pages/Aboutus.jsx"; 
 // import Blankpage from "./Pages/White.jsx";
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="/checkout" element={<CheckoutPage />} />      
             <Route path="/checkout1" element={<Checkout />} />      
             <Route path="/contact" element={<ContactUs />} />      
+            <Route path="/about" element={<Aboutpage />} />      
         </Routes>
         <Footer/>
       </main>
