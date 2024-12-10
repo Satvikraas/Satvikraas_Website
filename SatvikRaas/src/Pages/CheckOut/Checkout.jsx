@@ -10,6 +10,7 @@ import {
   faIndianRupeeSign,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Checkout.module.scss";
+import api from "../../api.jsx"
 
 
 
@@ -26,13 +27,13 @@ const loadRazorpayScript = () => {
   });
 };
 
-const api = axios.create({
-    baseURL: 'http://localhost:8080',
-    withCredentials: true,
-    validateStatus: (status) => {
-      return (status >= 200 && status < 300) || status === 302;
-    }
-  });
+// const api = axios.create({
+//     baseURL: 'http://localhost:8080',
+//     withCredentials: true,
+//     validateStatus: (status) => {
+//       return (status >= 200 && status < 300) || status === 302;
+//     }
+//   });
   const getAccessToken = () => {
     return sessionStorage.getItem('accessToken');
   };

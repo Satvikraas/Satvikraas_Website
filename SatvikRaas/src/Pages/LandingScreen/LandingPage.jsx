@@ -219,7 +219,7 @@ const faqs = [
         </div>
         <div className={styles.heroSection__image}>
           <img
-            ref={imageRef}
+            
             src={mandalaimg}
             alt="Nature Essence"
             className={styles.heroSection__img}

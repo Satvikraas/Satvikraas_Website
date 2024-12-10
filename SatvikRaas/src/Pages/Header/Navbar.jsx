@@ -104,32 +104,32 @@ const Navbar = () => {
         </a>
       </div> */} <header class="header" id="header">
 	<nav class="navbar container">
-		<a href="./index.html" class="brand"><img src={logo} alt="" /></a>
+  <Link to="/" class="brand"><img src={logo} alt="" /></Link>
 		<div class="menu" id="menu">
 			<ul class="menu-list">
 				<li class="menu-item">
-					<a href="/" class="menu-link ">
+			  <Link to="/" class="menu-link ">
 						<i class="menu-icon ion-md-home"></i>
 						<span class="menu-name">Home</span>
-					</a>
+					</Link>
 				</li>
 				<li class="menu-item">
-					<a href="/products" class="menu-link ">
+				  <Link to="/products" class="menu-link ">
 						<i class="menu-icon ion-md-pricetags"></i>
 						<span class="menu-name">Our Products</span>
-					</a>
+					</Link>
 				</li>
 				<li class="menu-item">
-					<a href="/about" class="menu-link ">
+				  <Link to="/about" class="menu-link ">
 						<i class="menu-icon ion-md-people"></i>
 						<span class="menu-name">About Us</span>
-					</a>
+					</Link>
 				</li>
 				<li class="menu-item">
-					<a href="/contact" class="menu-link">
+				  <Link to="/contact" class="menu-link">
 						<i class="menu-icon ion-md-call"></i>
 						<span class="menu-name">Contact Us</span>
-					</a>
+					</Link>
 				</li>
 			
 			</ul>

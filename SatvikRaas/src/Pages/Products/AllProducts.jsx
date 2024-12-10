@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './AllProductPage.module.scss';
-
-const api = axios.create({
-  baseURL: 'http://localhost:8080',
-  withCredentials: true,
-});
+import api from "../../api.jsx"
+// const api = axios.create({
+//   baseURL: 'http://localhost:8080',
+//   withCredentials: true,
+// });
 
 const Product = ({ product, filters }) => {
   const navigate = useNavigate();

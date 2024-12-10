@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import api from "../../api.jsx"
 
 import './CartItemRow.css';
 import CartItemRow from './CartItemRow';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const api = axios.create({
-  baseURL: 'http://localhost:8080',
-  withCredentials: true,
-  validateStatus: (status) => {
-    return (status >= 200 && status < 300) || status === 302;
-  }
-});
+// const api = axios.create({
+//   baseURL: 'http://localhost:8080',
+//   withCredentials: true,
+//   validateStatus: (status) => {
+//     return (status >= 200 && status < 300) || status === 302;
+//   }
+// });
 
 const ShoppingCart = () => {
 

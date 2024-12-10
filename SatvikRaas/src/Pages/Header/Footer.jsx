@@ -1,7 +1,19 @@
 import styles from "./Footer.module.scss";
 import logo from "./SatvikRaasLogo.svg";
-
-export default function Footer() {
+import { Link } from "react-router-dom";
+export default function Footer() { const links = [
+  { name: "Home", path: "/" },
+  { name: "About Us", path: "/about" },
+  { name: "Our Product", path: "/products" },
+  { name: "Contact Us", path: "/contact" },
+  { name: "Cart", path: "/cart" }, 
+]; const resources = [
+  { name: "Help Center", path: "/help-center" },
+  { name: "Terms & Conditions", path: "/terms-conditions" },
+  { name: "Privacy Policy", path: "/privacy-policy" },
+  { name: "Payment & Pricing", path: "/payment-pricing" },
+  { name: "Shipping", path: "/shipping" },
+];
   return (
     <footer className={styles.Footer}>
       <div className={styles.FooterMain}>
@@ -21,37 +33,29 @@ export default function Footer() {
               <a href="mailto:satvikraas@gmail.com">satvikraas@gmail.com</a>
             </div>
             <div className={styles.SocialMediaLinks}>
-              <p>s</p>
+              {/* <p>s</p> */}
             </div>
           </div>
         </div>
 
         {/* Explore and Resources */}
         <div className={styles.ExploreAndResources}>
-          <div className={styles.Explore}>
-            <h1>Explore</h1>
-            {["Home", "About Us", "Our Product", "Blog", "Contact Us", "Cart"].map(
-              (item) => (
-                <a key={item} href="#">
-                  {item}
-                </a>
-              )
-            )}
-          </div>
-          <div className={styles.Resources}>
-            <h1>Resources</h1>
-            {[
-              "Help Center",
-              "Terms & Conditions",
-              "Privacy Policy",
-              "Payment & Pricing",
-              "Shipping",
-            ].map((item) => (
-              <a key={item} href="#">
-                {item}
-              </a>
-            ))}
-          </div>
+        <div className={styles.Explore}>
+      <h1>Explore</h1>
+      {links.map((link) => (
+        <Link key={link.name} to={link.path}>
+          {link.name}
+        </Link>
+      ))}
+    </div>
+    <div className={styles.Resources}>
+      <h1>Resources</h1>
+      {resources.map((resource) => (
+        <Link key={resource.name} to={resource.path}>
+          {resource.name}
+        </Link>
+      ))}
+    </div>
         </div>
 
         {/* Location */}
