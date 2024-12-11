@@ -18,11 +18,11 @@ const ResponsiveImages = () => {
       </picture>
 
       {/* Fullscreen Image */}
-      <img
+      {/* <img
         src="path-to-fullscreen-image.jpg"
         alt="Fullscreen"
         className="fullscreen-image"
-      />
+      /> */}
     </div>
   );
 };

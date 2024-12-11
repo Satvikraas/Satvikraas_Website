@@ -34,7 +34,7 @@ export default function ContactUs() {
             <div>
               <p>Phone</p>
               +91 81854187441 <br />
-              +91 81854187441
+               6262454595
             </div>
           </div>
           <div className={styles.Email}>
