@@ -43,7 +43,9 @@ import processImage from '../../Assets/Images/howitwork.svg';// Replace with the
 import pimg1 from "../../Assets/Images/redchilli.png"
 import pimg2 from "../../Assets/Images/garam.png"
 import pimg3 from "../../Assets/Images/sabji.png"
-import pimg4 from "../../Assets/Images/pcard4.svg"
+import pimg4 from "../../Assets/Images/pcard1.svg"
+import pimg5 from "../../Assets/Images/pcard2.svg"
+import pimg6 from "../../Assets/Images/pcard3.svg"
 
 // goodness
 import goodness from "../../Assets/Images/goodness.svg"
@@ -70,7 +72,10 @@ const products = [
   },
   {
     id: 5,
-    image: pimg1,
+    image: pimg5,
+  }, {
+    id: 6,
+    image: pimg6,
   },
 ];
   // products
