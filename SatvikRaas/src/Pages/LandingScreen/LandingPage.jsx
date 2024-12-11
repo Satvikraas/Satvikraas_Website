@@ -73,10 +73,7 @@ const products = [
   {
     id: 5,
     image: pimg5,
-  }, {
-    id: 6,
-    image: pimg6,
-  },
+  }, 
 ];
   // products
   const productssection = [
