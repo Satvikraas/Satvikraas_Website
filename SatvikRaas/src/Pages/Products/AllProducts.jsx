@@ -5,6 +5,10 @@ import styles from './AllProductPage.module.scss';
 import api from "../../api.jsx"
 import productsimg from "../../Assets/Images/products.png";
 import productsimg2 from "../../Assets/Images/productsimg2.png";
+import productsimgdesktop from "../../Assets/Images/productdesk.jpg";
+import productsimgmob from "../../Assets/Images/productmob.jpg";
+
+
 // const api = axios.create({
 //   baseURL: 'http://localhost:8080',
 //   withCredentials: true,
@@ -192,10 +196,28 @@ const App = () => {
         </div>
       </header> 
       
-      <img className={styles.productimg} src={productsimg} alt="" /> 
-      <img className={styles.productimg} src={productsimg2} alt="" /> 
+      {/* <img className={styles.productimg} src={productsimg} alt="" /> 
+      <img className={styles.productimg} src={productsimg2} alt="" />  */}
 
+<div className="responsive-images-container">
+      {/* Responsive Image */}
+      <picture>
+        <source media="(max-width: 768px)" srcSet={productsimgmob} />
+        <source media="(min-width: 769px)" srcSet={productsimgdesktop} />
+        <img
+          src="path-to-desktop-image.jpg"
+          alt="Responsive"
+          className="responsive-image"
+        />
+      </picture>
 
+      {/* Fullscreen Image */}
+      {/* <img
+        src="path-to-fullscreen-image.jpg"
+        alt="Fullscreen"
+        className="fullscreen-image"
+      /> */}
+    </div>
       {error && <div className={styles.errorMessage}>{error}</div>}  
       {/* <ProductList products={products} filters={filters} /> */}
     </div>

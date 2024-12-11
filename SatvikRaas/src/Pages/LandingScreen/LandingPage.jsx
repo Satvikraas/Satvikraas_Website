@@ -417,7 +417,7 @@ const faqs = [
             <div
               className={styles.answer}
               style={{
-                maxHeight: openIndex === index ? "200px" : "0",
+                maxHeight: openIndex === index ? "200px" : "0", opacity:100
               }}
             >
               <p>{faq.answer}</p>
