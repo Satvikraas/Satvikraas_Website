@@ -18,6 +18,7 @@ import TermsService from "./Pages/TermsService.jsx";
 import ShippingPolicy from "./Pages/ShippingPolicy.jsx";
 import RefundPolicy from "./Pages/RefundPolicy.jsx";
 import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
+import ScrollToTop from "../src/Pages/ScrollToTop.jsx";
 // import Blankpage from "./Pages/White.jsx";TermsService ShippingPolicy RefundPolicy
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
       {/* <Blankpage/> */}
       <Router>
         <main>
+          <ScrollToTop />
           <Navbar />
           <Routes>
             <Route path="/" element={<LandingPage />} />
