@@ -1,7 +1,7 @@
 import React from "react";
 import "./ResponsiveImages.scss"; // For styling
 
-import img1 from "../Assets/Images/privacypolicyd.jpg";
+import img1 from "../Assets/Images/privacypolivyd2.jpg";
 import img2 from "../Assets/Images/privacypolicym.jpg";
 const ResponsiveImages = () => {
   return (
