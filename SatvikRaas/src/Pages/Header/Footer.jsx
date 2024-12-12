@@ -1,19 +1,21 @@
 import styles from "./Footer.module.scss";
 import logo from "./SatvikRaasLogo.svg";
 import { Link } from "react-router-dom";
-export default function Footer() { const links = [
-  { name: "Home", path: "/" },
-  { name: "About Us", path: "/about" },
-  { name: "Our Product", path: "/products" },
-  { name: "Contact Us", path: "/contact" },
-  { name: "Cart", path: "/cart" }, 
-]; const resources = [
-  { name: "Help Center", path: "/help-center" },
-  { name: "Terms & Conditions", path: "/terms-conditions" },
-  { name: "Privacy Policy", path: "/privacy-policy" },
-  { name: "Payment & Pricing", path: "/payment-pricing" },
-  { name: "Shipping", path: "/shipping" },
-];
+export default function Footer() {
+  const links = [
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about" },
+    { name: "Our Product", path: "/products" },
+    { name: "Contact Us", path: "/contact" },
+    { name: "Cart", path: "/cart" },
+  ];
+  const resources = [
+    { name: "Help Center", path: "/help-center" },
+    { name: "Terms & Conditions", path: "/terms-conditions" },
+    { name: "Privacy Policy", path: "/privacy-policy" },
+    { name: "Refund & Payment", path: "/refund-policy" },
+    { name: "Shipping Policy", path: "/shipping-policy" },
+  ];
   return (
     <footer className={styles.Footer}>
       <div className={styles.FooterMain}>
@@ -40,22 +42,22 @@ export default function Footer() { const links = [
 
         {/* Explore and Resources */}
         <div className={styles.ExploreAndResources}>
-        <div className={styles.Explore}>
-      <h1>Explore</h1>
-      {links.map((link) => (
-        <Link key={link.name} to={link.path}>
-          {link.name}
-        </Link>
-      ))}
-    </div>
-    <div className={styles.Resources}>
-      <h1>Resources</h1>
-      {resources.map((resource) => (
-        <Link key={resource.name} to={resource.path}>
-          {resource.name}
-        </Link>
-      ))}
-    </div>
+          <div className={styles.Explore}>
+            <h1>Explore</h1>
+            {links.map((link) => (
+              <Link key={link.name} to={link.path}>
+                {link.name}
+              </Link>
+            ))}
+          </div>
+          <div className={styles.Resources}>
+            <h1>Resources</h1>
+            {resources.map((resource) => (
+              <Link key={resource.name} to={resource.path}>
+                {resource.name}
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* Location */}
