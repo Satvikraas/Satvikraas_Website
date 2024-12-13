@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import styles from './AllProductPage.module.scss';
-import api from "../../api.jsx"
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import styles from "./AllProductPage.module.scss";
+import api from "../../api.jsx";
 import productsimg from "../../Assets/Images/products.png";
 import productsimg2 from "../../Assets/Images/productsimg2.png";
 import productsimgdesktop from "../../Assets/Images/productdesk.jpg";
 import productsimgmob from "../../Assets/Images/productmob.jpg";
-
 
 // const api = axios.create({
 //   baseURL: 'http://localhost:8080',
@@ -16,95 +15,88 @@ import productsimgmob from "../../Assets/Images/productmob.jpg";
 
 const Product = ({ product, filters }) => {
   const navigate = useNavigate();
-  const [selectedVariant, setSelectedVariant] = useState(product?.variants?.[0] || null);
-  const [error, setError] = useState('');
+  const [selectedVariant, setSelectedVariant] = useState(
+    product?.variants?.[0] || null
+  );
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleVariantChange = (variant) => {
     setSelectedVariant(variant);
   };
 
-  const getAccessToken = () => sessionStorage.getItem('accessToken');
-
-
+  const getAccessToken = () => sessionStorage.getItem("accessToken");
 
   const handlecartopen = () => {
     const accessToken = getAccessToken();
     if (!accessToken) {
-      alert("Please Login First")
+      alert("Please Login First");
       navigate("/login");
-
     } else {
     }
   };
 
-
   const handleAddToCart = async () => {
+    const accessToken = getAccessToken();
+    if (!accessToken) {
+      alert("Please Login First");
+      navigate("/login");
+    } else {
+      setLoading(true);
+      setError("");
 
-      const accessToken = getAccessToken();
-      if (!accessToken) {
-        alert("Please Login First")
-        navigate("/login");
-  
-      } else {
-      
-  
-  
+      try {
+        const accessToken = getAccessToken();
+        if (!accessToken) {
+          setError("Please login to add items to cart");
+          return;
+        }
 
-    
-    setLoading(true);
-    setError('');
-
-    try {
-      const accessToken = getAccessToken();
-      if (!accessToken) {
-        setError('Please login to add items to cart');
-        return;
-      }
-
-      const response = await api.post(
-        '/api/user/addProductInCart',
-        null,
-        {
+        const response = await api.post("/api/user/addProductInCart", null, {
           params: { productVarientId: selectedVariant.id },
           headers: { Authorization: `Bearer ${accessToken}` },
-        }
-      );
+        });
 
-      if (response.status === 200 || response.status === 201) {
-        alert('Product added successfully!');
+        if (response.status === 200 || response.status === 201) {
+          alert("Product added successfully!");
+        }
+      } catch (error) {
+        if (error.response?.status === 409) {
+          alert("Item already in cart!");
+        } else {
+          alert("Failed to add product to cart");
+        }
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      if (error.response?.status === 409) {
-        alert('Item already in cart!');
-      } else {
-        alert('Failed to add product to cart');
-      }
-    } finally {
-      setLoading(false);
-    } }
+    }
   };
 
   const handleBuyNow = () => {
-    navigate('/productDetail', { state: { product } });
+    navigate("/productDetail", { state: { product } });
   };
 
   // Apply Filters
   const matchesFilters = () => {
-    const matchesCategory = !filters.category || product.category === filters.category;
-    const matchesWeight = !filters.weight || product.variants.some((v) => v.weight === parseInt(filters.weight));
+    const matchesCategory =
+      !filters.category || product.category === filters.category;
+    const matchesWeight =
+      !filters.weight ||
+      product.variants.some((v) => v.weight === parseInt(filters.weight));
     const matchesPrice =
       !filters.price ||
-      (filters.price === 'low' && product.variants.some((v) => v.price < 200)) ||
-      (filters.price === 'high' && product.variants.some((v) => v.price >= 200));
+      (filters.price === "low" &&
+        product.variants.some((v) => v.price < 200)) ||
+      (filters.price === "high" &&
+        product.variants.some((v) => v.price >= 200));
     return matchesCategory && matchesWeight && matchesPrice;
   };
 
   if (!matchesFilters()) return null;
 
   return (
-    <div className={styles.productCard}>  
-{/*     
+    <div className={styles.productCard}>
+      {/*     
       {error && <div className={styles.errorMessage}>{error}</div>}
       <img
         src={`data:image/jpeg;base64,${selectedVariant?.mainImage}`}
@@ -112,7 +104,7 @@ const Product = ({ product, filters }) => {
         alt={product.name}
       />
      */}
-{/* IMP
+      {/* IMP
 <div className={styles.variantButtons}>
         {product.variants?.map((variant, index) => (
           <button
@@ -134,8 +126,7 @@ const Product = ({ product, filters }) => {
           {selectedVariant.discount > 0 && <p>Discount: {selectedVariant.discount}%</p>}
         </>
       )} */}
-  
-    
+
       <button className={styles.buyButton} onClick={handleBuyNow}>
         Buy Now
       </button>
@@ -153,20 +144,24 @@ const ProductList = ({ products, filters }) => (
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const [filters, setFilters] = useState({ category: '', weight: '', price: '' });
-  const [error, setError] = useState('');
+  const [filters, setFilters] = useState({
+    category: "",
+    weight: "",
+    price: "",
+  });
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/public/getAllProducts')
+    fetch("http://15.207.46.61:8080/api/public/getAllProducts")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {
           setProducts(data.data);
         } else {
-          setError('Invalid response format from the backend');
+          setError("Invalid response format from the backend");
         }
-      })
-      // .catch((error) => setError('Error fetching products: ' + error));
+      });
+    // .catch((error) => setError('Error fetching products: ' + error));
   }, []);
 
   const handleFilterChange = (e) => {
@@ -176,49 +171,61 @@ const App = () => {
   return (
     <div className={styles.app}>
       <header className={styles.header}>
-
         <div className={styles.filters}>
-          <select name="category" value={filters.category} onChange={handleFilterChange}>
+          <select
+            name="category"
+            value={filters.category}
+            onChange={handleFilterChange}
+          >
             <option value="">Category</option>
             <option value="spices">Spices</option>
             <option value="herbs">Herbs</option>
           </select>
-          <select name="weight" value={filters.weight} onChange={handleFilterChange}>
+          <select
+            name="weight"
+            value={filters.weight}
+            onChange={handleFilterChange}
+          >
             <option value="">Weight</option>
             <option value="100">100g</option>
             <option value="500">500g</option>
           </select>
-          <select className={styles.pricefilter} name="price" value={filters.price} onChange={handleFilterChange}>
+          <select
+            className={styles.pricefilter}
+            name="price"
+            value={filters.price}
+            onChange={handleFilterChange}
+          >
             <option value="">Price</option>
             <option value="low">Low to High</option>
             <option value="high">High to Low</option>
           </select>
         </div>
-      </header> 
-      
+      </header>
+
       {/* <img className={styles.productimg} src={productsimg} alt="" /> 
       <img className={styles.productimg} src={productsimg2} alt="" />  */}
 
-<div className="responsive-images-container">
-      {/* Responsive Image */}
-      <picture>
-        <source media="(max-width: 768px)" srcSet={productsimgmob} />
-        <source media="(min-width: 769px)" srcSet={productsimgdesktop} />
-        <img
-          src="path-to-desktop-image.jpg"
-          alt="Responsive"
-          className="responsive-image"
-        />
-      </picture>
+      <div className="responsive-images-container">
+        {/* Responsive Image */}
+        <picture>
+          <source media="(max-width: 768px)" srcSet={productsimgmob} />
+          <source media="(min-width: 769px)" srcSet={productsimgdesktop} />
+          <img
+            src="path-to-desktop-image.jpg"
+            alt="Responsive"
+            className="responsive-image"
+          />
+        </picture>
 
-      {/* Fullscreen Image */}
-      {/* <img
+        {/* Fullscreen Image */}
+        {/* <img
         src="path-to-fullscreen-image.jpg"
         alt="Fullscreen"
         className="fullscreen-image"
       /> */}
-    </div>
-      {error && <div className={styles.errorMessage}>{error}</div>}  
+      </div>
+      {error && <div className={styles.errorMessage}>{error}</div>}
       {/* <ProductList products={products} filters={filters} /> */}
     </div>
   );
