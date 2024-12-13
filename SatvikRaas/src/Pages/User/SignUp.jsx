@@ -6,7 +6,7 @@ import logo from "../../Assets/Logo/logo.png";
 import logoapple from "../../Assets/Logo/logo_apple.svg";
 import logogoogle from "../../Assets/Logo/logo_google.svg";
 import logofacebook from "../../Assets/Logo/logo_facebook.svg";
-
+import api from "../../api.jsx";
 const SignupPage = () => {
   const navigate = useNavigate();
 
@@ -26,15 +26,12 @@ const SignupPage = () => {
 
     if (password === confirmPassword) {
       try {
-        const response = await axios.post(
-          "http://localhost:8080/api/auth/signup",
-          {
-            name,
-            email,
-            password,
-            phoneNumber,
-          }
-        );
+        const response = await api.get(`/api/auth/signup`, {
+          name,
+          email,
+          password,
+          phoneNumber,
+        });
         console.log("Success:", response.data);
 
         // Navigate to login page upon successful signup
