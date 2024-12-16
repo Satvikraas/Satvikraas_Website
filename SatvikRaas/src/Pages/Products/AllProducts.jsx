@@ -96,14 +96,12 @@ const Product = ({ product, filters }) => {
 
   return (
     <div className={styles.productCard}>
-      {/*     
       {error && <div className={styles.errorMessage}>{error}</div>}
       <img
         src={`data:image/jpeg;base64,${selectedVariant?.mainImage}`}
         className={styles.productImage}
         alt={product.name}
       />
-     */}
       IMP
       <div className={styles.variantButtons}>
         {product.variants?.map((variant, index) => (
