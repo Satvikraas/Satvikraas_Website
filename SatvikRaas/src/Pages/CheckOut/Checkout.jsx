@@ -289,7 +289,7 @@ export default function Checkout() {
     console.log("getdelivery method" + pincode);
     console.log(weight);
     const getDeliveryChargesResponse = await fetch(
-      `https://api.satvikraas.com/api/delhiveryOne/getDeliveryCharges?destinationPincode=${pincode}&weight=${weight}`
+      `https://api.satvikraas.com/api/delhiveryOne/getDeliveryCharges?destinationpostalcode=${pincode}&weight=${weight}`
     );
 
     if (getDeliveryChargesResponse.ok) {
