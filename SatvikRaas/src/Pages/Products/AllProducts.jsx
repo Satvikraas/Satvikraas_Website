@@ -152,7 +152,7 @@ const App = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://15.207.46.61:8080/api/public/getAllProducts")
+    fetch("https://15.207.46.61:443/api/public/getAllProducts")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {
