@@ -286,6 +286,7 @@ export default function Checkout() {
 
   const getDeliveryCharges = async (pincode) => {
     const weight = calculateTotalWeight(items);
+    console.log("getdelivery method" + pincode);
     console.log(weight);
     const getDeliveryChargesResponse = await fetch(
       `https://api.satvikraas.com/api/delhiveryOne/getDeliveryCharges?destinationPincode=${pincode}&weight=${weight}`
@@ -304,6 +305,7 @@ export default function Checkout() {
   };
 
   const checkServiceability = async (pincode) => {
+    console.log(pincode);
     setIsLoading(true);
     try {
       const response = await fetch(
