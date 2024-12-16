@@ -378,7 +378,7 @@ export default function Checkout() {
 
       console.log(orderData);
       const options = {
-        key: "rzp_test_YH8zCfwQrn8l5q",
+        key: "rzp_live_mJcffWL1hLYxgL",
         amount: totalAmount * 100, // Amount in paise
         currency: "INR",
         name: "SATVIK RASS",
