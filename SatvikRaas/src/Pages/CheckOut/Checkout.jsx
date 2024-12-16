@@ -307,7 +307,7 @@ export default function Checkout() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://api.satvikraas.com/api/delhiveryOne/checkServiceability?pincode=${pincode}`
+        `https://api.satvikraas.com/api/delhiveryOne/checkServiceability?postalcode=${pincode}`
       );
 
       console.log("response", response);
