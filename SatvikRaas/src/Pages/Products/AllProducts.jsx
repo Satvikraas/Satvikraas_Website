@@ -102,7 +102,7 @@ const Product = ({ product, filters }) => {
         className={styles.productImage}
         alt={product.name}
       />
-      IMP
+
       <div className={styles.variantButtons}>
         {product.variants?.map((variant, index) => (
           <button
