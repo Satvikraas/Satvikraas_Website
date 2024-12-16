@@ -19,7 +19,7 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post(
-        "http://api.satvikraas.com:443/api/auth/login",
+        "https://api.satvikraas.com:443/api/auth/login",
         null, // Pass null for the body since we're using params
         {
           params: {
