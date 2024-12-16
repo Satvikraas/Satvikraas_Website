@@ -152,7 +152,7 @@ const App = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("https://api.satvikraas.com:443/api/public/getAllProducts")
+    fetch("https://api.satvikraas.com/api/public/getAllProducts")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {
@@ -206,27 +206,8 @@ const App = () => {
       {/* <img className={styles.productimg} src={productsimg} alt="" /> 
       <img className={styles.productimg} src={productsimg2} alt="" />  */}
 
-      <div className="responsive-images-container">
-        {/* Responsive Image */}
-        <picture>
-          <source media="(max-width: 768px)" srcSet={productsimgmob} />
-          <source media="(min-width: 769px)" srcSet={productsimgdesktop} />
-          <img
-            src="path-to-desktop-image.jpg"
-            alt="Responsive"
-            className="responsive-image"
-          />
-        </picture>
-
-        {/* Fullscreen Image */}
-        {/* <img
-        src="path-to-fullscreen-image.jpg"
-        alt="Fullscreen"
-        className="fullscreen-image"
-      /> */}
-      </div>
       {error && <div className={styles.errorMessage}>{error}</div>}
-      {/* <ProductList products={products} filters={filters} /> */}
+      <ProductList products={products} filters={filters} />
     </div>
   );
 };
