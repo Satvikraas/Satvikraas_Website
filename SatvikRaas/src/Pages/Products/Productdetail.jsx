@@ -321,20 +321,10 @@ const ProductDetailPage = () => {
                   />
                 </div> */}
                  {selectedVariant.subImages?.map((img, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setCurrentView('sub');
-                setSubImageIndex(index);
-              }}
-              className={`${styles.thumbnail} ${
-                currentView === 'sub' && subImageIndex === index
-                  ? styles.active
-                  : ''
-              }`}
-            >
+           
+             
               <img src={`data:image/jpeg;base64,${img.imageData}`} alt={`Thumbnail ${index + 1}`} />
-            </button>
+          
           ))}
               </SwiperSlide>
          
