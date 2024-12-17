@@ -94,35 +94,35 @@
 //             </span>
 //           )}
 //         </div>
-        // <div className={styles.thumbnailContainer}>
-        //   <button
-        //     onClick={() => setCurrentView('main')}
-        //     className={`${styles.thumbnail} ${
-        //       currentView === 'main' ? styles.active : ''
-        //     }`}
-        //   >
-        //     <img
-        //       src={`data:image/jpeg;base64,${selectedVariant.mainImage}`}
-        //       alt="Main Thumbnail"
-        //     />
-        //   </button>
-        //   {selectedVariant.subImages?.map((img, index) => (
-        //     <button
-        //       key={index}
-        //       onClick={() => {
-        //         setCurrentView('sub');
-        //         setSubImageIndex(index);
-        //       }}
-        //       className={`${styles.thumbnail} ${
-        //         currentView === 'sub' && subImageIndex === index
-        //           ? styles.active
-        //           : ''
-        //       }`}
-        //     >
-        //       <img src={`data:image/jpeg;base64,${img.imageData}`} alt={`Thumbnail ${index + 1}`} />
-        //     </button>
-        //   ))}
-        // </div>
+//         <div className={styles.thumbnailContainer}>
+//           <button
+//             onClick={() => setCurrentView('main')}
+//             className={`${styles.thumbnail} ${
+//               currentView === 'main' ? styles.active : ''
+//             }`}
+//           >
+//             <img
+//               src={`data:image/jpeg;base64,${selectedVariant.mainImage}`}
+//               alt="Main Thumbnail"
+//             />
+//           </button>
+//           {selectedVariant.subImages?.map((img, index) => (
+//             <button
+//               key={index}
+//               onClick={() => {
+//                 setCurrentView('sub');
+//                 setSubImageIndex(index);
+//               }}
+//               className={`${styles.thumbnail} ${
+//                 currentView === 'sub' && subImageIndex === index
+//                   ? styles.active
+                  // : ''
+//               }`}
+//             >
+//               <img src={`data:image/jpeg;base64,${img.imageData}`} alt={`Thumbnail ${index + 1}`} />
+//             </button>
+//           ))}
+//         </div>
 //       </div>
 
 //       {/* Info Section */}
@@ -302,7 +302,7 @@ const ProductDetailPage = () => {
             {/* Sub Thumbnails */}
          
               <SwiperSlide key={index}>
-                {/* <div
+                <div
                   className={`${styles.thumbnaildiv} ${
                     currentView === "sub" && subImageIndex === index
                       ? styles.active
@@ -319,36 +319,7 @@ const ProductDetailPage = () => {
                     }}
                     className={styles.thumbnail}
                   />
-                </div> */}
-               <div className={styles.thumbnailContainer}>
-          <button
-            onClick={() => setCurrentView('main')}
-            className={`${styles.thumbnail} ${
-              currentView === 'main' ? styles.active : ''
-            }`}
-          >
-            <img
-              src={`data:image/jpeg;base64,${selectedVariant.mainImage}`}
-              alt="Main Thumbnail"
-            />
-          </button>
-          {selectedVariant.subImages?.map((img, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setCurrentView('sub');
-                setSubImageIndex(index);
-              }}
-              className={`${styles.thumbnail} ${
-                currentView === 'sub' && subImageIndex === index
-                  ? styles.active
-                  : ''
-              }`}
-            >
-              <img src={`data:image/jpeg;base64,${img.imageData}`} alt={`Thumbnail ${index + 1}`} />
-            </button>
-          ))}
-        </div>
+                </div>
               </SwiperSlide>
          
           </Swiper>
