@@ -279,11 +279,12 @@ const ProductDetailPage = () => {
                 }`}
               >
                 <img
-                  src={`data:image/jpeg;base64,${
-                    currentView === "main"
-                      ? selectedVariant.mainImage
-                      : selectedVariant.subImages[subImageIndex]
-                  }`}
+                  // src={`data:image/jpeg;base64,${
+                  //   currentView === "main"
+                  //     ? selectedVariant.mainImage
+                  //     : selectedVariant.subImages[subImageIndex]
+                  // }`}
+                  src={mainImage}
                   alt="Main Thumbnail"
                   onClick={() => setCurrentView("main")}
                   className={styles.thumbnail}
