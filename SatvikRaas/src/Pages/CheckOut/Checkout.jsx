@@ -721,6 +721,36 @@ export default function Checkout() {
                     <h3 className={styles.modalTitle}>Add New Address</h3>
                     <input
                       type="text"
+                      placeholder="Pincode"
+                      className="input-field"
+                      maxLength={6}
+                      value={newAddress.pincode}
+                      onChange={(e) => {
+                        const inputPincode = e.target.value;
+                        // Only allow numeric input
+                        const numericPincode = inputPincode.replace(/\D/g, "");
+
+                        setNewAddress({
+                          ...newAddress,
+                          pincode: numericPincode,
+                          // Reset city and state if pincode is not exactly 6 digits
+                          ...(numericPincode.length !== 6 && {
+                            city: "",
+                            state: "",
+                          }),
+                        });
+
+                        // Trigger serviceability check only when exactly 6 digits
+                        if (numericPincode.length === 6) {
+                          setNotAddressCardClick(true);
+                          checkServiceability(numericPincode);
+                        } else {
+                          setIsAddressServiceable(false);
+                        }
+                      }}
+                    />
+                    <input
+                      type="text"
                       placeholder="Full Name"
                       className={styles.inputField}
                       value={newAddress.name}
@@ -755,36 +785,7 @@ export default function Checkout() {
                         setNewAddress({ ...newAddress, city: e.target.value })
                       }
                     />
-                    <input
-                      type="text"
-                      placeholder="Pincode"
-                      className="input-field"
-                      maxLength={6}
-                      value={newAddress.pincode}
-                      onChange={(e) => {
-                        const inputPincode = e.target.value;
-                        // Only allow numeric input
-                        const numericPincode = inputPincode.replace(/\D/g, "");
-
-                        setNewAddress({
-                          ...newAddress,
-                          pincode: numericPincode,
-                          // Reset city and state if pincode is not exactly 6 digits
-                          ...(numericPincode.length !== 6 && {
-                            city: "",
-                            state: "",
-                          }),
-                        });
-
-                        // Trigger serviceability check only when exactly 6 digits
-                        if (numericPincode.length === 6) {
-                          setNotAddressCardClick(true);
-                          checkServiceability(numericPincode);
-                        } else {
-                          setIsAddressServiceable(false);
-                        }
-                      }}
-                    />
+                  
 
                     <input
                       type="text"
