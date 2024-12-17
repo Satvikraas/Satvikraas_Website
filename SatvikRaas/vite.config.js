@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "http://15.207.46.61:8080", // Proxy to the HTTP API server
+      "/api": "https://api.satvikraas.com", // Proxy to the HTTP API server
     },
+    historyApiFallback: true, // This ensures all routes go to index.html
   },
 });

@@ -308,7 +308,8 @@ const ProductDetailPage = () => {
                   }`}
                 >
                   <img
-                    src={img}
+                   src={`data:image/jpeg;base64,${img.imageData}`} 
+                   // src={img}
                     alt={`Thumbnail ${index + 1}`}
                     onClick={() => {
                       setCurrentView("sub");
