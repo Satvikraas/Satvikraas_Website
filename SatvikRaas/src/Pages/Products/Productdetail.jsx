@@ -260,11 +260,11 @@ const ProductDetailPage = () => {
     alt={product.name}
     className={styles.mainImage}
   />
-  {currentView === "sub" && (
+  {/* {currentView === "sub" && (
     <span className={styles.imageCounter}>
       {subImageIndex + 1}/{selectedVariant.subImages.length}
     </span>
-  )}
+  )} */}
 </div>
 
 {/* Image Carousel */}
