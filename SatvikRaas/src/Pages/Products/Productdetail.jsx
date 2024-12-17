@@ -252,9 +252,14 @@ const ProductDetailPage = () => {
           {/* Main Image Display */}
           <div className={styles.mainImageContainer}>
             <img
-              src={
-                currentView === "main" ? mainImage : subImages[subImageIndex]
-              }
+              // src={
+              //   currentView === "main" ? mainImage : subImages[subImageIndex]
+              // }
+              src={`data:image/jpeg;base64,${
+                              currentView === 'main'
+                                ? selectedVariant.mainImage
+                                : selectedVariant.subImages[subImageIndex]
+                            }`}
               alt={product.name}
               className={styles.mainImage}
             />
