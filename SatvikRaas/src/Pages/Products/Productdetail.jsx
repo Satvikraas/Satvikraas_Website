@@ -80,7 +80,7 @@
 //       <div className={styles.imageSection}>
 //         <div className={styles.mainImageContainer}>
 //           <img
-//             sr c={`data:image/jpeg;base64,${
+//             src={`data:image/jpeg;base64,${
 //               currentView === 'main'
 //                 ? selectedVariant.mainImage
 //                 : selectedVariant.subImages[subImageIndex]
@@ -116,7 +116,7 @@
 //               className={`${styles.thumbnail} ${
 //                 currentView === 'sub' && subImageIndex === index
 //                   ? styles.active
-                  // : ''
+//                   : ''
 //               }`}
 //             >
 //               <img src={`data:image/jpeg;base64,${img.imageData}`} alt={`Thumbnail ${index + 1}`} />
@@ -289,9 +289,7 @@ const ProductDetailPage = () => {
                   //     ? selectedVariant.mainImage
                   //     : selectedVariant.subImages[subImageIndex]
                   // }`}
-                  // src={mainImage} 
-                   src={`data:image/jpeg;base64,${selectedVariant.mainImage}`}
-//            
+                  src={mainImage}
                   alt="Main Thumbnail"
                   onClick={() => setCurrentView("main")}
                   className={styles.thumbnail}
@@ -300,7 +298,7 @@ const ProductDetailPage = () => {
             </SwiperSlide>
 
             {/* Sub Thumbnails */}
-         
+            {subImages.map((img, index) => (
               <SwiperSlide key={index}>
                 <div
                   className={`${styles.thumbnaildiv} ${
@@ -321,7 +319,7 @@ const ProductDetailPage = () => {
                   />
                 </div>
               </SwiperSlide>
-         
+            ))}
           </Swiper>
         </div>
 
