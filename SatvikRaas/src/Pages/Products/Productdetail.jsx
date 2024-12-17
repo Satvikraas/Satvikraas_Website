@@ -303,8 +303,7 @@ const ProductDetailPage = () => {
 
             {/* Sub Thumbnails */}
             {selectedVariant.subImages?.map((img, index) => (
-    <SwiperSlide key={index}>
-      <div
+    <SwiperSlide key={index}
         className={`${styles.thumbnaildiv} ${
           currentView === 'sub' && subImageIndex === index
             ? styles.active
@@ -320,7 +319,7 @@ const ProductDetailPage = () => {
           }}
           className={styles.thumbnail}
         />
-      </div>
+      
     </SwiperSlide>
   ))}
           </Swiper>
