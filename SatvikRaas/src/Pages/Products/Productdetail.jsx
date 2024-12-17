@@ -250,79 +250,8 @@ const ProductDetailPage = () => {
         {/* Left Section: Image Carousel */}
         <div className={styles.imageSection}>
           {/* Main Image Display */}
-          <div className={styles.mainImageContainer}>
-            <img
-              // src={
-              //   currentView === "main" ? mainImage : subImages[subImageIndex]
-              // }
-              src={`data:image/jpeg;base64,${
-                              currentView === 'main'
-                                ? selectedVariant.mainImage
-                                : selectedVariant.subImages[subImageIndex]
-                            }`}
-              alt={product.name}
-              className={styles.mainImage}
-            />
-            {currentView === "sub" && (
-              <span className={styles.imageCounter}>
-                {/* {subImageIndex + 1}/{subImages.length} */}
-              </span>
-            )}
           </div>
 
-          {/* Image Carousel */}
-          <Swiper
-            slidesPerView={4}
-            spaceBetween={50}
-            className={styles.imageCarousel}
-          >
-            {/* Main Thumbnail */}
-            <SwiperSlide>
-              <div
-                className={`${styles.thumbnaildiv} ${
-                  currentView === "main" ? styles.active : ""
-                }`}
-              >
-                <img
-                  // src={`data:image/jpeg;base64,${
-                  //   currentView === "main"
-                  //     ? selectedVariant.mainImage
-                  //     : selectedVariant.subImages[subImageIndex]
-                  // }`}
-                  src={`data:image/jpeg;base64,${
-                    currentView === 'main'
-                      ? selectedVariant.mainImage
-                      : selectedVariant.subImages[subImageIndex]
-                  }`}
-                  alt="Main Thumbnail"
-                  onClick={() => setCurrentView("main")}
-                  className={styles.thumbnail}
-                />
-              </div>
-            </SwiperSlide>
-
-            {/* Sub Thumbnails */}
-            {selectedVariant.subImages?.map((img, index) => (
-    <SwiperSlide key={index}
-        className={`${styles.thumbnaildiv} ${
-          currentView === 'sub' && subImageIndex === index
-            ? styles.active
-            : ''
-        }`}
-      >
-        <img
-          src={`data:image/jpeg;base64,${img.imageData}`} // Use your image data here
-          alt={`Thumbnail ${index + 1}`}
-          onClick={() => {
-            setCurrentView('sub');
-            setSubImageIndex(index);
-          }}
-          className={styles.thumbnail}
-        />
-      
-    </SwiperSlide>
-  ))}
-          </Swiper>
         </div>
 
         {/* Right Section: Product Details */}
@@ -385,7 +314,7 @@ const ProductDetailPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 
