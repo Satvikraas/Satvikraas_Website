@@ -289,7 +289,9 @@ const ProductDetailPage = () => {
                   //     ? selectedVariant.mainImage
                   //     : selectedVariant.subImages[subImageIndex]
                   // }`}
-                  src={mainImage}
+                  // src={mainImage} 
+                   src={`data:image/jpeg;base64,${selectedVariant.mainImage}`}
+//            
                   alt="Main Thumbnail"
                   onClick={() => setCurrentView("main")}
                   className={styles.thumbnail}
