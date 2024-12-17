@@ -302,28 +302,27 @@ const ProductDetailPage = () => {
             </SwiperSlide>
 
             {/* Sub Thumbnails */}
-            {subImages.map((img, index) => (
-              <SwiperSlide key={index}>
-                <div
-                  className={`${styles.thumbnaildiv} ${
-                    currentView === "sub" && subImageIndex === index
-                      ? styles.active
-                      : ""
-                  }`}
-                >
-                  <img
-                   src={`data:image/jpeg;base64,${img.imageData}`} 
-                   // src={img}
-                    alt={`Thumbnail ${index + 1}`}
-                    onClick={() => {
-                      setCurrentView("sub");
-                      setSubImageIndex(index);
-                    }}
-                    className={styles.thumbnail}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
+            {selectedVariant.subImages?.map((img, index) => (
+    <SwiperSlide key={index}>
+      <div
+        className={`${styles.thumbnaildiv} ${
+          currentView === 'sub' && subImageIndex === index
+            ? styles.active
+            : ''
+        }`}
+      >
+        <img
+          src={`data:image/jpeg;base64,${img.imageData}`} // Use your image data here
+          alt={`Thumbnail ${index + 1}`}
+          onClick={() => {
+            setCurrentView('sub');
+            setSubImageIndex(index);
+          }}
+          className={styles.thumbnail}
+        />
+      </div>
+    </SwiperSlide>
+  ))}
           </Swiper>
         </div>
 
