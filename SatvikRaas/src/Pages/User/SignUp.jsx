@@ -26,7 +26,7 @@ const SignupPage = () => {
 
     if (password === confirmPassword) {
       try {
-        const response = await api.get(`/api/auth/signup`, {
+        const response = await api.post(`/api/auth/signup`, {
           name,
           email,
           password,
