@@ -304,7 +304,7 @@ const ProductDetailPage = () => {
               <SwiperSlide key={index}>
                 <div
                   className={`${styles.thumbnaildiv} ${
-                    currentView === "sub" && subImageIndex === index
+                    currentView === "main" && subImageIndex === index
                       ? styles.active
                       : ""
                   }`}
