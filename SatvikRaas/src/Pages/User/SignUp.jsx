@@ -27,7 +27,7 @@ const SignupPage = () => {
 
     {notify()}
        
-    // navigate("/login");
+    navigate("/login");
   };
 
   const handleSignup = async (event) => {
