@@ -9,12 +9,15 @@ import logofacebook from "../../Assets/Logo/logo_facebook.svg";
 import api from "../../api.jsx";   import { ToastContainer, toast } from 'react-toastify';
 const SignupPage = () => {
 
-  const notify = () => toast("Sucessfully Account Created!");
-
-
+  const notify = () => toast.success("Signup successful!");
 
   const navigate = useNavigate();
-
+  const navigateToLoginPage = () => {
+    notify(); // Show the toast message
+    setTimeout(() => {
+      navigate("/login"); // Navigate after a delay
+    }, 2000); // Delay in milliseconds (e.g., 2 seconds)
+  };
 
 
   const [name, setName] = useState("");
@@ -23,12 +26,7 @@ const SignupPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const navigateToLoginPage = () => {
 
-    {notify()}
-       
-    navigate("/login");
-  };
 
   const handleSignup = async (event) => {
     // Prevent the default form submission behavior
@@ -57,7 +55,7 @@ const SignupPage = () => {
 
   return (
     <div className={styles.loginPage}>   
- <ToastContainer />
+
       <div className={styles.container}>
         <img src={logo} alt="Satvik Raas Logo" className={styles.logo} />
         <h1>Welcome to Satvik Raas!</h1>

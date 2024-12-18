@@ -18,7 +18,7 @@ import TermsService from "./Pages/TermsService.jsx";
 import ShippingPolicy from "./Pages/ShippingPolicy.jsx";
 import RefundPolicy from "./Pages/RefundPolicy.jsx";
 import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
-import ScrollToTop from "../src/Pages/ScrollToTop.jsx";
+import ScrollToTop from "../src/Pages/ScrollToTop.jsx";  import { ToastContainer } from 'react-toastify';
 // import Blankpage from "./Pages/White.jsx";TermsService ShippingPolicy RefundPolicy
 export default function App() {
   return (
@@ -53,7 +53,7 @@ export default function App() {
 
         {/* Footer displayed across all pages */}
         <Footer />
-      </Router>
+      </Router>  <ToastContainer />
     </div>
   );
 }
