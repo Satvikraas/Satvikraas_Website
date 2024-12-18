@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import   "./Navbar.scss";
 import { useLocation, useNavigate } from "react-router-dom";
-import logo from "./SatvikRaasLogo.svg";
+import logo from "../../Assets/Logo/logo.png";
 import cart from "../../Assets/Logo/cart.png"
 import login from "../../Assets/Logo/admin.png"
  import { Link } from "react-router-dom";

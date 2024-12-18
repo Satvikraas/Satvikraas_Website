@@ -6,8 +6,13 @@ import logo from "../../Assets/Logo/logo.png";
 import logoapple from "../../Assets/Logo/logo_apple.svg";
 import logogoogle from "../../Assets/Logo/logo_google.svg";
 import logofacebook from "../../Assets/Logo/logo_facebook.svg";
-import api from "../../api.jsx";
+import api from "../../api.jsx";   import { ToastContainer, toast } from 'react-toastify';
 const SignupPage = () => {
+
+  const notify = () => toast("Sucessfully Account Created!");
+
+
+
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -32,8 +37,9 @@ const SignupPage = () => {
           password,
           phoneNumber,
         });
-        console.log("Success:", response.data);
-
+        console.log("Success:", response.data); 
+        notify();  // Notify the user about successful signup
+        <ToastContainer />
         // Navigate to login page upon successful signup
         navigateToLoginPage();
       } catch (error) {
