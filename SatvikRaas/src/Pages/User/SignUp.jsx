@@ -15,6 +15,8 @@ const SignupPage = () => {
 
   const navigate = useNavigate();
 
+
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +24,10 @@ const SignupPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const navigateToLoginPage = () => {
-    navigate("/login");
+
+    {notify()}
+       
+    // navigate("/login");
   };
 
   const handleSignup = async (event) => {
@@ -38,8 +43,7 @@ const SignupPage = () => {
           phoneNumber,
         });
         console.log("Success:", response.data); 
-        notify();  // Notify the user about successful signup
-        <ToastContainer />
+ 
         // Navigate to login page upon successful signup
         navigateToLoginPage();
       } catch (error) {
@@ -52,7 +56,8 @@ const SignupPage = () => {
   };
 
   return (
-    <div className={styles.loginPage}>
+    <div className={styles.loginPage}>   
+ <ToastContainer />
       <div className={styles.container}>
         <img src={logo} alt="Satvik Raas Logo" className={styles.logo} />
         <h1>Welcome to Satvik Raas!</h1>
