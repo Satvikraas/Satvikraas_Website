@@ -68,6 +68,11 @@ export default function Footer() {
             411004
           </a>
         </div>
+        <div>
+          <a href="https://www.instagram.com/satvikraas/">Instagram</a>
+          <a href="#">Youtube</a>
+          <a href="#">Facebook</a>
+        </div>
       </div>
 
       <div className={styles.FooterBottom}>

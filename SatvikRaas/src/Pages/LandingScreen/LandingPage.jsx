@@ -56,24 +56,16 @@ const HeroSection = () => {
 const products = [
   {
     id: 1,
-    image: pimg1, // Replace with actual image paths
+    image: pimg2, // Replace with actual image paths
   },
   {
     id: 2,
-    image: pimg2,
+    image: pimg1,
   },
   {
     id: 3,
     image: pimg3,
-  },
-  {
-    id: 4,
-    image: pimg4,
-  },
-  {
-    id: 5,
-    image: pimg5,
-  }, 
+  }
 ];
   // products
   const productssection = [
