@@ -23,11 +23,15 @@ import ScrollToTop from "../src/Pages/ScrollToTop.jsx";
 export default function App() {
   return (
     <div className="App">
-      {/* <Blankpage/> */}
       <Router>
+        {/* Ensures the page scrolls to the top on navigation */}
+        <ScrollToTop /> 
+
+        {/* Navigation bar displayed across all pages */}
+        <Navbar />
+
+        {/* Main content area */}
         <main>
-          <ScrollToTop />
-          <Navbar />
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
@@ -45,8 +49,10 @@ export default function App() {
             <Route path="/refund-policy" element={<RefundPolicy />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Routes>
-          <Footer />
         </main>
+
+        {/* Footer displayed across all pages */}
+        <Footer />
       </Router>
     </div>
   );
