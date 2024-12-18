@@ -317,7 +317,7 @@ const ProductDetailPage = () => {
           <h1 className={styles.productTitle}>{product.name}</h1>
           <p className={styles.description}>{product.description} </p>
           <div className={styles.pricing}>
-            <span className={styles.originalPrice}>₹260</span>
+            {/* <span className={styles.originalPrice}>₹260</span> */}
             <span className={styles.discountedPrice}>
               {" "}
               ₹
