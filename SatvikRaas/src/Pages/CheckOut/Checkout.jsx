@@ -156,6 +156,32 @@ export default function Checkout() {
   const [subtotal, setSubTotal] = useState(0);
   const [needToSave, setNeedToSave] = useState(false);
   const [isAddressModalVisible, setIsAddressModalVisible] = useState(false);
+  const [isFirstOrder, setIsFirstOrder] = useState(false);
+  const checkFirstOrder = async () => {
+    try {
+      const token = getAccessToken(); // Assuming token is stored in localStorage
+      const response = await api.get('/api/user/isFirstOrder', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      console.log(response)
+      setIsFirstOrder(response.data);
+    } catch (error) {
+      console.error('Error checking first order:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const calculateDiscount = () => {
+    if (isFirstOrder) {
+      return (subtotal * 0.1); // 10% discount
+    }
+    return 0;
+  };
+
+  const discount = calculateDiscount();
+
 
   const openAddressModal = () => {
     setIsAddressModalVisible(true); // Opens the address modal
@@ -223,7 +249,7 @@ export default function Checkout() {
   };
   useEffect(() => {
     getDeliveryCharges(selectedAddress.postalcode);
-    const totalAmount = subtotal + deliveryCharge;
+    const totalAmount = subtotal + deliveryCharge -discount;
     const platformChargeRate = 0.02; // 2% platform charge
     const gstRate = 0.18; // 18% GST
 
@@ -822,7 +848,7 @@ export default function Checkout() {
                     Delivery Charge: ₹{deliveryCharge}
                   </p>
                   <p className={styles.priceInfo}>
-                    Total: ₹{subtotal + deliveryCharge}
+                    Total: ₹{subtotal + deliveryCharge }
                   </p>
                   <button
                     onClick={() => setCurrentStep("payment")}
@@ -847,7 +873,7 @@ export default function Checkout() {
                 <p>Delivery Charge: ₹{deliveryCharge}</p>
                 <p>Payment Platform Charge: ₹{paymentPlatFormCharge}</p>
                 <p className={styles.priceInfo}>
-                  Total: ₹{subtotal + deliveryCharge + paymentPlatFormCharge}
+                  Total: ₹{subtotal + deliveryCharge + paymentPlatFormCharge-discount}
                 </p>
               </div>
             </div>
