@@ -105,10 +105,10 @@ const toggleFAQ = (index) => {
 
 const faqs = [
   { question: "What makes Satvik Raas spices different from other brands?", answer: "Satvik Raas spices are uniquely crafted with authentic, organic, and high-quality ingredients." },
-  { question: "Are Satvik Raas products certified organic?", answer: "Yes, all our products are certified organic by reputable agencies." },
+  // { question: "Are Satvik Raas products certified organic?", answer: "Yes, all our products are certified organic by reputable agencies." },
   { question: "How do I store Satvik Raas spices to keep them fresh?", answer: "Store them in a cool, dry place away from sunlight, ideally in airtight containers." },
-  { question: "Does Satvik Raas offer free shipping?", answer: "Yes, we offer free shipping on orders above $50." },
-  { question: "What if I'm not satisfied with my purchase?", answer: "We offer a hassle-free return policy within 30 days of purchase." },
+  { question: "Does Satvik Raas offer free shipping?", answer: "Yes, we offer free shipping on orders above ₹999." },
+  // { question: "What if I'm not satisfied with my purchase?", answer: "We offer a hassle-free return policy within 30 days of purchase." },
 ];
   // 
 

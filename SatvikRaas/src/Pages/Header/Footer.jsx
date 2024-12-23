@@ -10,7 +10,7 @@ export default function Footer() {
     { name: "Cart", path: "/cart" },
   ];
   const resources = [
-    { name: "Help Center", path: "/help-center" },
+    { name: "Help Center", path: "#" },
     { name: "Terms & Conditions", path: "/terms-conditions" },
     { name: "Privacy Policy", path: "/privacy-policy" },
     { name: "Refund & Payment", path: "/refund-policy" },

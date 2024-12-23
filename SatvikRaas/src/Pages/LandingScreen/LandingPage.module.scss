@@ -235,9 +235,13 @@
   .swiperContainer {
     overflow: hidden;
     padding-bottom: 20px;
+    // background-color: red;
+    // width: 80%;
+    margin: 0 auto;
   }
 
   .cardWrapper {
+    margin:  0 auto;
     display: flex;
     justify-content: center;
 
