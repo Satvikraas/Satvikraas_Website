@@ -115,8 +115,8 @@ const faqs = [
   // REVIEWS 
   const reviews = [
     {
-      text: "As a restaurant owner, quality spices are essential. Satvik Raas' pure and natural ingredients ensure my dishes have the authentic taste of tradition that my customers love.",
-      author: "Anil Kapoor, Restaurant Owner",
+      text: "Great spice mixes. I have used Satvik Raas , all products and they are not only yummy but feels so good for the tummy 😎. I have ulcerative colitis and these are superb for my health. I liked it very much 👍",
+      author: " ",
       image: "https://via.placeholder.com/80", // Replace with real images
     },
     {
@@ -125,13 +125,13 @@ const faqs = [
       image: "https://via.placeholder.com/80", // Replace with real images
     },
     {
-      text: "Satvik Raas spices are the best! They bring out the true flavors of Indian cuisine, and my guests always appreciate the aroma.",
-      author: "Rahul Verma, Food Blogger",
+      text: "Tried these spices from SatvikRaas... Specifically their red chilli powder, haldi and garam masala. It has Wonderful homelike taste withput any added colors or preservatives! I loved it and am ready to make these a constant in my spices ",
+      author: "Home Chef",
       image: "https://via.placeholder.com/80", // Replace with real images
     },
     {
-      text: "The organic quality and purity of Satvik Raas spices are exceptional. I trust them completely for my family's health.",
-      author: "Neha Mehta, Nutritionist",
+      text: "I recently tried your Satvik Raas products, and I am thoroughly impressed! The spices are rich in flavor and freshness, clearly reflecting your commitment to quality and authenticity. The Garam Masala and Turmeric Powder, in particular, stood out with their perfect aroma and taste. It’s evident that a lot of care goes into sourcing and crafting these blends. Keep up the great work!",
+      author: "",
       image: "https://via.placeholder.com/80", // Replace with real images
     },
   ];
