@@ -165,7 +165,7 @@ export default function Checkout() {
           Authorization: `Bearer ${token}`
         }
       });
-      console.log(response)
+      console.log(response+" first order")
       setIsFirstOrder(response.data);
     } catch (error) {
       console.error('Error checking first order:', error);
@@ -301,6 +301,7 @@ export default function Checkout() {
     };
     countSubtotal();
     fetchAddresses();
+    
     checkFirstOrder();
   }, []);
 
