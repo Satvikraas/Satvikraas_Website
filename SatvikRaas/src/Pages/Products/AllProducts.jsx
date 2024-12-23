@@ -12,6 +12,14 @@ import productsimgmob from "../../Assets/Images/productmob.jpg";
 //   baseURL: 'http://localhost:8080',
 //   withCredentials: true,
 // });
+const LoadingCard = () => (
+  <div className={styles.loadingCard}>
+    <div className={styles.skeletonImage}></div>
+    <div className={styles.skeletonText}></div>
+    <div className={styles.skeletonText}></div>
+    <div className={styles.skeletonButton}></div>
+  </div>
+);
 
 const Product = ({ product, filters }) => {
   const navigate = useNavigate();
@@ -20,6 +28,7 @@ const Product = ({ product, filters }) => {
   );
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleVariantChange = (variant) => {
     setSelectedVariant(variant);
@@ -146,11 +155,15 @@ const Product = ({ product, filters }) => {
   );
 };
 
-const ProductList = ({ products, filters }) => (
+const ProductList = ({ products, filters, isLoading }) => (
   <div className={styles.productList}>
-    {products.map((product) => (
-      <Product key={product.productId} product={product} filters={filters} />
-    ))}
+    {isLoading
+      ? Array.from({ length: 6 }).map((_, index) => (
+          <LoadingCard key={index} />
+        )) // Render 6 loading cards as placeholders
+      : products.map((product) => (
+          <Product key={product.productId} product={product} filters={filters} />
+        ))}
   </div>
 );
 
@@ -162,8 +175,9 @@ const App = () => {
     price: "",
   });
   const [error, setError] = useState("");
-
+  const [isLoading, setIsLoading] = useState(true); // Initialize loading state
   useEffect(() => {
+    setIsLoading(true); // Set loading to true before fetching
     fetch("https://api.satvikraas.com/api/public/getAllProducts")
       .then((response) => response.json())
       .then((data) => {
@@ -172,10 +186,10 @@ const App = () => {
         } else {
           setError("Invalid response format from the backend");
         }
-      });
-    // .catch((error) => setError('Error fetching products: ' + error));
+      })
+      .catch((error) => setError("Error fetching products: " + error))
+      .finally(() => setIsLoading(false)); // Set loading to false after fetch
   }, []);
-
   const handleFilterChange = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   };
@@ -219,7 +233,7 @@ const App = () => {
       <img className={styles.productimg} src={productsimg2} alt="" />  */}
 
       {error && <div className={styles.errorMessage}>{error}</div>}
-      <ProductList products={products} filters={filters} />
+      <ProductList products={products} filters={filters} isLoading={isLoading} />
     </div>
   );
 };
