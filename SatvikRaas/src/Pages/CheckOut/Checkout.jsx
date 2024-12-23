@@ -165,7 +165,7 @@ export default function Checkout() {
           Authorization: `Bearer ${token}`
         }
       });
-      console.log(response+" first order")
+      console.log(response.data+" first order")
       setIsFirstOrder(response.data);
     } catch (error) {
       console.error('Error checking first order:', error);
