@@ -394,7 +394,7 @@ export default function Checkout() {
     try {
       console.log("in handle payment");
 
-      const totalAmount = subtotal + deliveryCharge + paymentPlatFormCharge;
+      const totalAmount = subtotal + deliveryCharge + paymentPlatFormCharge-discount;
 
       // Create order in backend
       const orderData = await createOrder(
