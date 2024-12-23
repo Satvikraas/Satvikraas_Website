@@ -82,7 +82,7 @@ export default function ContactUs() {
             <div>
               <h5>Phone</h5>
              <p>
-             +91 81854187441 
+         
              6262454595
              </p>
             </div>
