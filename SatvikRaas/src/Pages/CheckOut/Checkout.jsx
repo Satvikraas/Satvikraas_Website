@@ -872,6 +872,12 @@ export default function Checkout() {
               <h3 className={styles.sectionTitle}>Order Summary</h3>
               <div>
                 <p>Subtotal: ₹{subtotal}</p>
+
+                {isFirstOrder && (
+                <p className="discount-text">
+                  First Order Discount (10%): -₹{discount.toFixed(2)}
+                </p>
+              )}
                 <p>Delivery Charge: ₹{deliveryCharge}</p>
                 <p>Payment Platform Charge: ₹{paymentPlatFormCharge}</p>
                 <p className={styles.priceInfo}>
