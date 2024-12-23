@@ -301,6 +301,7 @@ export default function Checkout() {
     };
     countSubtotal();
     fetchAddresses();
+    checkFirstOrder();
   }, []);
 
   const calculateTotalWeight = (items) => {
