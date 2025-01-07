@@ -5,7 +5,7 @@ import logo from "../../Assets/Logo/logo.png";
 import cart from "../../Assets/Logo/cart.png"
 import login from "../../Assets/Logo/admin.png"
  import { Link } from "react-router-dom";
-const Navbar = () => {
+const Navbar = () => {   const location = useLocation();
   const [activeTab, setActiveTab] = useState("Home"); // Default active tab
   const navigate = useNavigate();
   const handleTabClick = (tabName) => {
@@ -37,74 +37,18 @@ const Navbar = () => {
     });
   });
   
+//  text color 
+ // Define routes that require white text
+ const whiteTextRoutes = ['/', '/about', '/contact'];
+
+ // Determine if the current route requires white text
+ const isWhiteText = whiteTextRoutes.includes(location.pathname);
 
   return (
     <nav >
-      {/* <ul className={styles.navLinks}>
-        <li
-          className={`${styles.navItem} ${
-            activeTab === "Home" ? styles.active : ""
-          }`}
-          onClick={() => handleTabClick("Home")}
-        >
-          <a href="/" className={styles.link}>
-            Home
-          </a>
-        </li>
-        <li
-          className={`${styles.navItem} ${
-            activeTab === "Our Products" ? styles.active : ""
-          }`}
-          onClick={() => handleTabClick("Our Products")}
-        >
-          <a href="/products" className={styles.link}>
-            Our Products
-          </a>
-        </li>
-        <li
-          className={`${styles.navItem} ${
-            activeTab === "About Us" ? styles.active : ""
-          }`}
-          onClick={() => handleTabClick("About Us")}
-        >
-          <a href="/about" className={styles.link}>
-            About Us
-          </a>
-        </li>
-        <li
-          className={`${styles.navItem} ${
-            activeTab === "Blogs" ? styles.active : ""
-          }`}
-          onClick={() => handleTabClick("Blogs")}
-        >
-          <a href="#" className={styles.link}>
-            Blogs
-          </a>
-        </li>
-        <li
-          className={`${styles.navItem} ${
-            activeTab === "Contact Us" ? styles.active : ""
-          }`}
-          onClick={() => handleTabClick("Contact Us")}
-        >
-          <a href="#" className={styles.link}>
-            Contact Us
-          </a>
-        </li>
-      </ul>
-      <div className={styles.icons}>
-      
-        <button onClick={handlecartopen}>
-          {" "}
-          <span className={styles.icon}>&#128722;</span>{" "}
-        </button>
-        <a href="/login">
-          {" "}
-          <span className={styles.icon}>&#128100;</span>{" "}
-        </a>
-      </div> */} <header class="header" id="header">
+      <header class="header" id="header">
 	<nav class="navbar container">
-  <Link to="/" class="brand"><img src={logo} alt="" /></Link>
+  <Link to="/" class="brand"><img src={logo} alt="" className="brandlogo"/></Link>
 		<div class="menu" id="menu">
 			<ul class="menu-list">
 				<li class="menu-item">
