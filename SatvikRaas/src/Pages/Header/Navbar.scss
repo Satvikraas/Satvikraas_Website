@@ -80,8 +80,10 @@ video {
 	height: auto;
 	margin: 0 auto;
 	padding: 0 1.25rem;
+	min-height: 100px;
+	background-color: transparent !important;;
 }
-
+.navbar{}
 .brand {
 	font-family: inherit;
 	font-size: 1.5rem;
@@ -89,9 +91,17 @@ video {
 	line-height: 1.15;
 	color: var(--color-teal-800);
 	text-transform: uppercase;
-    img{
-        width: 80px;
-    }
+	
+    // img{
+    //     width: 80px;
+    // }
+	img{
+		// margin-top: 30px;
+	
+			width: 150px;
+			// height: 104px;
+		
+	}
 }
 
 // Header
@@ -148,7 +158,21 @@ video {
 			transition: all 0.35s ease;
 		}
 	}
+	&-linkw {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		border: none;
+		outline: none;
+		color: white;
 
+		&.is-active {
+			position: relative;
+			color: var(--color-teal-800);
+			transition: all 0.35s ease;
+		}
+	}
 	&-icon {
 		font-size: 1.35rem;
 		line-height: 1;
@@ -187,8 +211,8 @@ video {
 
 @media only screen and (min-width: 768px) {
 	.header {
-		background: var(--color-white);
-		box-shadow: var(--shadow-medium);
+		// background: var(--color-white);
+		// box-shadow: var(--shadow-medium);
 		transition: all 0.35s ease-in-out;
 	}
 
@@ -207,7 +231,7 @@ video {
 				content: "";
 				left: 0;
 				bottom: 0;
-				width: 2rem;
+				width: 100%;
 				height: 2px;
 				border: none;
 				outline: none;
@@ -226,10 +250,11 @@ video {
 		}
 
 		&-name {
-			font-size: 1rem;
+			font-size: 20px;
 			font-weight: 500;
 			line-height: 1.5;
 			margin-bottom: 0.2rem;
+			
 		}
 	}
 }
@@ -238,4 +263,7 @@ video {
 .menu-iconz{
     width: 40px;
     height: 40px; font-size: 2rem;
+}
+.navbar .header{
+	background-color: rgba(255, 0, 0, 0) !important;
 }
