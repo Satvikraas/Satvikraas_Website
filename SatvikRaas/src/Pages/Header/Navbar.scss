@@ -101,6 +101,9 @@ video {
 			width: 150px;
 			// height: 104px;
 		
+			@media (max-width: 700px) {
+				width: 80px;
+			  }
 	}
 }
 
@@ -207,6 +210,7 @@ video {
 			column-gap: 3rem;
 		}
 	}
+	
 }
 
 @media only screen and (min-width: 768px) {
