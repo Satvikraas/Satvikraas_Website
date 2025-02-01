@@ -37,7 +37,7 @@ export default function Footer() {
             </div>
             <div className={styles.SocialMediaLinks}>
               <p>6262454595</p>
-              <p>RA Brewing venture LLP</p>
+              <p>SatvikRaas by RA Brewing venture LLP</p>
             </div>
           </div>
         </div>
