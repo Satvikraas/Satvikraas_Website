@@ -37,6 +37,7 @@ export default function Footer() {
             </div>
             <div className={styles.SocialMediaLinks}>
               <p>6262454595</p>
+              <p>RA Brewing venture LLP</p>
             </div>
           </div>
         </div>
@@ -79,7 +80,7 @@ export default function Footer() {
 
       <div className={styles.FooterBottom}>
         <div className={styles.Copywrite}>
-          <p>Copyright © 2024. All rights reserved</p>
+          <p>Copyright © 2025. All rights reserved</p>
         </div>
         <div className={styles.MadeBy}>
           <p>Made by Haraay Design Studio</p>
