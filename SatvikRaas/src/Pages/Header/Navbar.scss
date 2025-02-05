@@ -114,9 +114,33 @@ video {
 	left: 0;
 	width: 100%;
 	height: auto;
-	z-index: 100;
+	z-index: 100; 
+	display: flex;
+	flex-direction: column;
 }
+.discountnav{
+	background-color: white;
+	width: 100%;
+height: px;
+	
+}
+.scrolling-text {
+    display: inline-block;
+    animation: scrollText 200s linear infinite;
+    p{
+		text-wrap: nowrap;  
+		font-family: Zodiak-Regular;  font-size: 20px;
 
+	}
+  }
+@keyframes scrollText {
+	from {
+	  transform: translateX(0%);
+	}
+	to {
+	  transform: translateX(-100%);
+	}
+  }
 .navbar {
 	display: flex;
 	justify-content: space-between;
