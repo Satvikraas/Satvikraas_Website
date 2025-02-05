@@ -21,7 +21,11 @@ import greenmandala from "../../Assets/Images/redmandala.png";
 import dhaniya from "../../Assets/Images/redmandala.png";
 import darkgreenamndala from "../../Assets/Images/redmandala.png"; 
 import redchilli from "../../Assets/Images/Red Chilli.png"; 
-
+import instimg1 from "../../Assets/Images/instimg1.png"
+import instimg2 from "../../Assets/Images/instimg2.png"
+import instimg3 from "../../Assets/Images/instimg3.png"
+import instimg4 from "../../Assets/Images/instimg4.png"
+import instimg5 from "../../Assets/Images/instimg5.png"
 
 
 import styles from "./LandingPage.module.scss";
@@ -30,7 +34,7 @@ import abtbg from "../../Assets/Images/aboutbackgoundimg.svg";
 import mascott from "../../Assets/Images/mascott.svg";
 import chillipacket from "../../Assets/Images/chillipowder.svg";
 import articalimg from "../../Assets/Images/artical.png";
-
+import patternfaq from "./patternfaq.png"
 
 // Natural img 
 import noAdditives from '../../Assets/Images/no-additives.svg'; // Example path, replace with your actual image paths
@@ -347,8 +351,8 @@ const faqs = [
 <section>
 <div className={styles.reviewsSection}>
       <h2 className={styles.title}>
-        Read Our Customers <span className={styles.highlight}>Reviews</span>
-      </h2>
+        Read Our Customers 
+      </h2><h3 className={styles.highlight}>Reviews</h3>
       <div className={styles.reviewContainer}>
         <div className={styles.reviewContent}>
           <p className={styles.text}>"{reviews[currentIndex].text}"</p>
@@ -382,9 +386,27 @@ const faqs = [
       </div>
     </div>
 </section>
+{/* Instagram  */}
+<section>
+  <div className={styles.instagramSection}>
+     <div className={styles.headinginsta}>
+     <h2 className={styles.heading}> <svg xmlns="http://www.w3.org/2000/svg" width="65" height="64" viewBox="0 0 65 64" fill="none">
+  <path d="M21.4496 5.33325H43.8496C52.3829 5.33325 59.3162 12.2666 59.3162 20.7999V43.1999C59.3162 47.3019 57.6867 51.2359 54.7862 54.1365C51.8856 57.0371 47.9516 58.6666 43.8496 58.6666H21.4496C12.9162 58.6666 5.98291 51.7332 5.98291 43.1999V20.7999C5.98291 16.6979 7.61243 12.7639 10.513 9.86333C13.4136 6.96277 17.3476 5.33325 21.4496 5.33325ZM20.9162 10.6666C18.3702 10.6666 15.9284 11.678 14.128 13.4784C12.3277 15.2787 11.3162 17.7205 11.3162 20.2666V43.7332C11.3162 49.0399 15.6096 53.3332 20.9162 53.3332H44.3829C46.929 53.3332 49.3708 52.3218 51.1711 50.5215C52.9715 48.7211 53.9829 46.2793 53.9829 43.7332V20.2666C53.9829 14.9599 49.6896 10.6666 44.3829 10.6666H20.9162ZM46.6496 14.6666C47.5336 14.6666 48.3815 15.0178 49.0066 15.6429C49.6317 16.268 49.9829 17.1159 49.9829 17.9999C49.9829 18.884 49.6317 19.7318 49.0066 20.3569C48.3815 20.9821 47.5336 21.3333 46.6496 21.3333C45.7655 21.3333 44.9177 20.9821 44.2925 20.3569C43.6674 19.7318 43.3162 18.884 43.3162 17.9999C43.3162 17.1159 43.6674 16.268 44.2925 15.6429C44.9177 15.0178 45.7655 14.6666 46.6496 14.6666ZM32.6496 18.6666C36.1858 18.6666 39.5772 20.0713 42.0777 22.5718C44.5782 25.0723 45.9829 28.4637 45.9829 31.9999C45.9829 35.5361 44.5782 38.9275 42.0777 41.428C39.5772 43.9285 36.1858 45.3332 32.6496 45.3332C29.1134 45.3332 25.722 43.9285 23.2215 41.428C20.721 38.9275 19.3162 35.5361 19.3162 31.9999C19.3162 28.4637 20.721 25.0723 23.2215 22.5718C25.722 20.0713 29.1134 18.6666 32.6496 18.6666ZM32.6496 23.9999C30.5278 23.9999 28.493 24.8428 26.9927 26.3431C25.4924 27.8434 24.6496 29.8782 24.6496 31.9999C24.6496 34.1216 25.4924 36.1565 26.9927 37.6568C28.493 39.1571 30.5278 39.9999 32.6496 39.9999C34.7713 39.9999 36.8061 39.1571 38.3064 37.6568C39.8067 36.1565 40.6496 34.1216 40.6496 31.9999C40.6496 29.8782 39.8067 27.8434 38.3064 26.3431C36.8061 24.8428 34.7713 23.9999 32.6496 23.9999Z" fill="#226160"/>
+</svg>Instagram</h2>
+     </div>
+      <div className={styles.instagramGrid}>
+    <img src={instimg1} alt="" />
+    <img src={instimg2} alt="" />
+    <img src={instimg3} alt="" />
+    <img src={instimg4} alt="" />
+    <img src={instimg5} alt="" />
+      </div>
+    </div>
+</section>
       {/* FAQ */}
       <section>
       <div className={styles.faqSection}>
+        <img className={styles.patternfaq} src={patternfaq} alt="" />
       <h2 className={styles.heading}>FAQ's</h2>
       <div className={styles.faqList}>
         {faqs.map((faq, index) => (
@@ -400,7 +422,18 @@ const faqs = [
             >
               <span>{index + 1}. {faq.question}</span>
               <span className={styles.toggleIcon}>
-                {openIndex === index ? "−" : "+"}
+              {openIndex === index ? (
+  <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" fill="none">
+  <rect width="52" height="52" rx="26" transform="matrix(1 0 0 -1 0 52)" fill="#DCF7F5"/>
+  <path d="M15.75 31L25.75 21L35.75 31" stroke="#226160" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+) :(
+  <svg xmlns="http://www.w3.org/2000/svg" width="53" height="52" viewBox="0 0 53 52" fill="none">
+    <rect x="0.25" width="52" height="52" rx="26" fill="#DCF7F5"/>
+    <path d="M16 21L26 31L36 21" stroke="#226160" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+) }
+
               </span>
             </div>
             <div
