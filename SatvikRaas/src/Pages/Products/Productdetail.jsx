@@ -184,6 +184,29 @@ import "swiper/css";
 import img from "../../Assets/Images/chillipowder.svg";
 import img2 from "../../Assets/Images/redchillib.png";
 import certified from "../../Assets/Images/certified.svg";
+
+const getProductLink = (productName) => {
+  if (productName === "Red Chilli Powder") {
+    return "https://www.amazon.in/SatvikRaas-Red-Chilli-Powder/dp/B0DS51CWCK?ref_=ast_sto_dp";
+  } else if (productName === "Coriander Powder") {
+    return "https://www.amazon.in/SatvikRaas-Coriander-Powder/dp/YOUR_PRODUCT_ID";
+  } else if (productName === "Garam Masala Powder") {
+    return "https://www.amazon.in/SatvikRaas-Garam-Masala-Powder/dp/YOUR_PRODUCT_ID";
+  } else if (productName === "Kitchen King Masala") {
+    return "https://www.amazon.in/SatvikRaas-Kitchen-King-Masala/dp/YOUR_PRODUCT_ID";
+  } else if (productName === "Yellow Hing Powder") {
+    return "https://www.amazon.in/SatvikRaas-Yellow-Hing-Powder/dp/YOUR_PRODUCT_ID";
+  } else if (productName === "Sabji Masala") {
+    return "https://www.amazon.in/SatvikRaas-Sabji-Masala/dp/YOUR_PRODUCT_ID";
+  } else if (productName === "Kashmiri Chilli Powder") {
+    return "https://www.amazon.in/SatvikRaas-Kashmiri-Chilli-Powder/dp/YOUR_PRODUCT_ID";
+  } else if (productName === "Turmeric Powder") {
+    return "https://www.amazon.in/SatvikRaas-Turmeric-Powder/dp/YOUR_PRODUCT_ID";
+  } else {
+    return null;
+  }
+};
+
 const ProductDetailPage = () => {
   const [mainImage, setMainImage] = useState(img);
   const subImages = [img2, img, img2, img2, img, img2];
@@ -251,65 +274,71 @@ const ProductDetailPage = () => {
         <div className={styles.imageSection}>
           {/* Main Image Display */}
           <div className={styles.mainImageContainer}>
-  <img
-    src={`data:image/jpeg;base64,${
-      currentView === "main"
-        ? selectedVariant.mainImage
-        : selectedVariant.subImages[subImageIndex].imageData
-    }`}
-    alt={product.name}
-    className={styles.mainImage}
-  />
-  {/* {currentView === "sub" && (
+            <img
+              src={`data:image/jpeg;base64,${
+                currentView === "main"
+                  ? selectedVariant.mainImage
+                  : selectedVariant.subImages[subImageIndex].imageData
+              }`}
+              alt={product.name}
+              className={styles.mainImage}
+            />
+            {/* {currentView === "sub" && (
     <span className={styles.imageCounter}>
       {subImageIndex + 1}/{selectedVariant.subImages.length}
     </span>
   )} */}
-</div>
+          </div>
 
-{/* Image Carousel */}
-<Swiper slidesPerView={4} spaceBetween={10} className={styles.imageCarousel}>
-  {/* Main Thumbnail */}
-  <SwiperSlide>
-    <div
-      className={`${styles.thumbnaildiv} ${
-        currentView === "main" ? styles.active : ""
-      }`}
-    >
-      <img
-        src={`data:image/jpeg;base64,${
-          currentView === "main"
-            ? selectedVariant.mainImage
-            : selectedVariant.subImages[subImageIndex].imageData
-        }`}
-        alt="Main Thumbnail"
-        onClick={() => setCurrentView("main")}
-        className={styles.thumbnail}
-      />
-    </div>
-  </SwiperSlide>
+          {/* Image Carousel */}
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={10}
+            className={styles.imageCarousel}
+          >
+            {/* Main Thumbnail */}
+            <SwiperSlide>
+              <div
+                className={`${styles.thumbnaildiv} ${
+                  currentView === "main" ? styles.active : ""
+                }`}
+              >
+                <img
+                  src={`data:image/jpeg;base64,${
+                    currentView === "main"
+                      ? selectedVariant.mainImage
+                      : selectedVariant.subImages[subImageIndex].imageData
+                  }`}
+                  alt="Main Thumbnail"
+                  onClick={() => setCurrentView("main")}
+                  className={styles.thumbnail}
+                />
+              </div>
+            </SwiperSlide>
 
-  {/* Sub Thumbnails */}
-  {selectedVariant.subImages?.map((img, index) => (
-    <SwiperSlide key={index}>
-      <div
-        className={`${styles.thumbnaildiv} ${
-          currentView === "sub" && subImageIndex === index ? styles.active : ""
-        }`}
-      >
-        <img
-          src={`data:image/jpeg;base64,${img.imageData}`} // Use your image data here
-          alt={`Thumbnail ${index + 1}`}
-          onClick={() => {
-            setCurrentView("sub");
-            setSubImageIndex(index); // Update the current sub-image index
-          }}
-          className={styles.thumbnail}
-        />
-      </div>
-    </SwiperSlide>
-  ))}
-</Swiper>
+            {/* Sub Thumbnails */}
+            {selectedVariant.subImages?.map((img, index) => (
+              <SwiperSlide key={index}>
+                <div
+                  className={`${styles.thumbnaildiv} ${
+                    currentView === "sub" && subImageIndex === index
+                      ? styles.active
+                      : ""
+                  }`}
+                >
+                  <img
+                    src={`data:image/jpeg;base64,${img.imageData}`} // Use your image data here
+                    alt={`Thumbnail ${index + 1}`}
+                    onClick={() => {
+                      setCurrentView("sub");
+                      setSubImageIndex(index); // Update the current sub-image index
+                    }}
+                    className={styles.thumbnail}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
         {/* Right Section: Product Details */}
@@ -365,6 +394,19 @@ const ProductDetailPage = () => {
 
           <button className={styles.buyNow} onClick={handleBuyNow}>
             Buy Now
+          </button>
+          <button
+            className={styles.buyNow}
+            onClick={() => {
+              const url = getProductLink(product.name);
+              if (url) {
+                window.location.href = url;
+              } else {
+                alert("Product link not available!");
+              }
+            }}
+          >
+            Buy From Amazon
           </button>
 
           <div>
