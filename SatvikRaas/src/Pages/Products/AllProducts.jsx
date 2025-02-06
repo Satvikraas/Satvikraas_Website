@@ -142,7 +142,7 @@ const Product = ({ product, filters }) => {
       <h3 className={styles.pname}>{product.name}</h3>
       {selectedVariant && (
         <>
-          <p>Price: ₹ {selectedVariant.price}</p>
+          <p className={styles.pricetxt}>Price: ₹ {selectedVariant.price}</p>
           {selectedVariant.discount > 0 && (
             <p>Discount: {selectedVariant.discount}%</p>
           )}
