@@ -24,7 +24,7 @@ export default function Footer() {
           <img src={logo} alt="Satvik Raas Logo" />
           <p>
             From the farm to your table, we deliver more than just spices
-            <br></br>we
+            we
             deliver authenticity, health, and bold flavors.
           </p>
           <div className={styles.SocialMedia}>
