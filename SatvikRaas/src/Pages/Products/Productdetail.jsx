@@ -189,19 +189,19 @@ const getProductLink = (productName) => {
   if (productName === "Red Chilli Powder") {
     return "https://www.amazon.in/SatvikRaas-Red-Chilli-Powder/dp/B0DS51CWCK?ref_=ast_sto_dp";
   } else if (productName === "Coriander Powder") {
-    return "https://www.amazon.in/SatvikRaas-Coriander-Powder/dp/YOUR_PRODUCT_ID";
+    return "https://www.amazon.in/SatvikRaas-Coriander-Powder/dp/B0DS4YJJDD?ref_=ast_sto_dp";
   } else if (productName === "Garam Masala Powder") {
-    return "https://www.amazon.in/SatvikRaas-Garam-Masala-Powder/dp/YOUR_PRODUCT_ID";
+    return "https://www.amazon.in/SatvikRaas-Garam-Masala-Premium/dp/B0DS4Y925P?ref_=ast_sto_dp";
   } else if (productName === "Kitchen King Masala") {
-    return "https://www.amazon.in/SatvikRaas-Kitchen-King-Masala/dp/YOUR_PRODUCT_ID";
+    return "https://www.amazon.in/SatvikRaas-Kitchen-King-Masala/dp/B0DS4SPDKV?ref_=ast_sto_dp";
   } else if (productName === "Yellow Hing Powder") {
-    return "https://www.amazon.in/SatvikRaas-Yellow-Hing-Powder/dp/YOUR_PRODUCT_ID";
+    return "https://www.amazon.in/SatvikRaas-Yellow-Hing-Powder/dp/B0DS4V93Q9?ref_=ast_sto_dp";
   } else if (productName === "Sabji Masala") {
-    return "https://www.amazon.in/SatvikRaas-Sabji-Masala/dp/YOUR_PRODUCT_ID";
+    return "https://www.amazon.in/SatvikRaas-Sabji-Masala/dp/B0DS4SBK56?ref_=ast_sto_dp";
   } else if (productName === "Kashmiri Chilli Powder") {
-    return "https://www.amazon.in/SatvikRaas-Kashmiri-Chilli-Powder/dp/YOUR_PRODUCT_ID";
+    return "https://www.amazon.in/SatvikRaas-Kashmiri-Chilli-Powder/dp/B0DS4NDGSL?ref_=ast_sto_dp";
   } else if (productName === "Turmeric Powder") {
-    return "https://www.amazon.in/SatvikRaas-Turmeric-Powder/dp/YOUR_PRODUCT_ID";
+    return "https://www.amazon.in/SatvikRaas-Turmeric-Powder/dp/B0DS4V1LTH?ref_=ast_sto_dp";
   } else {
     return null;
   }
