@@ -396,7 +396,7 @@ const ProductDetailPage = () => {
             Buy Now
           </button>
           <button
-            className={styles.buyNow}
+            className={styles.buyamazonbtn}
             onClick={() => {
               const url = getProductLink(product.name);
               if (url) {
