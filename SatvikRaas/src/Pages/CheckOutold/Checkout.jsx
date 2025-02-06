@@ -11,7 +11,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Checkout.module.scss";
 import api from "../../api.jsx";
-import { color } from "framer-motion";
 
 // Extra Stuff
 
@@ -36,8 +35,7 @@ const getAccessToken = () => {
   return sessionStorage.getItem("accessToken");
 };
 
-// const API_URL = "https://api.satvikraas.com/api/razorpay";
-const API_URL = "http://localhost:8080/api/razorpay";
+const API_URL = "https://api.satvikraas.com/api/razorpay";
 
 export const createOrder = async (
   items,
@@ -87,67 +85,6 @@ export const createOrder = async (
   try {
     const response = await api.post(
       `/api/razorpay/createorder`,
-      requestPayload, // Empty body for a POST request with query parameters
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const createCODOrder = async (
-  items,
-  selectedAddress,
-  needToSave,
-  totalAmount
-) => {
-  const accessToken = getAccessToken();
-
-  console.log("in createOrder");
-  console.log("item=s" + items);
-  console.log("selectedAddress" + selectedAddress);
-  console.log("needToSave" + needToSave);
-  console.log("totalAmount" + totalAmount);
-
-  // Prepare the request payload
-  const requestPayload = {
-    items: items.map((item) => ({
-      quantity: item.quantity,
-      productVariant: {
-        id: item.productVariantDTO.id,
-        price: item.productVariantDTO.price,
-        discount: item.productVariantDTO.discount,
-        weight: item.productVariantDTO.weight,
-        finalPrice: item.productVariantDTO.finalPrice,
-      },
-    })),
-    selectedAddress: {
-      ...selectedAddress,
-      // Ensure all properties are included
-      id: selectedAddress.id || 0,
-      name: selectedAddress.name || "",
-      phone: selectedAddress.phone || "",
-      postalCode: selectedAddress.postalCode || "",
-      street: selectedAddress.street || "",
-      city: selectedAddress.city || "",
-      state: selectedAddress.state || "",
-      country: selectedAddress.country || "",
-      addressType: selectedAddress.addressType || "",
-      isDefault: selectedAddress.isDefault || false,
-      landmark: selectedAddress.landmark || "",
-    },
-    needToSave,
-    totalAmount,
-  };
-
-  try {
-    const response = await api.post(
-      `/api/codorders/createcodorder`,
       requestPayload, // Empty body for a POST request with query parameters
       {
         headers: {
@@ -215,39 +152,36 @@ export default function Checkout() {
   const [deliveryCharge, setDeliveryCharge] = useState(0);
   const [paymentPlatFormCharge, setPaymentPlatFormCharge] = useState(0);
   const [isAddressServiceable, setIsAddressServiceable] = useState(false);
-  const [formMounted, setformMounted] = useState(true);
-
-  const [cod, setCod] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [subtotal, setSubTotal] = useState(0);
   const [needToSave, setNeedToSave] = useState(false);
   const [isAddressModalVisible, setIsAddressModalVisible] = useState(false);
   const [isFirstOrder, setIsFirstOrder] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState("prepaid");
   const checkFirstOrder = async () => {
     try {
       const token = getAccessToken(); // Assuming token is stored in localStorage
-      const response = await api.get("/api/user/isFirstOrder", {
+      const response = await api.get('/api/user/isFirstOrder', {
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       });
-      console.log(response.data + " first order");
+      console.log(response.data+" first order")
       setIsFirstOrder(response.data);
     } catch (error) {
-      console.error("Error checking first order:", error);
+      console.error('Error checking first order:', error);
     } finally {
       setLoading(false);
     }
   };
   const calculateDiscount = () => {
     if (isFirstOrder) {
-      return subtotal * 0.1; // 10% discount
+      return (subtotal * 0.1); // 10% discount
     }
     return 0;
   };
 
   const discount = calculateDiscount();
+
 
   const openAddressModal = () => {
     setIsAddressModalVisible(true); // Opens the address modal
@@ -315,7 +249,7 @@ export default function Checkout() {
   };
   useEffect(() => {
     getDeliveryCharges(selectedAddress.postalcode);
-    const totalAmount = subtotal + deliveryCharge - discount;
+    const totalAmount = subtotal + deliveryCharge -discount;
     const platformChargeRate = 0.02; // 2% platform charge
     const gstRate = 0.18; // 18% GST
 
@@ -367,7 +301,7 @@ export default function Checkout() {
     };
     countSubtotal();
     fetchAddresses();
-
+    
     checkFirstOrder();
   }, []);
 
@@ -383,8 +317,7 @@ export default function Checkout() {
     console.log("getdelivery method" + pincode);
     console.log(weight);
     const getDeliveryChargesResponse = await fetch(
-      // `https://api.satvikraas.com/api/delhiveryOne/getDeliveryCharges?destinationpostalcode=${pincode}&weight=${weight}`
-      `http://localhost:8080/api/delhiveryOne/getDeliveryCharges?destinationpostalcode=${pincode}&weight=${weight}`
+      `https://api.satvikraas.com/api/delhiveryOne/getDeliveryCharges?destinationpostalcode=${pincode}&weight=${weight}`
     );
 
     if (getDeliveryChargesResponse.ok) {
@@ -404,8 +337,7 @@ export default function Checkout() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        // `https://api.satvikraas.com/api/delhiveryOne/checkServiceability?postalcode=${pincode}`
-        `http://localhost:8080/api/delhiveryOne/checkServiceability?postalcode=${pincode}`
+        `https://api.satvikraas.com/api/delhiveryOne/checkServiceability?postalcode=${pincode}`
       );
 
       console.log("response", response);
@@ -421,14 +353,6 @@ export default function Checkout() {
       const isServiceable = data.serviceable;
 
       setIsAddressServiceable(isServiceable);
-      setformMounted(false);
-
-      console.log("cod", data.details.cod);
-      const cod = data.details.cod;
-
-      if (pincode === "412108") {
-        setCod(false);
-      } else setCod(cod);
 
       if (isServiceable) {
         const getDeliveryChargesResponse = getDeliveryCharges(pincode);
@@ -468,10 +392,9 @@ export default function Checkout() {
 
   const handlePayment = async () => {
     try {
-      console.log("in Pre payment");
+      console.log("in handle payment");
 
-      const totalAmount =
-        subtotal + deliveryCharge + paymentPlatFormCharge - discount;
+      const totalAmount = subtotal + deliveryCharge + paymentPlatFormCharge-discount;
 
       // Create order in backend
       const orderData = await createOrder(
@@ -483,8 +406,7 @@ export default function Checkout() {
 
       console.log(orderData);
       const options = {
-        // key: "rzp_live_mJcffWL1hLYxgL",
-        key: "rzp_test_YH8zCfwQrn8l5q",
+        key: "rzp_live_mJcffWL1hLYxgL",
         amount: totalAmount * 100, // Amount in paise
         currency: "INR",
         name: "SATVIK RASS",
@@ -507,7 +429,7 @@ export default function Checkout() {
           );
           console.log("completeOrderResponse" + completeOrderResponse);
           // if(completeOrderResponse)
-          navigate("/ordersuccess");
+          alert("Payment Successful!");
         },
         prefill: {
           name: selectedAddress.name,
@@ -524,27 +446,6 @@ export default function Checkout() {
     } catch (error) {
       console.error("Payment failed:", error);
       alert("Payment failed!");
-    }
-  };
-  const handleCODOrder = async () => {
-    try {
-      console.log("in COD payment");
-
-      const totalAmount = subtotal + deliveryCharge - discount;
-
-      // Create order in backend
-      const orderData = await createCODOrder(
-        items,
-        selectedAddress,
-        needToSave,
-        totalAmount
-      );
-
-      if (orderData) navigate("/ordersuccess");
-      else alert("Order failed!");
-    } catch (error) {
-      console.error("Payment failed:", error);
-      alert("Order failed!");
     }
   };
 
@@ -605,8 +506,7 @@ export default function Checkout() {
       const accessToken = getAccessToken();
 
       const response = await axios.post(
-        // "https://api.satvikraas.com/api/user/saveAddress",
-        "http://localhost:8080/api/user/saveAddress",
+        "https://api.satvikraas.com/api/user/saveAddress",
         transformedAddress,
         {
           headers: {
@@ -877,43 +777,6 @@ export default function Checkout() {
                         }
                       }}
                     />
-                    {!isAddressServiceable && !formMounted && (
-                      <p style={{ color: "red" }}>
-                        {" "}
-                        this address is not servicable
-                      </p>
-                    )}
-
-                    {isAddressServiceable && !formMounted && (
-                      <label>
-                        <span style={{ color: "green" }}>
-                          {" "}
-                          PrePaid ( Online Payment){" "}
-                        </span>
-                      </label>
-                    )}
-                      <br></br>
-                      {isAddressServiceable && 
-                      (
-                        <label>
-                      {isAddressServiceable && cod && !formMounted? (
-                        <span style={{ color: "green" }}>
-                          {" "}
-                          COD ( Cash on Delivery){" "}
-                        </span>
-                      ) : formMounted?(
-                        <span style={{ color: "#EF4444" }}>
-                          
-                        </span>
-                      ): (
-                        <span style={{ color: "#EF4444" }}>
-                          Cash on Delivery not Available
-                        </span>
-                      )}
-                    </label>
-
-                      )}
-                    
                     <input
                       type="text"
                       placeholder="Full Name"
@@ -950,6 +813,7 @@ export default function Checkout() {
                         setNewAddress({ ...newAddress, city: e.target.value })
                       }
                     />
+                  
 
                     <input
                       type="text"
@@ -968,14 +832,8 @@ export default function Checkout() {
                         Cancel
                       </button>
                       <button
-                        disabled={!isAddressServiceable}
                         onClick={() => handleUseAddress()}
                         className={styles.saveButton}
-                        style={{
-                          cursor: !isAddressServiceable
-                            ? "not-allowed"
-                            : "pointer",
-                        }}
                       >
                         Save
                       </button>
@@ -992,7 +850,7 @@ export default function Checkout() {
                     Delivery Charge: ₹{deliveryCharge}
                   </p>
                   <p className={styles.priceInfo}>
-                    Total: ₹{subtotal + deliveryCharge}
+                    Total: ₹{subtotal + deliveryCharge }
                   </p>
                   <button
                     onClick={() => setCurrentStep("payment")}
@@ -1016,90 +874,23 @@ export default function Checkout() {
                 <p>Subtotal: ₹{subtotal}</p>
 
                 {isFirstOrder && (
-                  <p className="discount-text">
-                    First Order Discount (10%): -₹{discount.toFixed(2)}
-                    <hr></hr>
-                    Amount after discount:₹{(subtotal - discount).toFixed(2)}
-                  </p>
-                )}
+                <p className="discount-text">
+                  First Order Discount (10%): -₹{discount.toFixed(2)}
+                </p>
+              )}
                 <p>Delivery Charge: ₹{deliveryCharge}</p>
-                {paymentMethod === "prepaid" ? (
-                  <div>
-                    <p>Payment Platform Charge: ₹{paymentPlatFormCharge}</p>
-                    <p className={styles.priceInfo}>
-                      Total: ₹
-                      {subtotal +
-                        deliveryCharge +
-                        paymentPlatFormCharge -
-                        discount}
-                    </p>
-                  </div>
-                ) : (
-                  <div>
-                    <p className={styles.priceInfo}>
-                      Total: ₹{subtotal + deliveryCharge - discount}
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-            <div className="payment-method mt-10 space-y-4">
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="radio"
-                    id="prepaid"
-                    name="paymentMethod"
-                    value="prepaid"
-                    defaultChecked
-                    className="w-4 h-4 text-primary"
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                  />
-                  <label
-                    htmlFor="prepaid"
-                    className="cursor-pointer"
-                    style={{ color: "green" }}
-                  >
-                    Prepaid ( Online Payment )
-                  </label>
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="radio"
-                    id="cod"
-                    name="paymentMethod"
-                    value="cod"
-                    style={{ cursor: !cod ? "not-allowed" : "pointer" }}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                    disabled={!cod} // Disable when cod is false
-                  />
-                  <label
-                    htmlFor="cod"
-                    style={{ cursor: !cod ? "not-allowed" : "pointer" }}
-                  >
-                    {cod ? (
-                      <span style={{ color: "green" }}>
-                        {" "}
-                        COD ( Cash on Delivery){" "}
-                      </span>
-                    ) : (
-                      <span style={{ color: "#EF4444" }}>
-                        Cash on Delivery not Available
-                      </span>
-                    )}
-                  </label>
-                </div>
+                <p>Payment Platform Charge: ₹{paymentPlatFormCharge}</p>
+                <p className={styles.priceInfo}>
+                  Total: ₹{subtotal + deliveryCharge + paymentPlatFormCharge-discount}
+                </p>
               </div>
             </div>
             <button
-              onClick={() =>
-                paymentMethod === "prepaid" ? handlePayment() : handleCODOrder()
-              }
+              onClick={handlePayment}
               className={styles.button}
               style={{ width: "100%", marginTop: "1rem" }}
             >
-              Place Order
+              Pay Now
             </button>
           </div>
         )}

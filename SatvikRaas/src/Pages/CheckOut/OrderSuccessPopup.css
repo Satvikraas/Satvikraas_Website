@@ -1,0 +1,122 @@
+.success-circle {
+    position: relative;
+    width: 96px;
+    height: 96px;
+  }
+
+  .z-index {
+    z-index: 2;
+  }
+  
+  .success-circle__outer {
+    position: absolute;
+    inset: 0;
+    border: 4px solid #22c55e;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 3s linear infinite;
+  }
+  
+  .success-circle__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    height: 96px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    animation: scaleUp 0.5s ease-out forwards;
+  }
+  
+  .checkmark {
+    width: 32px;
+    height: 56px;
+    border-right: 8px solid white;
+    border-bottom: 8px solid white;
+    transform: rotate(45deg);
+    margin-bottom: 12px;
+    animation: drawCheck 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .success-content {
+    animation: fadeIn 1s ease-out forwards;
+  }
+  
+  .success-title {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+  
+  .success-message {
+    animation: slideUp 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+  
+  .success-button {
+    animation: slideUp 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+  }
+  
+  .confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .confetti--blue { background-color: #60a5fa; }
+  .confetti--green { background-color: #34d399; }
+  .confetti--yellow { background-color: #fcd34d; }
+  .confetti--pink { background-color: #f472b6; }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes scaleUp {
+    0% { transform: scale(0); }
+    60% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  @keyframes drawCheck {
+    0% { 
+      opacity: 0;
+      transform: rotate(45deg) scale(0.3);
+    }
+    50% { opacity: 1; }
+    100% {
+      opacity: 1;
+      transform: rotate(45deg) scale(1);
+    }
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes confettiDrop {
+    0% {
+      opacity: 1;
+      transform: translateY(-100vh) rotate(0deg);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(100vh) rotate(720deg);
+    }
+  }
