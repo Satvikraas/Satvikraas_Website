@@ -184,7 +184,7 @@ import "swiper/css";
 import img from "../../Assets/Images/chillipowder.svg";
 import img2 from "../../Assets/Images/redchillib.png";
 import certified from "../../Assets/Images/certified.svg";
-
+import alogo from "../../Assets/Images/amazonlogo.png"
 const getProductLink = (productName) => {
   if (productName === "Red Chilli Powder") {
     return "https://www.amazon.in/SatvikRaas-Red-Chilli-Powder/dp/B0DS51CWCK?ref_=ast_sto_dp";
@@ -406,7 +406,7 @@ const ProductDetailPage = () => {
               }
             }}
           >
-            Buy From Amazon
+         <img src={alogo} alt="" />   Buy From Amazon
           </button>
 
           <div>
