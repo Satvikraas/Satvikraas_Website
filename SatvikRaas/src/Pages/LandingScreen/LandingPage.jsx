@@ -27,6 +27,11 @@ import instimg3 from "../../Assets/Images/instimg3.png"
 import instimg4 from "../../Assets/Images/instimg4.png"
 import instimg5 from "../../Assets/Images/instimg5.png"
 
+// vid
+import instavid1 from "../../Assets/vid/isntavid1.mp4"
+import instavid2 from "../../Assets/vid/isntavid2.mp4"
+import instavid3 from "../../Assets/vid/isntavid3.mp4"
+import instavid4 from "../../Assets/vid/isntavid4.mp4"
 
 import styles from "./LandingPage.module.scss";
 import mandalaimg from "../../Assets/Images/mandala.svg";
@@ -395,11 +400,15 @@ const faqs = [
 </svg>Instagram</h2>
      </div>
       <div className={styles.instagramGrid}>
-    <img src={instimg1} alt="" />
-    <img src={instimg2} alt="" />
+        <video  loop autoPlay muted src={instavid3}></video>
+        <video loop autoPlay muted src={instavid2}></video>
+    {/* <img src={instimg1} alt="" />
+    <img src={instimg2} alt="" /> */}
     <img src={instimg3} alt="" />
-    <img src={instimg4} alt="" />
-    <img src={instimg5} alt="" />
+    <video loop autoPlay muted src={instavid1}></video>
+    <video loop autoPlay muted src={instavid4}></video>
+    {/* <img src={instimg4} alt="" />
+    <img src={instimg5} alt="" /> */}
       </div>
     </div>
 </section>
