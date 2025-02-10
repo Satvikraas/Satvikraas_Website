@@ -47,11 +47,11 @@ export const createOrder = async (
 ) => {
   const accessToken = getAccessToken();
 
-  console.log("in createOrder");
-  console.log("item=s" + items);
-  console.log("selectedAddress" + selectedAddress);
-  console.log("needToSave" + needToSave);
-  console.log("totalAmount" + totalAmount);
+  // console.log("in createOrder");
+  // console.log("item=s" + items);
+  // console.log("selectedAddress" + selectedAddress);
+  // console.log("needToSave" + needToSave);
+  // console.log("totalAmount" + totalAmount);
 
   // Prepare the request payload
   const requestPayload = {
@@ -108,11 +108,11 @@ export const createCODOrder = async (
 ) => {
   const accessToken = getAccessToken();
 
-  console.log("in createOrder");
-  console.log("item=s" + items);
-  console.log("selectedAddress" + selectedAddress);
-  console.log("needToSave" + needToSave);
-  console.log("totalAmount" + totalAmount);
+  // console.log("in createOrder");
+  // console.log("item=s" + items);
+  // console.log("selectedAddress" + selectedAddress);
+  // console.log("needToSave" + needToSave);
+  // console.log("totalAmount" + totalAmount);
 
   // Prepare the request payload
   const requestPayload = {
@@ -203,10 +203,10 @@ export default function Checkout() {
     street: "",
     city: "",
     state: "",
-    country: "",
-    pincode: "", // Changed from pincode to match backend
+    country: "India",
+    pincode: "",
     landmark: "",
-    addressType: "", 
+    addressType: "",
     isDefault: false,
   });
 
@@ -466,7 +466,7 @@ export default function Checkout() {
 
   const handlePayment = async () => {
     try {
-      console.log("in Pre payment");
+      // console.log("in Pre payment");
 
       const totalAmount =
         subtotal + deliveryCharge + paymentPlatFormCharge - discount;
@@ -796,7 +796,6 @@ export default function Checkout() {
             {/* <h3 className={styles.sectionTitle}>Saved Addresses</h3> */}
             <div className={styles.saveddiv}>
               <div className={styles.savedAddressHead}>
-                
                 {addresses.map((address) => (
                   <div
                     key={address.id}
@@ -826,31 +825,29 @@ export default function Checkout() {
                 {newAddress && isAddressServiceable && (
                   <div className={styles.selectedadd}>
                     <h3>Selected Address</h3>
-                  <div
-                    className={`${styles.addressCard} ${
-                      selectedAddress?.id === newAddress.id
-                        ? styles.selected
-                        : ""
-                    }`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      manageSetSelectedAddress(newAddress);
-                      checkServiceability(selectedAddress.postalCode);
-                      setNotAddressCardClick(false);
-                    }}
-                  >
-                    <h3>{selectedAddress.addressType}</h3>
-                    <h3> {selectedAddress.name}</h3>
-                    <h4>{selectedAddress.postalCode}</h4>
-                    <p>{selectedAddress.street}</p>
-                    <p>
-                      {selectedAddress.city} 
-                    </p>
-                    <p>
-                    {selectedAddress.country}</p>
-                    <p>{selectedAddress.state} </p>
-                    <p>{selectedAddress.landmark}</p>
-                  </div> </div>
+                    <div
+                      className={`${styles.addressCard} ${
+                        selectedAddress?.id === newAddress.id
+                          ? styles.selected
+                          : ""
+                      }`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        manageSetSelectedAddress(newAddress);
+                        checkServiceability(selectedAddress.postalCode);
+                        setNotAddressCardClick(false);
+                      }}
+                    >
+                      <h3>{selectedAddress.addressType}</h3>
+                      <h3> {selectedAddress.name}</h3>
+                      <h4>{selectedAddress.postalCode}</h4>
+                      <p>{selectedAddress.street}</p>
+                      <p>{selectedAddress.city}</p>
+                      <p>{selectedAddress.country}</p>
+                      <p>{selectedAddress.state} </p>
+                      <p>{selectedAddress.landmark}</p>
+                    </div>{" "}
+                  </div>
                 )}
                 {/* //////// */}
               </div>
@@ -872,7 +869,7 @@ export default function Checkout() {
               </div> */}
               {isAddressModalVisible && (
                 <div className={styles.modalOverlay}>
-                  <div className={styles.modalContent}>
+                  <form className={styles.modalContent}>
                     <button
                       onClick={closeAddressModal}
                       className={styles.closeButton}
@@ -946,6 +943,8 @@ export default function Checkout() {
                     <input
                       required
                       type="text"
+                      pattern="[A-Za-z\s]+"
+                      minLength={3}
                       placeholder="Full Name"
                       className={styles.inputField}
                       value={newAddress.name}
@@ -954,8 +953,11 @@ export default function Checkout() {
                       }
                     />
                     <input
+                      maxLength={10}
                       type="number"
+                      pattern="[6-9][0-9]{9}"
                       placeholder="Mobile Number"
+                      minLength={10}
                       className={styles.inputField}
                       value={newAddress.phone}
                       onChange={(e) =>
@@ -985,15 +987,30 @@ export default function Checkout() {
                       type="text"
                       placeholder="Address (Area & Street)"
                       className={styles.inputField}
+                      minLength={3}
                       value={newAddress.street}
                       onChange={(e) =>
                         setNewAddress({ ...newAddress, street: e.target.value })
                       }
                     />
+                    <input
+                      type="text"
+                      placeholder="Landmark Address"
+                      className={styles.inputField}
+                      value={newAddress.landmark}
+                      onChange={(e) =>
+                        setNewAddress({
+                          ...newAddress,
+                          landmark: e.target.value,
+                        })
+                      }
+                    />
+
                     <div className={styles.addresstype}>
                       <input
                         type="radio"
                         name="addressType"
+                        required
                         value="Home"
                         checked={newAddress.addressType === "Home"}
                         onChange={(e) =>
@@ -1007,6 +1024,7 @@ export default function Checkout() {
 
                       <input
                         type="radio"
+                        required
                         name="addressType"
                         value="Office"
                         checked={newAddress.addressType === "Office"}
@@ -1021,6 +1039,7 @@ export default function Checkout() {
 
                       <input
                         type="radio"
+                        required
                         name="addressType"
                         value="Others"
                         checked={newAddress.addressType === "Others"}
@@ -1051,10 +1070,10 @@ export default function Checkout() {
                             : "pointer",
                         }}
                       >
-                        Save
+                        Use This
                       </button>
                     </div>
-                  </div>
+                  </form>
                 </div>
               )}
             </div>

@@ -489,3 +489,12 @@ p{
     padding-top: 1rem;
 
   }
+
+  .addresstype{
+    display: flex; flex-direction: row;
+    
+    
+    input{
+       margin-left: 20px;
+    }
+  }
