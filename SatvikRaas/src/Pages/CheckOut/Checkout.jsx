@@ -834,8 +834,8 @@ export default function Checkout() {
                     }`}
                     onClick={(e) => {
                       e.stopPropagation();
-                      manageSetSelectedAddress(address);
-                      checkServiceability(address.postalCode);
+                      manageSetSelectedAddress(newAddress);
+                      checkServiceability(newAddress.postalCode);
                       setNotAddressCardClick(false);
                     }}
                   >
