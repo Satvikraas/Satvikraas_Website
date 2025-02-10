@@ -835,21 +835,21 @@ export default function Checkout() {
                     onClick={(e) => {
                       e.stopPropagation();
                       manageSetSelectedAddress(newAddress);
-                      checkServiceability(newAddress.postalCode);
+                      checkServiceability(selectedAddress.postalCode);
                       setNotAddressCardClick(false);
                     }}
                   >
-                    <h3>{newAddress.addressType}</h3>
-                    <h3> {newAddress.name}</h3>
-                    <h4>{newAddress.postalCode}</h4>
-                    <p>{newAddress.street}</p>
+                    <h3>{selectedAddress.addressType}</h3>
+                    <h3> {selectedAddress.name}</h3>
+                    <h4>{selectedAddress.postalCode}</h4>
+                    <p>{selectedAddress.street}</p>
                     <p>
-                      {newAddress.city} 
+                      {selectedAddress.city} 
                     </p>
                     <p>
-                    {newAddress.country}</p>
-                    <p>{newAddress.state} </p>
-                    <p>{newAddress.landmark}</p>
+                    {selectedAddress.country}</p>
+                    <p>{selectedAddress.state} </p>
+                    <p>{selectedAddress.landmark}</p>
                   </div> </div>
                 )}
                 {/* //////// */}
