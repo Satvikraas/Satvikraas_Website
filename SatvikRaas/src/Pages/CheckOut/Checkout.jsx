@@ -36,8 +36,8 @@ const getAccessToken = () => {
   return sessionStorage.getItem("accessToken");
 };
 
-// const API_URL = "https://api.satvikraas.com/api/razorpay";
-const API_URL = "http://localhost:8080/api/razorpay";
+const API_URL = "https://api.satvikraas.com/api/razorpay";
+// const API_URL = "http://localhost:8080/api/razorpay";
 
 export const createOrder = async (
   items,
@@ -383,8 +383,8 @@ export default function Checkout() {
     console.log("getdelivery method" + pincode);
     console.log(weight);
     const getDeliveryChargesResponse = await fetch(
-      // `https://api.satvikraas.com/api/delhiveryOne/getDeliveryCharges?destinationpostalcode=${pincode}&weight=${weight}`
-      `http://localhost:8080/api/delhiveryOne/getDeliveryCharges?destinationpostalcode=${pincode}&weight=${weight}`
+      `https://api.satvikraas.com/api/delhiveryOne/getDeliveryCharges?destinationpostalcode=${pincode}&weight=${weight}`
+      // `http://localhost:8080/api/delhiveryOne/getDeliveryCharges?destinationpostalcode=${pincode}&weight=${weight}`
     );
 
     if (getDeliveryChargesResponse.ok) {
@@ -404,8 +404,8 @@ export default function Checkout() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        // `https://api.satvikraas.com/api/delhiveryOne/checkServiceability?postalcode=${pincode}`
-        `http://localhost:8080/api/delhiveryOne/checkServiceability?postalcode=${pincode}`
+        `https://api.satvikraas.com/api/delhiveryOne/checkServiceability?postalcode=${pincode}`
+        // `http://localhost:8080/api/delhiveryOne/checkServiceability?postalcode=${pincode}`
       );
 
       console.log("response", response);
@@ -604,8 +604,8 @@ export default function Checkout() {
       const accessToken = getAccessToken();
 
       const response = await axios.post(
-        // "https://api.satvikraas.com/api/user/saveAddress",
-        "http://localhost:8080/api/user/saveAddress",
+        "https://api.satvikraas.com/api/user/saveAddress",
+        // "http://localhost:8080/api/user/saveAddress",
         transformedAddress,
         {
           headers: {
