@@ -17,8 +17,8 @@ const Navbar = () => {
     return sessionStorage.getItem("accessToken");
   };
   const Logout = () => {
-     sessionStorage.setItem("accessToken", null);  
-	 navigate("/login");
+    sessionStorage.removeItem("accessToken"); // 
+    navigate("/login");
   };
   const handlecartopen = () => {
     const accessToken = getAccessToken();
