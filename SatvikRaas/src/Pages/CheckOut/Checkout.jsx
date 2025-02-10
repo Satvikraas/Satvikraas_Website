@@ -844,9 +844,11 @@ export default function Checkout() {
                     <h4>{newAddress.postalCode}</h4>
                     <p>{newAddress.street}</p>
                     <p>
-                      {newAddress.city}, {newAddress.state} -{" "}
-                      {newAddress.country}
+                      {newAddress.city} 
                     </p>
+                    <p>
+                    {newAddress.country}</p>
+                    <p>{newAddress.state} </p>
                     <p>{newAddress.landmark}</p>
                   </div> </div>
                 )}
