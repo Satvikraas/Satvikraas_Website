@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import CartItemRow from "./CartItemRow/CartItemRow";
+import CartItemRow from "./CartItemRow/CartItemRow.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -36,8 +36,8 @@ const getAccessToken = () => {
   return sessionStorage.getItem("accessToken");
 };
 
-// const API_URL = "https://api.satvikraas.com/api/razorpay";
-const API_URL = "http://localhost:8080/api/razorpay";
+const API_URL = "https://api.satvikraas.com/api/razorpay";
+// const API_URL = "http://localhost:8080/api/razorpay";
 
 export const createOrder = async (
   items,
@@ -383,8 +383,8 @@ export default function Checkout() {
     console.log("getdelivery method" + pincode);
     console.log(weight);
     const getDeliveryChargesResponse = await fetch(
-      // `https://api.satvikraas.com/api/delhiveryOne/getDeliveryCharges?destinationpostalcode=${pincode}&weight=${weight}`
-      `http://localhost:8080/api/delhiveryOne/getDeliveryCharges?destinationpostalcode=${pincode}&weight=${weight}`
+      `https://api.satvikraas.com/api/delhiveryOne/getDeliveryCharges?destinationpostalcode=${pincode}&weight=${weight}`
+      // `http://localhost:8080/api/delhiveryOne/getDeliveryCharges?destinationpostalcode=${pincode}&weight=${weight}`
     );
 
     if (getDeliveryChargesResponse.ok) {
@@ -404,8 +404,8 @@ export default function Checkout() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        // `https://api.satvikraas.com/api/delhiveryOne/checkServiceability?postalcode=${pincode}`
-        `http://localhost:8080/api/delhiveryOne/checkServiceability?postalcode=${pincode}`
+        `https://api.satvikraas.com/api/delhiveryOne/checkServiceability?postalcode=${pincode}`
+        // `http://localhost:8080/api/delhiveryOne/checkServiceability?postalcode=${pincode}`
       );
 
       console.log("response", response);
@@ -426,7 +426,9 @@ export default function Checkout() {
       console.log("cod", data.details.cod);
       const cod = data.details.cod;
 
-      setCod(cod);
+      if (pincode === "412108") {
+        setCod(false);
+      } else setCod(cod);
 
       if (isServiceable) {
         const getDeliveryChargesResponse = getDeliveryCharges(pincode);
@@ -481,8 +483,8 @@ export default function Checkout() {
 
       console.log(orderData);
       const options = {
-        // key: "rzp_live_mJcffWL1hLYxgL",
-        key: "rzp_test_YH8zCfwQrn8l5q",
+        key: "rzp_live_mJcffWL1hLYxgL",
+        // key: "rzp_test_YH8zCfwQrn8l5q",
         amount: totalAmount * 100, // Amount in paise
         currency: "INR",
         name: "SATVIK RASS",
@@ -577,7 +579,6 @@ export default function Checkout() {
     };
 
     setSelectedAddress(transformedAddress);
-    setNewAddress(transformedAddress)
     setNeedToSave(true);
     // setModalOpen(false);
   };
@@ -604,8 +605,8 @@ export default function Checkout() {
       const accessToken = getAccessToken();
 
       const response = await axios.post(
-        // "https://api.satvikraas.com/api/user/saveAddress",
-        "http://localhost:8080/api/user/saveAddress",
+        "https://api.satvikraas.com/api/user/saveAddress",
+        // "http://localhost:8080/api/user/saveAddress",
         transformedAddress,
         {
           headers: {
@@ -819,33 +820,6 @@ export default function Checkout() {
                     <p>{address.landmark}</p>
                   </div>
                 ))}
-                
-                {/* //////// */}
-
-                {newAddress && isAddressServiceable && (<div
-                    
-                    className={`${styles.addressCard} ${
-                      selectedAddress?.id === newAddress.id ? styles.selected : ""
-                    }`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      manageSetSelectedAddress(address);
-                      checkServiceability(address.postalCode);
-                      setNotAddressCardClick(false);
-                    }}
-                  >
-                    <h3>{newAddress.addressType}</h3>
-                    <h3>{newAddress.name}</h3>
-                    <h4>{newAddress.postalCode}</h4>
-                    <p>{newAddress.street}</p>
-                    <p>
-                      {newAddress.city}, {newAddress.state} - {newAddress.country}
-                    </p>
-                    <p>{newAddress.landmark}</p>
-                  </div>
-                )}
-                  {/* //////// */}
-
               </div>
             </div>{" "}
             <div className={styles.addformdiv}>
@@ -918,26 +892,29 @@ export default function Checkout() {
                         </span>
                       </label>
                     )}
-                    <br></br>
-                    {isAddressServiceable && (
-                      <label>
-                        {isAddressServiceable && cod && !formMounted ? (
-                          <span style={{ color: "green" }}>
-                            {" "}
-                            COD ( Cash on Delivery){" "}
-                          </span>
-                        ) : formMounted ? (
-                          <span style={{ color: "#EF4444" }}></span>
-                        ) : (
-                          <span style={{ color: "#EF4444" }}>
-                            Cash on Delivery not Available
-                          </span>
-                        )}
-                      </label>
-                    )}
+                      <br></br>
+                      {isAddressServiceable && 
+                      (
+                        <label>
+                      {isAddressServiceable && cod && !formMounted? (
+                        <span style={{ color: "green" }}>
+                          {" "}
+                          COD ( Cash on Delivery){" "}
+                        </span>
+                      ) : formMounted?(
+                        <span style={{ color: "#EF4444" }}>
+                          
+                        </span>
+                      ): (
+                        <span style={{ color: "#EF4444" }}>
+                          Cash on Delivery not Available
+                        </span>
+                      )}
+                    </label>
 
+                      )}
+                    
                     <input
-                      required
                       type="text"
                       placeholder="Full Name"
                       className={styles.inputField}
