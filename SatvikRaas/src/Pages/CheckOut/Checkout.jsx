@@ -206,7 +206,7 @@ export default function Checkout() {
     country: "",
     pincode: "", // Changed from pincode to match backend
     landmark: "",
-    addressType: "", // Default value
+    addressType: "", 
     isDefault: false,
   });
 
@@ -577,7 +577,7 @@ export default function Checkout() {
     };
 
     setSelectedAddress(transformedAddress);
-    setNewAddress(transformedAddress)
+    setNewAddress(transformedAddress);
     setNeedToSave(true);
     // setModalOpen(false);
   };
@@ -597,7 +597,7 @@ export default function Checkout() {
         city: newAddress.city,
         state: newAddress.state,
         country: "india",
-        addressType: "HOME",
+        addressType: newAddress.addressType,
         isDefault: false,
         landmark: newAddress.landmark,
       };
@@ -819,13 +819,15 @@ export default function Checkout() {
                     <p>{address.landmark}</p>
                   </div>
                 ))}
-                
+
                 {/* //////// */}
 
-                {newAddress && isAddressServiceable && (<div
-                    
+                {newAddress && isAddressServiceable && (
+                  <div
                     className={`${styles.addressCard} ${
-                      selectedAddress?.id === newAddress.id ? styles.selected : ""
+                      selectedAddress?.id === newAddress.id
+                        ? styles.selected
+                        : ""
                     }`}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -839,13 +841,13 @@ export default function Checkout() {
                     <h4>{newAddress.postalCode}</h4>
                     <p>{newAddress.street}</p>
                     <p>
-                      {newAddress.city}, {newAddress.state} - {newAddress.country}
+                      {newAddress.city}, {newAddress.state} -{" "}
+                      {newAddress.country}
                     </p>
                     <p>{newAddress.landmark}</p>
                   </div>
                 )}
-                  {/* //////// */}
-
+                {/* //////// */}
               </div>
             </div>{" "}
             <div className={styles.addformdiv}>
@@ -983,6 +985,50 @@ export default function Checkout() {
                         setNewAddress({ ...newAddress, street: e.target.value })
                       }
                     />
+                    <div className={styles.addresstype}>
+                      <input
+                        type="radio"
+                        name="addressType"
+                        value="Home"
+                        checked={newAddress.addressType === "Home"}
+                        onChange={(e) =>
+                          setNewAddress({
+                            ...newAddress,
+                            addressType: e.target.value,
+                          })
+                        }
+                      />
+                      <label>Home</label>
+
+                      <input
+                        type="radio"
+                        name="addressType"
+                        value="Office"
+                        checked={newAddress.addressType === "Office"}
+                        onChange={(e) =>
+                          setNewAddress({
+                            ...newAddress,
+                            addressType: e.target.value,
+                          })
+                        }
+                      />
+                      <label>Office</label>
+
+                      <input
+                        type="radio"
+                        name="addressType"
+                        value="Others"
+                        checked={newAddress.addressType === "Others"}
+                        onChange={(e) =>
+                          setNewAddress({
+                            ...newAddress,
+                            addressType: e.target.value,
+                          })
+                        }
+                      />
+                      <label>Others</label>
+                    </div>
+
                     <div className={styles.modalActions}>
                       <button
                         onClick={closeAddressModal}
