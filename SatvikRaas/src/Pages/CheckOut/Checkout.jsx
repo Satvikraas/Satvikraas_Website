@@ -811,7 +811,7 @@ export default function Checkout() {
                   >
                     <h3> {address.addressType}</h3>
                     <h3>{address.name}</h3>
-                    <h4>name :{address.postalCode}</h4>
+                    <h4>{address.postalCode}</h4>
                     <p>{address.street}</p>
                     <p>
                       {address.city}, {address.state} - {address.country}
@@ -835,7 +835,7 @@ export default function Checkout() {
                     }}
                   >
                     <h3>{newAddress.addressType}</h3>
-                    <h3> name2:{newAddress.name}</h3>
+                    <h3> {newAddress.name}</h3>
                     <h4>{newAddress.postalCode}</h4>
                     <p>{newAddress.street}</p>
                     <p>
@@ -852,7 +852,7 @@ export default function Checkout() {
               <button className={styles.addbtn} onClick={openAddressModal}>
                 +
               </button>{" "}
-              <div className={styles.addressContainer}>
+              {/* <div className={styles.addressContainer}>
                 <ul>
                   {Object.entries(newAddress)
                     .filter(([key, value]) => value) // Filter out null or empty values
@@ -862,7 +862,7 @@ export default function Checkout() {
                       </li>
                     ))}
                 </ul>
-              </div>
+              </div> */}
               {isAddressModalVisible && (
                 <div className={styles.modalOverlay}>
                   <div className={styles.modalContent}>
