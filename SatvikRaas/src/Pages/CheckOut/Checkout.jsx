@@ -796,6 +796,7 @@ export default function Checkout() {
             {/* <h3 className={styles.sectionTitle}>Saved Addresses</h3> */}
             <div className={styles.saveddiv}>
               <div className={styles.savedAddressHead}>
+                <h2>Selected Address</h2>
                 {addresses.map((address) => (
                   <div
                     key={address.id}
@@ -823,6 +824,7 @@ export default function Checkout() {
                 {/* //////// */}
 
                 {newAddress && isAddressServiceable && (
+                  <div className={styles.selectedadd}>
                   <div
                     className={`${styles.addressCard} ${
                       selectedAddress?.id === newAddress.id
@@ -845,7 +847,7 @@ export default function Checkout() {
                       {newAddress.country}
                     </p>
                     <p>{newAddress.landmark}</p>
-                  </div>
+                  </div> </div>
                 )}
                 {/* //////// */}
               </div>
