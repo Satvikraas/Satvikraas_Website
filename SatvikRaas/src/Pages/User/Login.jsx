@@ -35,14 +35,14 @@ const LoginPage = () => {
       sessionStorage.setItem("accessToken", response.data.accessToken);
       sessionStorage.setItem("refreshToken", response.data.refreshToken);
 
-      console.log("Login successful");
-      console.log("Access Token:", sessionStorage.getItem("accessToken"));
-      console.log("Refresh Token:", sessionStorage.getItem("refreshToken"));
+      //console.log("Login successful");
+      //console.log("Access Token:", sessionStorage.getItem("accessToken"));
+      //console.log("Refresh Token:", sessionStorage.getItem("refreshToken"));
 
       // Navigate to the homepage
       navigate("/products");
     } catch (error) {
-      console.error("Error logging in:", error);
+      //console.error("Error logging in:", error);
       alert("Login failed. Please check your email and password.");
     }
   };

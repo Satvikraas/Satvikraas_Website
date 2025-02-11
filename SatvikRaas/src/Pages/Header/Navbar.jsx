@@ -130,6 +130,7 @@ const Navbar = () => {
           </div>{" "}
           <ul className="rightdiv">
             {" "}
+            
             <li class="menu-item">
               <a onClick={handlecartopen} class="menu-link">
                 <span class="menu-name">
