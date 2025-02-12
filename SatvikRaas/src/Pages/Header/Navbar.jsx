@@ -29,6 +29,17 @@ const Navbar = () => {
       navigate("/cart");
     }
   };
+  const handleorderopen = () => {
+    const accessToken = getAccessToken();
+    if (!accessToken) {
+      alert("Please Login First");
+      navigate("/login");
+    } else {
+      navigate("/orders");
+    }
+  };
+
+  
   const menuLinks = document.querySelectorAll(".menu-link");
 
   menuLinks.forEach((link) => {
@@ -49,7 +60,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <header class="header" id="header">
+      <header className="header" id="header">
         <div className="discountnav">
           <div className="scrolling-text">
             <p>
@@ -130,9 +141,15 @@ const Navbar = () => {
           </div>{" "}
           <ul className="rightdiv">
             {" "}
-            
             <li class="menu-item">
-              <a onClick={handlecartopen} class="menu-link">
+              <a onClick={handleorderopen} class="menu-link" data-tooltip="Orders">
+                <span class="menu-name">
+                <i class="menu-iconz ion-md-list-box"></i>
+                </span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a onClick={handlecartopen} class="menu-link" data-tooltip="Carts">
                 <span class="menu-name">
                   <i class="menu-iconz ion-md-cart"></i>
                 </span>

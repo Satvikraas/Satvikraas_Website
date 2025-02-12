@@ -18,6 +18,7 @@ import TermsService from "./Pages/TermsService.jsx";
 import ShippingPolicy from "./Pages/ShippingPolicy.jsx";
 import RefundPolicy from "./Pages/RefundPolicy.jsx";
 import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
+import Order from "./Pages/Order/OrderPage.jsx"
 import ScrollToTop from "../src/Pages/ScrollToTop.jsx";  import { ToastContainer } from 'react-toastify';
 // import Blankpage from "./Pages/White.jsx";TermsService ShippingPolicy RefundPolicy
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
             <Route path="/productdetail" element={<Productdetail />} />
             <Route path="/adminDashBoard" element={<Dashboard />} />
             <Route path="/cart" element={<ShoppingCart />} />
+            <Route path="/orders" element={<Order/>} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/checkout1" element={<Checkout />} />
             <Route path="/contact" element={<ContactUs />} />
