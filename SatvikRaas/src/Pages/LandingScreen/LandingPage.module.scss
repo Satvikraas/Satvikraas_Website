@@ -29,6 +29,28 @@ $breakpoint-tablet: 768px; // Medium devices (tablets)
   scroll-behavior: smooth;
 }
 
+
+// hero carousel
+.heroSection {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.fullscreenImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 1s ease-in-out;
+}
+
+
 .heroSection {
   display: flex;
   position: relative;
@@ -36,7 +58,7 @@ $breakpoint-tablet: 768px; // Medium devices (tablets)
   justify-content: center;
   /* Center children horizontally */
   background-color: #006361;
-  padding: 4rem 2rem;
+  padding: 0rem 0rem;
   height: 100vh;
   width: 100%;
   z-index: +1;
@@ -44,6 +66,13 @@ $breakpoint-tablet: 768px; // Medium devices (tablets)
   overflow: hidden;
   /* Ensure overflow is hidden */
 
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    // object-position: 10% 10%;
+    transition: opacity 1s ease-in-out;
+  } 
   @media (max-width: 768px) {
     padding: 2rem;
   }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useCallback,useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -7,6 +7,8 @@ import { Navigation, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
 
 import dhaniyaimg from "../../Assets/Images/dhaniyacard.svg";
 import chillyimg from "../../Assets/Images/chillycard.svg";
@@ -55,9 +57,23 @@ import pimg3 from "../../Assets/Images/sabji.png"
 import pimg4 from "../../Assets/Images/pcard1.svg"
 import pimg5 from "../../Assets/Images/pcard2.svg"
 import pimg6 from "../../Assets/Images/pcard3.svg"
+import ReactDOM from "react-dom";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+// import cimg1 from "../../Assets/Images/banner (1).jpg"
+import cimg2 from "../../Assets/Images/banner (2).jpg"
+import cimg3 from "../../Assets/Images/banner (3).jpg"
+import cimg4 from "../../Assets/Images/banner (4).jpg"
+// import cimg5 from "../../Assets/Images/banner (5).jpg"
+// import cimg6 from "../../Assets/Images/banner (6).jpg"
 
 // goodness
 import goodness from "../../Assets/Images/goodness.svg"
+
+const images = [
+ cimg2,cimg3,cimg4
+];
+
 const HeroSection = () => {
   const imageRef = useRef(null);
 
@@ -211,7 +227,15 @@ const faqs = [
       img: pimg3 ,isLarge: false
     }
   ];
+// herosec img 
+const [currentIndex1, setCurrentIndex1] = useState(0);
 
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentIndex1((prevIndex) => (prevIndex + 1) % images.length);
+  }, 5000);
+  return () => clearInterval(interval);
+}, []);
   return (
     <div className={styles.landingPage}>
       <section className={styles.heroSection}>
@@ -235,7 +259,21 @@ const faqs = [
             alt="chilli powder"
           />
         </div>
+
       </section>
+      {/* <section className={styles.heroSection}>
+      <Carousel  autoPlay interval={5000} infiniteLoop>
+        {images.map((image, index) => (
+          <div key={index}>
+            <img src={image} alt={`Slide ${index + 1}`} className={styles.fullscreenImage} />
+            {/* <p className="legend">Legend {index + 1}</p> 
+          </div>
+        ))}
+      </Carousel>
+    </section> */}
+     {/* <section className={styles.heroSection}> 
+      <img src={cimg4} alt="" />
+     </section> */}
       <section className={styles.about}>
         <img className={styles.abtbgimg} src={abtbg} alt="bgimg" />
         <div className={styles.about__content}>
