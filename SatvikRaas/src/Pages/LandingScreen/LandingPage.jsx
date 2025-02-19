@@ -61,8 +61,8 @@ import ReactDOM from "react-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 // import cimg1 from "../../Assets/Images/banner (1).jpg"
-import cimg2 from "../../Assets/Images/banner (2).jpg"
-import cimg3 from "../../Assets/Images/banner (3).jpg"
+import cimg2 from "../../Assets/Images/banner (1).jpg"
+import cimg3 from "../../Assets/Images/banner (2).jpg"
 import cimg4 from "../../Assets/Images/banner (4).jpg"
 // import cimg5 from "../../Assets/Images/banner (5).jpg"
 // import cimg6 from "../../Assets/Images/banner (6).jpg"
@@ -238,7 +238,7 @@ useEffect(() => {
 }, []);
   return (
     <div className={styles.landingPage}>
-      <section className={styles.heroSection}>
+      {/* <section className={styles.heroSection}>
         <div className={styles.heroSection__content}>
           <h1 className={styles.heroSection__title}>
             Experience the True Essence of Nature in Every Pinch
@@ -260,17 +260,25 @@ useEffect(() => {
           />
         </div>
 
-      </section>
-      {/* <section className={styles.heroSection}>
-      <Carousel  autoPlay interval={5000} infiniteLoop>
+      </section> */}
+       <section className={styles.heroSection}>
+      <Carousel  autoPlay
+        interval={5000}
+        infiniteLoop
+        showThumbs={false} 
+        showStatus={false} 
+        showArrows={false} 
+        showIndicators={false} 
+        stopOnHover={false}
+        swipeable={false}>
         {images.map((image, index) => (
           <div key={index}>
             <img src={image} alt={`Slide ${index + 1}`} className={styles.fullscreenImage} />
-            {/* <p className="legend">Legend {index + 1}</p> 
+            {/* <p className="legend">Legend {index + 1}</p>  */}
           </div>
         ))}
       </Carousel>
-    </section> */}
+    </section> 
      {/* <section className={styles.heroSection}> 
       <img src={cimg4} alt="" />
      </section> */}

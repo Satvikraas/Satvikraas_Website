@@ -392,10 +392,22 @@ export default function Checkout() {
       console.log(deliveryChargesData);
 
       // Use the actual delivery charge from the response or fallback to 99
+      
       console.log(
         "delhivery charge =" + deliveryChargesData.responses[0].total_amount
       );
-      setDeliveryCharge(deliveryChargesData.responses[0].total_amount);
+
+      const DelCharge=deliveryChargesData.responses[0].total_amount;
+      if(weight>=200){
+
+        setDeliveryCharge(0.6*DelCharge) ;    
+        console.log(
+          "delhivery charge weight greater than 200  =" + 0.6*DelCharge
+        );        
+      }else{
+        setDeliveryCharge(DelCharge);
+      }
+   
     }
   };
 
