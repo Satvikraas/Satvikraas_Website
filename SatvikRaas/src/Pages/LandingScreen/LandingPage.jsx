@@ -63,7 +63,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 // import cimg1 from "../../Assets/Images/banner (1).jpg"
 import cimg2 from "../../Assets/Images/banner (1).jpg"
 import cimg3 from "../../Assets/Images/banner (2).jpg"
-import cimg4 from "../../Assets/Images/banner (4).jpg"
+import cimg4 from "../../Assets/Images/bannerh.jpg"
 // import cimg5 from "../../Assets/Images/banner (5).jpg"
 // import cimg6 from "../../Assets/Images/banner (6).jpg"
 
