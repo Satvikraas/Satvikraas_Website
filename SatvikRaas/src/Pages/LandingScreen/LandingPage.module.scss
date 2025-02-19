@@ -49,35 +49,37 @@ $breakpoint-tablet: 768px; // Medium devices (tablets)
 
 .fullscreenImage {
   width: 100%;
-  height: 100%;
-  object-fit: fill;
+  height: 100vh; // Set default height
+  object-fit: cover; // Ensures image fills without distortion
   transition: opacity 1s ease-in-out;
-   @include respond-to(mobile) { 
-  
+
+  @include respond-to(tablet) {
+    height: 80vh; // Adjust height for tablets
+  }
+
+  @include respond-to(mobile) {
+    height: 50vh; // Adjust height for mobile devices
   }
 }
-
 
 .heroSection {
   display: flex;
   position: relative;
-  // align-items: center;
   justify-content: center;
-  /* Center children horizontally */
   background-color: #006361;
-  padding: 0rem 0rem;
   max-height: 100vh;
   height: auto;
   width: 100%;
   z-index: +1;
   font-weight: bold;
   overflow: hidden;
-  /* Ensure overflow is hidden */
-   @include respond-to(mobile) { 
+
+  @include respond-to(mobile) {
     height: auto;
     margin-top: 30px;
-
   }
+
+
 
   img{
     width: 100%;
