@@ -1,5 +1,7 @@
 .app {
   min-height: 100vh;
+ 
+  padding-top: 50px;
 }
 .filters {
   display: flex;
@@ -31,7 +33,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 40px;
-  margin-top: 20px;
+  // margin-top: 20px;
   padding: 50px; 
   @media (max-width: 768px) {
     gap: 40px;
@@ -41,11 +43,12 @@
 .productCard {
   width: 306px;
   height: 420px;
-
+  
   padding: 0px;
+  
   text-align: center;
   @media (max-width: 768px) {
-    // background-color: red;
+   
     margin: auto;
     align-items: center;
     border: 1px solid rgba(128, 128, 128, 0.184);

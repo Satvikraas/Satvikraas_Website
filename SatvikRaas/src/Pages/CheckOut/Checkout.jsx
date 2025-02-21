@@ -1023,6 +1023,7 @@ export default function Checkout() {
                         type="radio"
                         name="addressType"
                         required
+                        selected
                         value="Home"
                         checked={newAddress.addressType === "Home"}
                         onChange={(e) =>
