@@ -399,13 +399,13 @@ export default function Checkout() {
 
       const DelCharge=deliveryChargesData.responses[0].total_amount;
       if(weight>=200){
-
-        setDeliveryCharge(0.6*DelCharge) ;    
+        setDeliveryCharge(Math.ceil(0.6 * DelCharge));
+        // setDeliveryCharge(0.6*DelCharge) ;    
         console.log(
           "delhivery charge weight greater than 200  =" + 0.6*DelCharge
         );        
       }else{
-        setDeliveryCharge(DelCharge);
+        setDeliveryCharge(Math.ceil(DelCharge));
       }
    
     }
@@ -1095,7 +1095,7 @@ export default function Checkout() {
               isAddressServiceable && (
                 <div className={styles.textRight}>
                   <p className={styles.priceInfo}>
-                    Delivery Charge: ₹{deliveryCharge}
+                    Delivery Charge: ₹{deliveryCharge} 
                   </p>
                   <p className={styles.priceInfo}>
                     Total: ₹{subtotal + deliveryCharge}
@@ -1128,7 +1128,7 @@ export default function Checkout() {
                     Amount after discount:₹{(subtotal - discount).toFixed(2)}
                   </p>
                 )}
-                <p>Delivery Charge: ₹{deliveryCharge}</p>
+                <p>Delivery Charge: ₹{deliveryCharge}</p> 
                 {paymentMethod === "prepaid" ? (
                   <div>
                     <p>Payment Platform Charge: ₹{paymentPlatFormCharge}</p>
