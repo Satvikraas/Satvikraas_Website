@@ -392,22 +392,21 @@ export default function Checkout() {
       console.log(deliveryChargesData);
 
       // Use the actual delivery charge from the response or fallback to 99
-      
+
       console.log(
         "delhivery charge =" + deliveryChargesData.responses[0].total_amount
       );
 
-      const DelCharge=deliveryChargesData.responses[0].total_amount;
-      if(weight>=200){
+      const DelCharge = deliveryChargesData.responses[0].total_amount;
+      if (weight >= 200) {
         setDeliveryCharge(Math.ceil(0.6 * DelCharge));
-        // setDeliveryCharge(0.6*DelCharge) ;    
+        // setDeliveryCharge(0.6*DelCharge) ;
         console.log(
-          "delhivery charge weight greater than 200  =" + 0.6*DelCharge
-        );        
-      }else{
+          "delhivery charge weight greater than 200  =" + 0.6 * DelCharge
+        );
+      } else {
         setDeliveryCharge(Math.ceil(DelCharge));
       }
-   
     }
   };
 
@@ -574,23 +573,37 @@ export default function Checkout() {
   };
 
   const handleUseAddress = () => {
-    closeAddressModal();
-    const transformedAddress = {
-      name: newAddress.name,
-      phone: newAddress.phone,
-      postalCode: newAddress.pincode,
-      street: newAddress.street,
-      city: newAddress.city,
-      state: newAddress.state,
-      country: newAddress.country,
-      addressType: newAddress.addressType,
-      isDefault: false,
-      landmark: newAddress.landmark,
-    };
+if (!newAddress.name ||
+  !newAddress.phone ||
+  !newAddress.pincode ||
+  !newAddress.street ||
+  !newAddress.addressType ||
 
-    setSelectedAddress(transformedAddress);
-    setNewAddress(transformedAddress);
-    setNeedToSave(true);
+ 
+  !newAddress.landmark) {
+    alert("Please fill in all required fields.");
+    return;
+} else {
+    
+  closeAddressModal();
+  const transformedAddress = {
+    name: newAddress.name,
+    phone: newAddress.phone,
+    postalCode: newAddress.pincode,
+    street: newAddress.street,
+    city: newAddress.city,
+    state: newAddress.state,
+    country: newAddress.country,
+    addressType: newAddress.addressType,
+    isDefault: false,
+    landmark: newAddress.landmark,
+  };
+
+  setSelectedAddress(transformedAddress);
+  setNewAddress(transformedAddress);
+  setNeedToSave(true);
+}
+  
     // setModalOpen(false);
   };
   const manageSetSelectedAddress = (address) => {
@@ -965,16 +978,18 @@ export default function Checkout() {
                       }
                     />
                     <input
-                      maxLength={10}
-                      type="number"
-                      pattern="[6-9][0-9]{9}"
+                      type="tel" // Changed from "number" to "tel" to avoid auto-removing leading zeros
+                      pattern="[6-9][0-9]{9}" // Ensures the number starts with 6-9 and is 10 digits long
                       placeholder="Mobile Number"
-                      minLength={10}
+                      maxLength={10} // Now correctly limits input length
                       className={styles.inputField}
                       value={newAddress.phone}
-                      onChange={(e) =>
-                        setNewAddress({ ...newAddress, phone: e.target.value })
-                      }
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\D/g, ""); // Allows only digits
+                        if (value.length <= 10) {
+                          setNewAddress({ ...newAddress, phone: value });
+                        }
+                      }}
                     />
                     <input
                       type="text"
@@ -1023,7 +1038,7 @@ export default function Checkout() {
                         type="radio"
                         name="addressType"
                         required
-                        selected
+                        // selected
                         value="Home"
                         checked={newAddress.addressType === "Home"}
                         onChange={(e) =>
@@ -1073,7 +1088,7 @@ export default function Checkout() {
                       >
                         Cancel
                       </button>
-                      <button
+                      <a
                         disabled={!isAddressServiceable}
                         onClick={() => handleUseAddress()}
                         className={styles.saveButton}
@@ -1084,7 +1099,7 @@ export default function Checkout() {
                         }}
                       >
                         Use This
-                      </button>
+                      </a>
                     </div>
                   </form>
                 </div>
@@ -1095,7 +1110,7 @@ export default function Checkout() {
               isAddressServiceable && (
                 <div className={styles.textRight}>
                   <p className={styles.priceInfo}>
-                    Delivery Charge: ₹{deliveryCharge} 
+                    Delivery Charge: ₹{deliveryCharge}
                   </p>
                   <p className={styles.priceInfo}>
                     Total: ₹{subtotal + deliveryCharge}
@@ -1128,7 +1143,7 @@ export default function Checkout() {
                     Amount after discount:₹{(subtotal - discount).toFixed(2)}
                   </p>
                 )}
-                <p>Delivery Charge: ₹{deliveryCharge}</p> 
+                <p>Delivery Charge: ₹{deliveryCharge}</p>
                 {paymentMethod === "prepaid" ? (
                   <div>
                     <p>Payment Platform Charge: ₹{paymentPlatFormCharge}</p>
