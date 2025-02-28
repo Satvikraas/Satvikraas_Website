@@ -193,7 +193,26 @@ export default function OrderPage() {
                       </p>
                     </div>
                   </div>
-                  <div className={styles.orderStatus}>  <p>
+                  {/* <div className={styles.orderStatus}>  <p>
+                      Order Date:{" "}
+                      {new Date(selectedOrder.createdAt).toLocaleDateString("en-GB")}
+                    </p>
+                    <p>Order ID: {selectedOrder.razorpayOrderId}</p>
+                    <p className={styles.status}>
+                      Status:{" "}
+                      <span className={styles.cancelled}>
+                        {selectedOrder.status}
+                      </span>
+                    </p>
+                  </div> */}
+                </div>
+              ))}
+            </div>
+
+            <div className={styles.priceSection}>
+              <h3>Price Details ({selectedOrder.orderItems.length} Items)</h3>
+              <div className={styles.priceDetails}>
+              <div className={styles.orderStatus}>  <p>
                       Order Date:{" "}
                       {new Date(selectedOrder.createdAt).toLocaleDateString("en-GB")}
                     </p>
@@ -205,13 +224,6 @@ export default function OrderPage() {
                       </span>
                     </p>
                   </div>
-                </div>
-              ))}
-            </div>
-
-            <div className={styles.priceSection}>
-              <h3>Price Details ({selectedOrder.orderItems.length} Items)</h3>
-              <div className={styles.priceDetails}>
                 {/* <div className={styles.priceRow}>
                   <span>Total Product Price</span>
                   <span>₹{selectedOrder.totalProductPrice || 0}</span>
@@ -225,7 +237,7 @@ export default function OrderPage() {
                   <span>₹{selectedOrder.courierCharges || 0}</span>
                 </div> */}
                 <div className={styles.priceRow}>
-                  <span className={styles.totalOrder}>Total Order</span>
+                  <span className={styles.totalOrder}>Total Order Price</span>
                   <span className={styles.totalAmount}>
                     ₹{selectedOrder.totalAmount || 0}
                   </span>
