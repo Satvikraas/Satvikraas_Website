@@ -421,7 +421,7 @@ p{
     margin: 0 auto;
     padding: 2rem;
     max-width: 400px;
-    background-color: #ffffff;
+    background-color: #ebeaea98;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -432,11 +432,12 @@ p{
       font-weight: bold;
       margin-bottom: 1.5rem;
       color: #333;
+      text-align: center;
     }
   
     .summarySection {
       width: 100%;
-      background-color: #f9f9f9;
+      background-color: #ebeaea98;
       padding: 1.5rem;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -504,6 +505,15 @@ p{
 
   .messagediscount{
     font-size: 14px;
+    font-weight: 700;
+    font-family: Satoshi-Regular;
     text-align: justify;
     color: red;
+    background-color: rgb(173, 230, 203);
+    padding: 5px;
+    border-radius: 5px;
+  }
+  p{
+    font-size: 16px;
+    font-family: Satoshi-Regular;
   }

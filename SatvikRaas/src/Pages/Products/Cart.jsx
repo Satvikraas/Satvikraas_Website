@@ -6,6 +6,7 @@ import './CartItemRow.css';
 import CartItemRow from './CartItemRow';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+
 // const api = axios.create({
 //   baseURL: 'http://localhost:8080',
 //   withCredentials: true,
@@ -175,9 +176,17 @@ const ShoppingCart = () => {
 
       <div className="carts-div">
       
-      {cartItems.map((cartItem,i) => (
-        <CartItemRow key={i} cartItem={cartItem}  updateQuantity={updateQuantity} removeItem={removeItem} />
-      ))}
+      {loading ? (  <div className="product-container skeleton-loading skeleton-card">
+      <div className="product-row">
+        <div className="product-info">
+          <div className="product-image1 skeleton-box"></div>
+        
+          
+        </div>
+      </div> 
+    </div>) : cartItems.map((cartItem, i) => (
+  <CartItemRow key={i} cartItem={cartItem} updateQuantity={updateQuantity} removeItem={removeItem} />
+))}
     </div>
     <div className='checkoutbtndiv'> 
       <button className='checkoutbtn' onClick={handleCheckout}>Check Out</button>

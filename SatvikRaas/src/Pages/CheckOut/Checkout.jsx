@@ -224,6 +224,8 @@ export default function Checkout() {
   const [isAddressModalVisible, setIsAddressModalVisible] = useState(false);
   const [isFirstOrder, setIsFirstOrder] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("prepaid");
+ const [ deliverychargediscount ,setDeliverychargediscount]=useState(false)
+
   const checkFirstOrder = async () => {
     try {
       const token = getAccessToken(); // Assuming token is stored in localStorage
@@ -399,13 +401,17 @@ export default function Checkout() {
 
       const DelCharge = deliveryChargesData.responses[0].total_amount;
       if (weight >= 200) {
+        
+
         setDeliveryCharge(Math.ceil(0.6 * DelCharge));
         // setDeliveryCharge(0.6*DelCharge) ;
         console.log(
           "delhivery charge weight greater than 200  =" + 0.6 * DelCharge
-        );
+          
+        );setDeliverychargediscount(true)
       } else {
         setDeliveryCharge(Math.ceil(DelCharge));
+        setDeliverychargediscount=false
       }
     }
   };
@@ -1154,6 +1160,8 @@ if (!newAddress.name ||
                         paymentPlatFormCharge -
                         discount}
                     </p>
+                   
+                    {deliverychargediscount===true? ( <p className={styles.messagediscount}>Congratulations, You got 40% discount on your delivery Charges</p>) : ( <p className={styles.messagediscount}>Shop upto 200gm or more to get 40% discount on delivery charges</p>)}
                   </div>
                 ) : (
                   <div>
