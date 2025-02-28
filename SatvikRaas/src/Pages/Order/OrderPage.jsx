@@ -134,7 +134,7 @@ export default function OrderPage() {
                         className={styles.viewBtn}
                         onClick={() => openModal(order)}
                       >
-                        View Product
+                        View Order
                       </button>
                       <button className={styles.trackBtn}>Track Package</button>
                     </div>
