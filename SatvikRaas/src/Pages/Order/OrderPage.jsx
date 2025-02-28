@@ -182,16 +182,21 @@ export default function OrderPage() {
                     <div className={styles.productDetails}>
                       <p className={styles.productName}>
                         {item.productVariant?.productName}
+                      </p><p className={styles.quantity}>
+                        Weight: <span>{item.productVariant.weight} </span>
                       </p>
                       <p className={styles.quantity}>
-                        Quantity: <span>{item.quantity} gm</span>
-                      </p>
-                      <p className={styles.price}>
+                        Quantity: <span>{item.quantity} </span>
+                      </p> 
+                      <p className={styles.price}> Item Price:
                         ₹{item.productVariant?.price || 0}
                       </p>
                     </div>
                   </div>
-                  <div className={styles.orderStatus}>
+                  <div className={styles.orderStatus}>  <p>
+                      Order Date:{" "}
+                      {new Date(selectedOrder.createdAt).toLocaleDateString("en-GB")}
+                    </p>
                     <p>Order ID: {selectedOrder.razorpayOrderId}</p>
                     <p className={styles.status}>
                       Status:{" "}
@@ -207,7 +212,7 @@ export default function OrderPage() {
             <div className={styles.priceSection}>
               <h3>Price Details ({selectedOrder.orderItems.length} Items)</h3>
               <div className={styles.priceDetails}>
-                <div className={styles.priceRow}>
+                {/* <div className={styles.priceRow}>
                   <span>Total Product Price</span>
                   <span>₹{selectedOrder.totalProductPrice || 0}</span>
                 </div>
@@ -218,7 +223,7 @@ export default function OrderPage() {
                 <div className={styles.priceRow}>
                   <span>Courier Charges</span>
                   <span>₹{selectedOrder.courierCharges || 0}</span>
-                </div>
+                </div> */}
                 <div className={styles.priceRow}>
                   <span className={styles.totalOrder}>Total Order</span>
                   <span className={styles.totalAmount}>
