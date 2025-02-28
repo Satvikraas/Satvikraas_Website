@@ -335,3 +335,69 @@ line-height: 140%; /* 25.2px */
     }
   }
 }
+
+
+// skeleten
+
+.order-card.skeleton-loading {
+  .skeleton-box {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+    width: auto;
+    min-height: 500px;
+  }
+
+  .skeleton-text {
+    height: 16px;
+    margin-bottom: 8px;
+  }
+
+  .skeleton-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px; 
+   
+  }
+
+  .skeleton-button {
+    width: 100px;
+    height: 32px;
+    border-radius: 8px; 
+  }
+
+  .order-id {
+    width: 60%;
+    height: 20px;
+  }
+
+  .order-date {
+    width: 50%;
+    height: 16px; 
+  }
+
+  .total-amount {
+    width: 70%;
+    height: 20px;
+  }
+
+  .order-items {
+    width: 90%;
+    height: 40px; 
+  }
+
+  .skeleton-card {
+    background: linear-gradient(90deg, #f8f8f8 25%, #eaeaea 50%, #f8f8f8 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}

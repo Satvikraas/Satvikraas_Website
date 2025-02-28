@@ -53,7 +53,41 @@ export default function OrderPage() {
         <div className={styles.OrderDiv}>
           <h1>Your Orders</h1>
           {loading ? (
-        <div className={styles.loading}>Loading...</div>
+        <div >
+        <div className="order-card skeleton-loading skeleton-card">
+        <div className="upcard">
+          <div className="skeleton-box skeleton-text order-id"></div>
+          <div className="skeleton-box skeleton-text order-date"></div>
+        </div>
+        <div className="bottomCard">
+          <div className="skeleton-box skeleton-image"></div>
+          <div className="info">
+            <div className="skeleton-box skeleton-text total-amount"></div>
+            <div className="skeleton-box skeleton-text order-items"></div>
+          </div>
+          <div className="btnDiv">
+            <div className="skeleton-button"></div>
+            <div className="skeleton-button"></div>
+          </div>
+        </div>
+      </div> <div className="order-card skeleton-loading skeleton-card">
+        <div className="upcard">
+          <div className="skeleton-box skeleton-text order-id"></div>
+          <div className="skeleton-box skeleton-text order-date"></div>
+        </div>
+        <div className="bottomCard">
+          <div className="skeleton-box skeleton-image"></div>
+          <div className="info">
+            <div className="skeleton-box skeleton-text total-amount"></div>
+            <div className="skeleton-box skeleton-text order-items"></div>
+          </div>
+          <div className="btnDiv">
+            <div className="skeleton-button"></div>
+            <div className="skeleton-button"></div>
+          </div>
+        </div>
+      </div>
+      </div>
       ) : (
           <div className={styles.OrderCards}>
             {orders.length > 0 ? (
