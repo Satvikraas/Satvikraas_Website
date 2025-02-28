@@ -806,7 +806,9 @@ if (!newAddress.name ||
                 removeItem={removeItem}
               />
             ))}
+            
             <div className={styles.textRight}>
+            <p> Buy more </p>
               <p className={styles.priceInfo}>
                 Subtotal: <span>₹{subtotal}</span>
               </p>
@@ -1167,7 +1169,7 @@ if (!newAddress.name ||
                   <div>
                     <p className={styles.priceInfo}>
                       Total: ₹{subtotal + deliveryCharge - discount}
-                    </p>
+                    </p>  {deliverychargediscount===true? ( <p className={styles.messagediscount}>Congratulations, You got 40% discount on your delivery Charges</p>) : ( <p className={styles.messagediscount}>Shop upto 200gm or more to get 40% discount on delivery charges</p>)}
                   </div>
                 )}
               </div>
