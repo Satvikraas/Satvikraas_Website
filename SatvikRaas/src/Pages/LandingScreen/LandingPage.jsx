@@ -10,9 +10,9 @@ import "swiper/css/effect-coverflow";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 
-import dhaniyaimg from "../../Assets/Images/dhaniyacard.svg";
-import chillyimg from "../../Assets/Images/chillycard.svg";
-import turmericimg from "../../Assets/Images/turmericcard.svg"; 
+import dhaniyaimg from "../../Assets/Images/dhaniyacard.jpg";
+import chillyimg from "../../Assets/Images/chillycard.jpg";
+import turmericimg from "../../Assets/Images/turmericcard.jpg"; 
 import productsimg from "../../Assets/Images/products.svg";
 import group from "../../Assets/Images/group.png";
 import group2 from "../../Assets/Images/group2.png";
@@ -68,7 +68,7 @@ import cimg4 from "../../Assets/Images/Bannerh.jpg"
 // import cimg6 from "../../Assets/Images/banner (6).jpg"
 
 // goodness
-import goodness from "../../Assets/Images/goodness.svg"
+import goodness from "../../Assets/Images/goodness.jpg"
 
 const images = [
  cimg2,cimg3,cimg4
