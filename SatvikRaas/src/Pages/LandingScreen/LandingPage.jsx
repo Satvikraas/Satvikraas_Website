@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
-
+import {Link} from "react-router-dom"
 import dhaniyaimg from "../../Assets/Images/dhaniyacard.jpg";
 import chillyimg from "../../Assets/Images/chillycard.jpg";
 import turmericimg from "../../Assets/Images/turmericcard.jpg"; 
@@ -64,14 +64,15 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import cimg2 from "../../Assets/Images/banner (1).jpg"
 import cimg3 from "../../Assets/Images/banner (2).jpg"
 import cimg4 from "../../Assets/Images/Bannerh.jpg"
-// import cimg5 from "../../Assets/Images/banner (5).jpg"
-// import cimg6 from "../../Assets/Images/banner (6).jpg"
+import cimg5 from "../../Assets/Images/banner new (1).jpg"
+import cimg6 from "../../Assets/Images/banner new (2).jpg"
+import cimg7 from "../../Assets/Images/banner new (3).jpg"
 
 // goodness
 import goodness from "../../Assets/Images/goodness.jpg"
 
 const images = [
- cimg2,cimg3,cimg4
+ cimg2,cimg3,cimg4,cimg5,cimg6,cimg7
 ];
 
 const HeroSection = () => {
@@ -272,10 +273,10 @@ useEffect(() => {
         stopOnHover={false}
         swipeable={false}>
         {images.map((image, index) => (
-          <div key={index}>
-            <img src={image} alt={`Slide ${index + 1}`} className={styles.fullscreenImage} />
+        <Link to={"/cart"}>  <div key={index}>
+             <img src={image} alt={`Slide ${index + 1}`} className={styles.fullscreenImage} /> 
             {/* <p className="legend">Legend {index + 1}</p>  */}
-          </div>
+          </div> </Link>
         ))}
       </Carousel>
     </section> 
