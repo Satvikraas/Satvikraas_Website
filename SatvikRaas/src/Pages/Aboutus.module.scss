@@ -1,0 +1,228 @@
+// Breakpoints 
+$breakpoint-mobile: 576px; // Small devices (phones)
+$breakpoint-tablet: 768px; // Medium devices (tablets)
+
+// Mixin for responsive media queries
+@mixin respond-to($device) {
+  @if $device==mobile {
+    @media (max-width: $breakpoint-mobile) {
+      @content;
+    }
+  }
+
+  @else if $device==tablet {
+    @media (max-width: $breakpoint-tablet) {
+      @content;
+    }
+  }
+}
+
+.AbtPage {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+}
+
+.heroSec {
+    background: url("../Assets/Images/abthero.jpg");
+    height: 70vh;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-size: cover;
+     @include respond-to(mobile) { 
+    flex-direction: column;
+    height: auto;
+    justify-content: space-evenly;
+    }
+
+    div {
+        height: 100%;
+
+        .mascott {
+            margin-right: 100px;
+            height: 100%;
+             @include respond-to(mobile) { 
+            margin-right: 0;
+            }
+        }
+
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        // align-items: ;
+
+        width: 80%;
+        // justify-content: center;
+        height: 100%;
+        text-align: left;
+ @include respond-to(mobile) { 
+width: 100%;
+padding: 15px;
+}
+        div {
+            padding-left: 100px;
+            padding-top: 100px;
+             @include respond-to(mobile) { 
+            padding: 0;
+            }
+        }
+
+        h1 {
+            color: #FFF;
+            text-align: left;
+            font-feature-settings: 'liga'off, 'clig'off;
+            font-family: Zodiak;
+            font-size: 64px;
+            font-style: normal;
+            font-weight: 540;
+            margin: 0;
+            line-height: 130%;
+            /* 96px */
+             @include respond-to(mobile) { 
+                color: #FFF;
+                text-align: center;
+                font-feature-settings: 'liga' off, 'clig' off;
+                font-family: Zodiak;
+                font-size: 48px;
+                font-style: normal;
+                font-weight: 540;
+                line-height: 150%; /* 72px */
+            }
+        }
+
+        p {
+            color: #FFF;
+            font-feature-settings: 'liga'off, 'clig'off;
+            font-family: Corbel;
+            font-size: 24px;
+            font-style: normal;
+            margin: 0;
+            font-weight: 400;
+            line-height: 100%;
+            /* 36px */
+             @include respond-to(mobile) { 
+                color: #FFF;
+                font-feature-settings: 'liga' off, 'clig' off;
+                font-family: Corbel;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 24px; /* 120% */ 
+                text-align: center;
+                width: 100%;
+            }
+        }
+    }
+
+}
+.sec1, .sec2 {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; // This ensures all children stretch to the same height
+    justify-content: space-between;
+    padding: 50px 70px;
+    margin:  0;
+    gap: 50px;
+   @include respond-to(mobile) { 
+  flex-direction: column
+  ;
+  padding: 15px;
+  width: 100%; 
+  gap: 0;
+  justify-content: space-evenly;
+  }
+    .img {
+      flex: 1; // Allow it to take full available height
+     
+      display: flex;
+  
+      .secImg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 16px;
+        background: lightgray 50% / cover no-repeat;
+      }
+    }
+      
+    .textContent {
+        width: 70%;
+         @include respond-to(mobile) { 
+        width: 100%;
+        }
+
+        h2 {
+            color: var(--Brand-Colour-Heading, #0A0C0C);
+            font-feature-settings: 'liga'off, 'clig'off;
+            font-family: Zodiak;
+            font-size: 48px;
+            font-style: normal;
+            font-weight: 540;
+            line-height: 150%;
+             @include respond-to(mobile) { 
+                color: var(--Brand-Colour-Heading, #0A0C0C);
+                font-feature-settings: 'liga' off, 'clig' off;
+                font-family: Zodiak;
+                font-size: 36px;
+                font-style: normal;
+                font-weight: 540;
+                line-height: 150%; /* 54px */
+            }
+            /* 72px */
+        }
+
+        p {
+            color: var(--Brand-Colour-Sub-Heading, #333434);
+            font-feature-settings: 'liga'off, 'clig'off;
+            font-family: Corbel;
+            font-size: 20px;
+            text-align: justify;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 130%;
+            /* 30px */
+             @include respond-to(mobile) { 
+                color: var(--Brand-Colour-Sub-Heading, #333434);
+                font-feature-settings: 'liga' off, 'clig' off;
+                font-family: Corbel;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 150%; /* 27px */
+            }
+        }
+
+        ul {
+            color: var(--Brand-Colour-Sub-Heading, #333434);
+            font-feature-settings: 'liga'off, 'clig'off;
+            font-family: Corbel;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 400;
+            text-align: justify;
+            list-style-type: disc !important; // Use `disc`, `circle`, or `square`
+            padding-left: 20px; // Ensure there's enough space for bullets
+            line-height: 130%;
+            margin-top: 10px;
+             @include respond-to(mobile) { 
+                color: var(--Brand-Colour-Sub-Heading, #333434);
+                font-feature-settings: 'liga' off, 'clig' off;
+                font-family: Corbel;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 150%; /* 27px */
+            }
+            /* 30px */
+            li{
+                list-style-type: disc !important; // Use `disc`, `circle`, or `square`
+            }
+        }
+    }
+}
+
