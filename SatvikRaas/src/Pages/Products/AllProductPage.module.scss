@@ -1,7 +1,25 @@
+
+.Herosec{
+  width: 100%;
+  height: max-content;
+  img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin: 0;
+  }
+}
 .app {
   min-height: 100vh;
  
-  padding-top: 50px;
+  padding-top: 100px;
+}
+.heading{
+  text-align: center;
+  margin-top: 20px;   font-family:  Zodiak-Regular;
+  margin: 20px; 
+
+  color: #226160;
 }
 .filters {
   display: flex;
@@ -34,18 +52,15 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 40px;
   // margin-top: 20px;
-  padding: 50px; 
+  padding: 0 50px 50px 50px; 
   @media (max-width: 768px) {
     gap: 40px;
   }
 }
-
 .productCard {
   width: 306px;
   height: 475px;
-  
   padding: 0px;
-  
   text-align: center;
   @media (max-width: 768px) {
    
@@ -177,7 +192,18 @@ margin: auto;
   width: 250px;
   height: 350px;
 }
-
+.loadingCardcombo {
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 600px;
+  height: 350px;
+}
 .skeletonImage {
   width: 100%;
   height: 150px;
@@ -213,3 +239,141 @@ margin: auto;
     background-position: -200% 0;
   }
 }
+
+
+
+
+.ComboList{  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+width: 100%;
+  gap: 40px;
+  // margin-top: 20px;
+  padding: 0px 50px 0px 50px; 
+  @media (max-width: 768px) {
+    gap: 40px;  grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
+
+  .comboCard {
+    height: 475px;
+    max-width: 100%;
+    padding: 0px;
+    text-align: center;
+
+    @media (max-width: 768px) {
+     
+      margin: auto;
+      align-items: center;
+      border: 1px solid rgba(128, 128, 128, 0.184);
+    }
+  }
+  
+  .ComboproductImage {
+  
+   
+    width: 100%;
+    height: 310px;
+  margin: auto;
+    margin-bottom: 10px;
+    object-fit: cover;
+    background-color: #008cba;
+    @media (max-width: 768px) {
+      margin: 0 auto;
+    }
+  }
+  .pricetxt{
+    font-size: 16px;
+    font-family: "Satoshi-light";
+  }
+  .productInfo {
+    font-size: 14px;
+  }
+  
+  .productInfo h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .buttons button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .buttons button:first-child {
+    background-color: #008cba;
+    color: white;
+  }
+  
+  .buttons button:last-child {
+    background-color: #f4a261;
+    color: white;
+  }
+  
+  .variantButtons {
+    text-align: left;
+    width: 100%;
+    padding-left: 15%;
+    position: relative;
+    button {
+      margin-left: 10px;
+      background-color: white;
+      border: 2px solid white;
+      font-size: 16px;
+      font-family: "Satoshi-light";
+    }
+  }
+  
+  .variantButtons button.active {
+    background-color: #00e5af9c;
+    color: rgb(0, 0, 0);
+    padding: 0 5px;
+  }
+  
+  .variantButtons button:hover {
+    border-color: #007b5e;
+  }
+  
+  .addCartButton {
+    position: absolute;
+    right: 10%;
+  
+    text-align: right;
+    svg {
+      width: 30px;
+  
+      height: 30px;
+      margin: auto;
+    }
+  }
+  
+  .pname {
+    // background-color: yellow;
+    font-size: 20px;
+    font-family: "Satoshi-Regular";
+  
+    text-align: left;
+    line-height: 40px;
+    padding-left: 15%;
+    margin: 0;
+  }
+  
+  .buyButton {
+    margin: 0;
+    width: 100%;
+    border-radius: 31px;
+    font-size: 18px;
+    font-family: "Satoshi-Regular";
+    height: 42px;
+    width: 90%;
+    background-color: #226160;
+    color: white;
+  }
+  
+  .productimg {
+    width: 100%;
+    // margin: 0 auto;
+  }}

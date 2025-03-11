@@ -27,7 +27,7 @@ const CartItemRow = ({isSingleProduct, cartItem,updateQuantity,removeItem }) => 
   const handleRemoveItem = () => {
     removeItem(cartItem.id);
   };
-  
+  {console.log(productVariantDTO)}
 
   return (
     <div className="product-container">
@@ -39,16 +39,16 @@ const CartItemRow = ({isSingleProduct, cartItem,updateQuantity,removeItem }) => 
           <div className="product-image">
           <img 
         src={`data:image/jpeg;base64,${productVariantDTO?.mainImage}`} 
-        className="product-image" 
-       
-        
+        // className="product-image" 
+        className={productVariantDTO.productId === 9 ? "comboproduct-image" : "product-image"} 
+      
       />
           </div>
           <div className="product-details">
             <h3>{productVariantDTO.productName}</h3>
             
-            <div className="variant-dropdown"> Quantity : 
-            {productVariantDTO?.weight}
+            <div className="variant-dropdown"> Weight : 
+            {productVariantDTO?.weight}g
             </div>
 
           </div>

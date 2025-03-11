@@ -185,7 +185,7 @@ export const completeOrder = async (orderId) => {
 export default function Checkout() {
   const location = useLocation();
   const navigate = useNavigate();
-
+  const [fixedDeliverycharge ,setFixedDeliverycharge] = useState(30);
   const [notAddressCardClick, setNotAddressCardClick] = useState(true);
   const [items, setItem] = useState(location.state.items);
   const [isSingleProduct, setIsSingleProduct] = useState(
@@ -317,7 +317,10 @@ export default function Checkout() {
   };
   useEffect(() => {
     getDeliveryCharges(selectedAddress.postalcode);
-    const totalAmount = subtotal + deliveryCharge - discount;
+  // const totalAmount = subtotal + deliveryCharge - discount;
+    // fixed delivery 
+    const totalAmount = subtotal + fixedDeliverycharge - discount;
+    
     const platformChargeRate = 0.02; // 2% platform charge
     const gstRate = 0.18; // 18% GST
 
@@ -332,8 +335,9 @@ export default function Checkout() {
 
     setPaymentPlatFormCharge(totalPlatformCharge);
   }, [subtotal, deliveryCharge]);
+
   useEffect(() => {
-    // Recalculate subtotal whenever items change
+    
     countSubtotal();
   }, [items]);
 
@@ -378,7 +382,7 @@ export default function Checkout() {
       // Safely calculate weight, multiply by quantity
       return total + item.productVariantDTO.weight * item.quantity;
     }, 0);
-  };
+  }; 
 
   const getDeliveryCharges = async (pincode) => {
     const weight = calculateTotalWeight(items);
@@ -486,7 +490,8 @@ export default function Checkout() {
       // console.log("in Pre payment");
 
       const totalAmount =
-        subtotal + deliveryCharge + paymentPlatFormCharge - discount;
+        // subtotal + deliveryCharge + paymentPlatFormCharge - discount;
+        subtotal + fixedDeliverycharge + paymentPlatFormCharge - discount;
 
       // Create order in backend
       const orderData = await createOrder(
@@ -683,8 +688,13 @@ if (!newAddress.name ||
     setNotification(message);
   };
 
-  const updateQuantity = async (cartItemId, newQuantity) => {
+  const updateQuantity = async (cartItemId, newQuantity ) => {
     if (isSingleProduct) {
+      if (newQuantity < 1) return;
+      else{
+     
+      }
+      
     } else {
       try {
         if (newQuantity < 1) return;
@@ -808,9 +818,9 @@ if (!newAddress.name ||
             ))}
             
             <div className={styles.textRight}>
-            <p> Buy more </p>
+            {/* <p> Buy more </p> */}
               <p className={styles.priceInfo}>
-                Subtotal: <span>₹{subtotal}</span>
+                Subtotal: <span>₹{subtotal }</span>
               </p>
               {items && items.length > 0 && (
                 <button
@@ -1118,10 +1128,12 @@ if (!newAddress.name ||
               isAddressServiceable && (
                 <div className={styles.textRight}>
                   <p className={styles.priceInfo}>
-                    Delivery Charge: ₹{deliveryCharge}
+                   {/* Delivery Charge: ₹{deliveryCharge} */}
+                   Delivery Charge: ₹{fixedDeliverycharge}
                   </p>
                   <p className={styles.priceInfo}>
-                    Total: ₹{subtotal + deliveryCharge}
+                   {/* Total: ₹{subtotal + deliveryCharge} */}
+                   Total: ₹{subtotal + fixedDeliverycharge}
                   </p>
                   <button
                     onClick={() => setCurrentStep("payment")}
@@ -1151,14 +1163,17 @@ if (!newAddress.name ||
                     Amount after discount:₹{(subtotal - discount).toFixed(2)}
                   </p>
                 )}
-                <p>Delivery Charge: ₹{deliveryCharge}</p>
+                 {/* <p>Delivery Charge: ₹{deliveryCharge}</p> */}
+                 <p>Delivery Charge: ₹{fixedDeliverycharge}</p>
                 {paymentMethod === "prepaid" ? (
                   <div>
                     <p>Payment Platform Charge: ₹{paymentPlatFormCharge}</p>
                     <p className={styles.priceInfo}>
                       Total: ₹
                       {subtotal +
-                        deliveryCharge +
+                        // deliveryCharge +
+                        fixedDeliverycharge
+                         +
                         paymentPlatFormCharge -
                         discount}
                     </p>
@@ -1168,7 +1183,10 @@ if (!newAddress.name ||
                 ) : (
                   <div>
                     <p className={styles.priceInfo}>
-                      Total: ₹{subtotal + deliveryCharge - discount}
+                      Total: ₹{subtotal +
+                       // deliveryCharge +
+                       fixedDeliverycharge
+                       - discount}
                     </p>  {deliverychargediscount===true? ( <p className={styles.messagediscount}>Congratulations, You got 40% discount on your delivery Charges</p>) : ( <p className={styles.messagediscount}>Shop upto 200gm or more to get 40% discount on delivery charges</p>)}
                   </div>
                 )}
