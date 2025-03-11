@@ -40,12 +40,12 @@ const CartItemRow = ({isSingleProduct, cartItem,updateQuantity,removeItem }) => 
           <img 
         src={`data:image/jpeg;base64,${productVariantDTO?.mainImage}`} 
         // className="product-image" 
-        className={productVariantDTO.productId === 9 ? "comboproduct-image" : "product-image"} 
+        className={productVariantDTO.productId === 9 || productVariantDTO.productId === 10 ? "comboproduct-image" : "product-image"} 
       
       />
           </div>
           <div className="product-details">
-            <h3>{productVariantDTO.productName}</h3>
+            <h3  className={productVariantDTO.productId === 9 || productVariantDTO.productId === 10 ? "comboproducth3" : ""} >{productVariantDTO.productName}</h3>
             
             <div className="variant-dropdown"> Weight : 
             {productVariantDTO?.weight}g

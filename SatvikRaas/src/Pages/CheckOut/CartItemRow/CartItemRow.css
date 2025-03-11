@@ -72,6 +72,14 @@
     font-size: 24px;  font-family: 'Satoshi-Regular'; 
   
   }
+  .comboproducth3{
+    @media (max-width: 640px) {
+      font-size: 18px !important;
+    }
+
+
+  
+  }
    
   .variant-dropdown{
     font-size: 20px;  font-family: 'Satoshi-Regular';

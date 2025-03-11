@@ -203,6 +203,10 @@ margin: auto;
   gap: 12px;
   width: 600px;
   height: 350px;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 150px;
+  }
 }
 .skeletonImage {
   width: 100%;
@@ -260,7 +264,7 @@ width: 100%;
     text-align: center;
 
     @media (max-width: 768px) {
-     
+      height: auto;
       margin: auto;
       align-items: center;
       border: 1px solid rgba(128, 128, 128, 0.184);
@@ -278,6 +282,9 @@ width: 100%;
     background-color: #008cba;
     @media (max-width: 768px) {
       margin: 0 auto;
+      width: 100%;
+      height: 100%;
+      
     }
   }
   .pricetxt{
@@ -301,7 +308,7 @@ width: 100%;
     cursor: pointer;
     border: none;
     border-radius: 5px;
-  }
+    }
   
   .buttons button:first-child {
     background-color: #008cba;
@@ -371,6 +378,9 @@ width: 100%;
     width: 90%;
     background-color: #226160;
     color: white;
+    @media (max-width: 768px) {
+      margin: 10px;
+    }
   }
   
   .productimg {
