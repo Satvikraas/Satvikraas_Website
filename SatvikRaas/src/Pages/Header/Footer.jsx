@@ -1,6 +1,10 @@
 import styles from "./Footer.module.scss";
 import logo from "../../Assets/Logo/logo.png";
 import { Link } from "react-router-dom";
+import img1 from "../../Assets/Images/amz.png"
+import img2 from "../../Assets/Images/flp.png"
+import img3 from "../../Assets/Images/bli.png"
+import img4 from "../../Assets/Images/dor.png"
 export default function Footer() {
   const links = [
     { name: "Home", path: "/" },
@@ -43,7 +47,8 @@ export default function Footer() {
         </div>
 
         {/* Explore and Resources */}
-        <div className={styles.ExploreAndResources}>
+      <div className={styles.rightcontent}>
+      <div className={styles.ExploreAndResources}>
           <div className={styles.Explore}>
             <h1>Explore</h1>
             {links.map((link) => (
@@ -61,6 +66,16 @@ export default function Footer() {
             ))}
           </div>
         </div>
+      <div className={styles.platformicons}>
+        <h3>Also Available in</h3>
+        <div className={styles.platformicons}>
+         <a href=""> <img src={img1} alt="" /></a>
+         <a href=""><img src={img2} alt="" /></a>
+         <a href=""><img src={img3} alt="" /></a>
+         <a href=""> <img src={img4} alt="" /></a>
+        </div>
+      </div>
+      </div>
 
         {/* Location */}
         <div className={styles.Location}>

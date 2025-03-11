@@ -138,3 +138,42 @@ $mobile: 430px;
 .socialiconshead{
   margin-top: 10px;
 }
+
+.rightcontent{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.platformicons{display: flex;
+  flex-direction: column;
+  h3{color: #FFF;
+    font-family: Zodiak-Regular;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 540;
+    line-height: 150%; /* 36px */
+  
+    @media (max-width: $mobile) {
+    color: #FFF;
+    margin-top: 10px;
+    font-family: Zodiak;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 540;
+    line-height: 150%; /* 30px */
+  }}
+.platformicons {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  gap: 10px;
+  height: 100%;
+ 
+  
+  img {
+    width: 70px; // Set a fixed width (adjust as needed)
+    height: 50px; // Set a fixed height (ensures uniformity)
+    object-fit: contain; // Keeps aspect ratio without cropping
+  }
+}}
