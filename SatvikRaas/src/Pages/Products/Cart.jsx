@@ -95,7 +95,7 @@ const ShoppingCart = () => {
         
 
       await fetchCartItems();
-      showNotification(`quantity Updated`);
+     console.log(`quantity Updated`);
     } catch (error) {
       console.error('Error updating quantity:', error);
       handleError(error);

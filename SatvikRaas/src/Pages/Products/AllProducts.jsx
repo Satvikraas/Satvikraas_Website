@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./AllProductPage.module.scss";
 import api from "../../api.jsx";
-import banner from  "../../Assets/Images/allproductpageBanner.jpg"
+import banner from "../../Assets/Images/allproductpageBanner.jpg";
 // const api = axios.create({
 //   baseURL: 'http://localhost:8080',
 //   withCredentials: true,
@@ -51,9 +51,19 @@ const Product = ({ product, filters }) => {
           setError("Please login to add items to cart");
           return;
         }
-
+        let qty = 1;
+        if (
+          product.name === "Red Chilli Powder" ||
+          product.name === "Turmeric Powder" ||
+          product.name === "Coriander Powder"
+        ) {
+          qty = 2;
+        }
         const response = await api.post("/api/user/addProductInCart", null, {
-          params: { productVarientId: selectedVariant.id },
+          params: {
+            productVarientId: selectedVariant.id,
+            qty: qty,
+          },
           headers: { Authorization: `Bearer ${accessToken}` },
         });
 
@@ -96,7 +106,6 @@ const Product = ({ product, filters }) => {
 
   return (
     <div className={styles.productCard}>
-
       {error && <div className={styles.errorMessage}>{error}</div>}
       <img
         src={`data:image/jpeg;base64,${selectedVariant?.mainImage}`}
@@ -104,7 +113,7 @@ const Product = ({ product, filters }) => {
         alt={product.name}
       />
 
-<div className={styles.variantButtons}>
+      <div className={styles.variantButtons}>
         {product.variants?.map((variant, index) => (
           <button
             key={index}
@@ -198,29 +207,24 @@ const ComboProduct = ({ product, filters }) => {
   //   navigate("/productDetail", { state: { product } });
   // };
   const handleBuyNow = () => {
-   
-      const items = [
-        {
-          id: "",
-          productVariantDTO: selectedVariant,
-          quantity: 1,
-        },
-      ];
-console.log(selectedVariant);
-      navigate("/checkout1", {
-        state: {
-          items: items,
-          isSingleProduct: true,
-        },
-      });
-    
+    const items = [
+      {
+        id: "",
+        productVariantDTO: selectedVariant,
+        quantity: 1,
+      },
+    ];
+    console.log(selectedVariant);
+    navigate("/checkout1", {
+      state: {
+        items: items,
+        isSingleProduct: true,
+      },
+    });
   };
 
-
- 
   return (
     <div className={styles.comboCard}>
-
       {error && <div className={styles.errorMessage}>{error}</div>}
       <img
         src={`data:image/jpeg;base64,${selectedVariant?.subImages[0].imageData}`}
@@ -273,11 +277,13 @@ console.log(selectedVariant);
 const ProductList = ({ products, filters, isLoading }) => (
   <div className={styles.productList}>
     {isLoading
-      ? Array.from({ length: 6 }).map((_, index) => (
-          <LoadingCard key={index} />
-        )) // Render 6 loading cards as placeholders
+      ? Array.from({ length: 6 }).map((_, index) => <LoadingCard key={index} />) // Render 6 loading cards as placeholders
       : products.map((product) => (
-          <Product key={product.productId} product={product} filters={filters} />
+          <Product
+            key={product.productId}
+            product={product}
+            filters={filters}
+          />
         ))}
   </div>
 );
@@ -291,7 +297,11 @@ const ComboProductList = ({ products, filters, isLoading }) => {
         : products
             .filter((product) => product.category === "COMBO") // Filter products by category "combo"
             .map((product) => (
-              <ComboProduct key={product.productId} product={product} filters={filters} />
+              <ComboProduct
+                key={product.productId}
+                product={product}
+                filters={filters}
+              />
             ))}
     </div>
   );
@@ -310,12 +320,12 @@ const App = () => {
   useEffect(() => {
     setIsLoading(true); // Set loading to true before fetching
     fetch("https://api.satvikraas.com/api/public/getAllProducts")
-    // fetch("https://42ee-103-185-234-246.ngrok-free.app/api/public/getAllProducts")
+      // fetch("https://42ee-103-185-234-246.ngrok-free.app/api/public/getAllProducts")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {
-          setProducts(data.data.filter(data => data.category!="COMBO"));
-          setCombos(data.data.filter(data => data.category==="COMBO"));
+          setProducts(data.data.filter((data) => data.category != "COMBO"));
+          setCombos(data.data.filter((data) => data.category === "COMBO"));
         } else {
           setError("Invalid response format from the backend");
         }
@@ -366,11 +376,19 @@ const App = () => {
 
       {/* <img className={styles.productimg} src={productsimg} alt="" /> 
       <img className={styles.productimg} src={productsimg2} alt="" />  */}
-<h1 className={styles.heading}>Combos </h1>
+      <h1 className={styles.heading}>Combos </h1>
       {error && <div className={styles.errorMessage}>{error}</div>}
-      <ComboProductList products={Combos} filters={filters} isLoading={isLoading} />
+      <ComboProductList
+        products={Combos}
+        filters={filters}
+        isLoading={isLoading}
+      />
       <h1 className={styles.heading}>Spices and Masalas</h1>
-      <ProductList products={products} filters={filters} isLoading={isLoading} />
+      <ProductList
+        products={products}
+        filters={filters}
+        isLoading={isLoading}
+      />
     </div>
   );
 };
