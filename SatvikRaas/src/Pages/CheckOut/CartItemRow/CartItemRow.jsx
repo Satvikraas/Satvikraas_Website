@@ -1,4 +1,5 @@
-import React,{ useState }  from 'react';
+import React,{ useState , useEffect}  from 'react';
+
 import { Trash2, ChevronDown } from 'lucide-react';
 import './CartItemRow.css';
 import { useNavigate } from 'react-router-dom';
@@ -13,21 +14,41 @@ const CartItemRow = ({isSingleProduct, cartItem,updateQuantity,removeItem }) => 
   const addCartItemQuantityChange = () => {
     const newQuantity = cartItemQuantity + 1;
     setCartItemQuantity(newQuantity);
-    updateQuantity(cartItem.id, newQuantity);
+    // updateQuantity(cartItem.id, newQuantity); 
   };
   
-  const reduceCartItemQuantityChange = () => {
-    if (cartItemQuantity > 1) {
-      const newQuantity = cartItemQuantity - 1;
-      setCartItemQuantity(newQuantity);
-      updateQuantity(cartItem.id, newQuantity);
-    }
+  // const reduceCartItemQuantityChange = () => {
+  //   if (cartItemQuantity > 1) {
+  //     const newQuantity = cartItemQuantity - 1;
+  //     setCartItemQuantity(newQuantity);
+  //     updateQuantity(cartItem.id, newQuantity);
+  //   }
+  // };
+  useEffect(() => {
+    
+  }, [productVariantDTO.productName, setCartItemQuantity]); // Runs only when product name changes
+  const reduceCartItemQuantityChange = (productName) => {
+    return () => {
+      if (productName === "Red Chilli Powder" || productName ==="Turmeric Powder" || productName ==="Coriander Powder") {
+        if (cartItemQuantity > 2) {
+          const newQuantity = cartItemQuantity - 1;
+          setCartItemQuantity(newQuantity);
+          // updateQuantity(cartItem.id, newQuantity);
+        }
+      } else {
+        if (cartItemQuantity > 1) {
+          const newQuantity = cartItemQuantity - 1;
+          setCartItemQuantity(newQuantity);
+          // updateQuantity(cartItem.id, newQuantity);
+        }
+      }
+    };
   };
-  
+
   const handleRemoveItem = () => {
     removeItem(cartItem.id);
   };
-  {console.log(productVariantDTO)}
+  // {console.log(productVariantDTO)}
 
   return (
     <div className="product-container">
@@ -64,7 +85,7 @@ const CartItemRow = ({isSingleProduct, cartItem,updateQuantity,removeItem }) => 
               <Trash2 size={20} />
             </button>
             <div className="quantity-controls">
-              <button disabled={isSingleProduct} className="quantity-button"onClick={reduceCartItemQuantityChange}>-</button>
+              <button disabled={isSingleProduct} className="quantity-button"onClick={reduceCartItemQuantityChange(productVariantDTO.productName)}>-</button>
               <span className="quantity-display"> {cartItemQuantity}</span>
               <button disabled={isSingleProduct} className="quantity-button" onClick={addCartItemQuantityChange}>+</button>
             </div>

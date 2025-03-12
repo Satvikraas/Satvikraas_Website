@@ -800,7 +800,7 @@ if (!newAddress.name ||
       </div>
     </div> */}
             <div className="header-grid">
-              <div className="header-col-span"></div>
+              <div className="header-col-span"></div> 
               <div className="header-text center-align">Quantity</div>
               <div className="header-flex">
                 <div className="header-text">Action</div>
