@@ -20,6 +20,7 @@ import RefundPolicy from "./Pages/RefundPolicy.jsx";
 import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
 import Order from "./Pages/Order/OrderPage.jsx"
 import ScrollToTop from "../src/Pages/ScrollToTop.jsx";  import { ToastContainer } from 'react-toastify';
+import OrderSuccess from "./Pages/CheckOut/OrderSuccess.jsx"
 // import Blankpage from "./Pages/White.jsx";TermsService ShippingPolicy RefundPolicy
 export default function App() {
   return (
@@ -50,6 +51,7 @@ export default function App() {
             <Route path="/shipping-policy" element={<ShippingPolicy />} />
             <Route path="/refund-policy" element={<RefundPolicy />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/ordersuccess" element={<OrderSuccess />} />
           </Routes>
         </main>
 
