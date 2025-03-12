@@ -1178,7 +1178,7 @@ if (!newAddress.name ||
                         discount}
                     </p>
                    
-                    {deliverychargediscount===true? ( <p className={styles.messagediscount}>Congratulations, You got 40% discount on your delivery Charges</p>) : ( <p className={styles.messagediscount}>Shop upto 200gm or more to get 40% discount on delivery charges</p>)}
+                    {/* {deliverychargediscount===true? ( <p className={styles.messagediscount}>Congratulations, You got 40% discount on your delivery Charges</p>) : ( <p className={styles.messagediscount}>Shop upto 200gm or more to get 40% discount on delivery charges</p>)} */}
                   </div>
                 ) : (
                   <div>
@@ -1187,7 +1187,8 @@ if (!newAddress.name ||
                        // deliveryCharge +
                        fixedDeliverycharge
                        - discount}
-                    </p>  {deliverychargediscount===true? ( <p className={styles.messagediscount}>Congratulations, You got 40% discount on your delivery Charges</p>) : ( <p className={styles.messagediscount}>Shop upto 200gm or more to get 40% discount on delivery charges</p>)}
+                    </p>  
+                    {/* {deliverychargediscount===true? ( <p className={styles.messagediscount}>Congratulations, You got 40% discount on your delivery Charges</p>) : ( <p className={styles.messagediscount}>Shop upto 200gm or more to get 40% discount on delivery charges</p>)} */}
                   </div>
                 )}
               </div>
