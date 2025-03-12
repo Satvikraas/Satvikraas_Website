@@ -341,6 +341,7 @@ export default function Checkout() {
     countSubtotal();
   }, [items]);
 
+  
   useEffect(() => {
     loadRazorpayScript();
     const fetchAddresses = async () => {
