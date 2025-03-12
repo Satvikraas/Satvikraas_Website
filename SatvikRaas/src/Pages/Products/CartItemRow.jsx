@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { Trash2, ChevronDown } from "lucide-react";
 import "./CartItemRow.css";
 import { useNavigate } from "react-router-dom";
@@ -19,14 +19,39 @@ const CartItemRow = ({
     updateQuantity(cartItem.id, newQuantity);
   };
 
-  const reduceCartItemQuantityChange = () => {
-    if (cartItemQuantity > 1) {
-      const newQuantity = cartItemQuantity - 1;
-      setCartItemQuantity(newQuantity);
-      updateQuantity(cartItem.id, newQuantity);
+  // const reduceCartItemQuantityChange = () => {
+  //   if (cartItemQuantity > 1) {
+  //     const newQuantity = cartItemQuantity - 1;
+  //     setCartItemQuantity(newQuantity);
+  //     updateQuantity(cartItem.id, newQuantity);
+  //   }
+  // };
+useEffect(() => {
+    if (
+      productVariantDTO.productName === "Red Chilli Powder" || 
+      productVariantDTO.productName === "Turmeric Powder" || 
+      productVariantDTO.productName === "Coriander Powder"
+    ) {
+      setCartItemQuantity(2);
     }
+  }, [productVariantDTO.productName, setCartItemQuantity]); // Runs only when product name changes
+  const reduceCartItemQuantityChange = (productName) => {
+    return () => {
+      if (productName === "Red Chilli Powder" || productName ==="Turmeric Powder" || productName ==="Coriander Powder") {
+        if (cartItemQuantity > 2) {
+          const newQuantity = cartItemQuantity - 1;
+          setCartItemQuantity(newQuantity);
+          updateQuantity(cartItem.id, newQuantity);
+        }
+      } else {
+        if (cartItemQuantity > 1) {
+          const newQuantity = cartItemQuantity - 1;
+          setCartItemQuantity(newQuantity);
+          updateQuantity(cartItem.id, newQuantity);
+        }
+      }
+    };
   };
-
   const handleRemoveItem = () => {
     removeItem(cartItem.id);
   };
@@ -67,7 +92,7 @@ const CartItemRow = ({
               <button
                 disabled={isSingleProduct}
                 className="quantity-button"
-                onClick={reduceCartItemQuantityChange}
+                onClick={reduceCartItemQuantityChange(productVariantDTO.productName)}
               >
                 -
               </button>
