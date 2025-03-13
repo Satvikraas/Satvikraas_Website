@@ -69,7 +69,7 @@ export default function Footer() {
       <div className={styles.platformicons}>
         <h3>Also Available in</h3>
         <div className={styles.platformicons}>
-         <a href=""> <img src={img1} alt="" /></a>
+         <a href="https://www.amazon.in/stores/SatvikRaas/page/76C88E37-AAE5-494D-BDB8-159600EB8502?ref_=ast_bln&fbclid=PAZXh0bgNhZW0CMTEAAaZSMnzlgYfoNLeiTHrDCfZmYZd6EAcHQFwLLo1rWS05kP-J6UiblE-O7jY_aem_ZmHr9PUJBf79BC-3KOrKGg"> <img src={img1} alt="" /></a>
          <a href=""><img src={img2} alt="" /></a>
          <a href=""><img src={img3} alt="" /></a>
          <a href=""> <img src={img4} alt="" /></a>

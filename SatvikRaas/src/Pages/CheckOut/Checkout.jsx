@@ -551,8 +551,7 @@ export default function Checkout() {
     try {
       console.log("in COD payment");
 
-      const totalAmount = subtotal + deliveryCharge - discount;
-
+      const totalAmount = subtotal + 30 - discount;
       // Create order in backend
       const orderData = await createCODOrder(
         items,
