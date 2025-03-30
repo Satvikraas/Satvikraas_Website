@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Preloader from "./components/Preloader.jsx";
 import { ProductProvider } from "./context/ProductContext.jsx";
 import CartPage from "./pages/Cart.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 // new VConsole();
 
@@ -18,12 +19,12 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => setLoading(false), 0);
   }, []);
- 
+
   return (
     <>
       {" "}
       <BrowserRouter>
-        {/* <AuthProvider> */}
+      <ScrollToTop/>
         <CartProvider>
           <MessageAlert />
           {loading ? (
@@ -31,16 +32,12 @@ const App = () => {
           ) : (
             <CartProvider>
               <ProductProvider>
-                {/* <Navbar /> */}
-
                 <CartPage />
                 <Router />
-                {/* <Footer /> */}
               </ProductProvider>
             </CartProvider>
           )}
         </CartProvider>
-        {/* </AuthProvider> */}
       </BrowserRouter>
     </>
   );
