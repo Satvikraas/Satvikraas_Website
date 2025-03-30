@@ -2,7 +2,7 @@ import React ,{useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 // import { useAuth  } from "../context/AuthProvider.jsx";
 import styles from "./Navbar.module.scss";
-import logo from "../assets/Logo/logo.png";
+import Logo from "./logo.png";
 import {UserIcon , CartIcon , LogOutIcon} from "../assets/ICONS.jsx";
 import { useCart } from "../context/CartProvider";
 
@@ -28,7 +28,7 @@ export default function Navbar() {
   
   return (
     <div className={`${styles.Navbar} ${isVisible ? styles.show : styles.hide}`}>
-  <img src={logo} className={`${styles.Navbarlogo} ${isVisible ? styles.hide : styles.show}`} alt="" />
+  <img src={Logo} className={`${styles.Navbarlogo} ${isVisible ? styles.hide : styles.show}`} alt="" />
       <div className={styles.scrollDiv}>
         <div className={styles.scrollingtext}>
           <p>
