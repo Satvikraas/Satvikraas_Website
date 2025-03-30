@@ -289,23 +289,11 @@ const validateForm = () => {
     loadRazorpayScript();
   }, []);
 
-  const handleOnlinePayment = async () => {
-    const FinaltotalAmount = totalAmount + deliveryCharge;
-      console.log(formData);
-      navigate('/ordersuccess', {
-        state: {
-          orderId: 10,
-          cartProducts: cartProducts,
-          formData: formData,
-          finalTotalAmount: FinaltotalAmount,
-          deliveryCharge: deliveryCharge
-        }
-      });
-  }
+  
 
 
   // ✅
-  const handleOnlinePaymentp = async () => {
+  const handleOnlinePayment = async () => {
     if (validateForm()) {
     try {
       console.log("in Online payment");
@@ -321,14 +309,14 @@ const validateForm = () => {
           deliveryCharge: deliveryCharge
         }
       });
-      // Create order in backend
+     
 
-      // const orderData = await payOnline(
-      //   cartProducts,
-      //   formData,
-      //   FinaltotalAmount,
-      //   0, deliveryCharge
-      // );
+      const orderData = await payOnline(
+        cartProducts,
+        formData,
+        FinaltotalAmount,
+        0, deliveryCharge
+      );
 
       // console.log(orderData);
       const options = {
