@@ -6,7 +6,7 @@ import Checkout from "../pages/Checkout";
 import Checkout1 from "../pages/Checkout1";
 import Navbar from "../layout/Navbar";
 import Footer from "../layout/Footer"; 
-import Aboutus from "../pages/Aboutus.jsx"
+import Aboutus from "../pages/About.jsx"
 import Contact from "../pages/ContactUs"
 import OrderSucess from "../pages/OrderSucess"
 import TermsCondition from "../pages/Terms/TermsCondition"
