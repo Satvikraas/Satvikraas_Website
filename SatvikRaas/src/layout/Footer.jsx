@@ -1,5 +1,5 @@
 import styles from "./Footer.module.scss";
-import logo from "../assets/Logo/logo.png";
+import Logo from ".logo.png";
 import { Link } from "react-router-dom";
 import img1 from "../assets/Logo/amz.png";
 import img2 from "../assets/Logo/flp.png";
@@ -26,7 +26,7 @@ export default function Footer() {
       <div className={styles.FooterMain}>
         {/* Logo and Info */}
         <div className={styles.MainLogo}>
-          <img src={logo} alt="Satvik Raas Logo" />
+          <img src={Logo} alt="Satvik Raas Logo" />
           <p>
             From the farm to your table, we deliver more than just spices
             we
