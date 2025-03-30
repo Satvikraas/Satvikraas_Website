@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/Aboutus.module.scss"; // For styling
 
-import mascott from "../Assets/Images/AboutMascott.png";
+import Mascott from "../Assets/Images/mascott.png";
 import sec1 from "../Assets/Images/AboutSec1.png";
 import sec2 from "../Assets/Images/AboutSec2.png";
 import sec3 from "../Assets/Images/AboutSec3.png";
@@ -21,7 +21,7 @@ const Aboutus = () => {
         </div>
         <div>
           {" "}
-          <img className={styles.mascott} src={mascott} alt="" />
+          <img className={styles.mascott} src={Mascott} alt="" />
         </div>
       </div>
       <div className={styles.sec1}>
