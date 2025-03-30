@@ -44,7 +44,7 @@ export default function Navbar() {
       <div className={styles.NavbarMain}>
         <div className={styles.NavbarDiv}>
           <div className={styles.logoDiv}>
-            <img src={logo} alt="" />
+            <img src={Logo} alt="" />
           </div>
           <div className={styles.navContent}>
           <ul>
