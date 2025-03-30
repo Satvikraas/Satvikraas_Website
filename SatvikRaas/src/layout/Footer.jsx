@@ -1,5 +1,5 @@
 import styles from "./Footer.module.scss";
-import Logo from ".logo.png";
+import Logo from "./logo.png";
 import { Link } from "react-router-dom";
 import img1 from "../assets/Logo/amz.png";
 import img2 from "../assets/Logo/flp.png";
