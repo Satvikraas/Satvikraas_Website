@@ -2,9 +2,9 @@ import React from "react";
 import styles from "../styles/Aboutus.module.scss"; // For styling
 
 import Mascott from "./Mascott.png";
-import sec1 from "../Assets/Images/AboutSec1.png";
-import sec2 from "../Assets/Images/AboutSec2.png";
-import sec3 from "../Assets/Images/AboutSec3.png";
+import sec1 from "./AboutSec1.png";
+import sec2 from "./AboutSec2.png";
+import sec3 from "./AboutSec3.png";
 
 const Aboutus = () => {
   return (
