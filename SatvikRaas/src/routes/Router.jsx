@@ -6,7 +6,7 @@ import Checkout from "../pages/Checkout";
 import Checkout1 from "../pages/Checkout1";
 import Navbar from "../layout/Navbar";
 import Footer from "../layout/Footer"; 
-import About from "../pages/Aboutus.jsx"
+import Aboutus from "../pages/Aboutus.jsx"
 import Contact from "../pages/ContactUs"
 import OrderSucess from "../pages/OrderSucess"
 import TermsCondition from "../pages/Terms/TermsCondition"
@@ -34,7 +34,7 @@ const RouterComponent = () => {
         <Route path="/ordersuccess" element={<OrderSucess />} />
 
         {/* Extra Pages  */}
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<Aboutus/>} />
         <Route path="/contact" element={<Contact />} />
 
 {/* terms Pages */}
