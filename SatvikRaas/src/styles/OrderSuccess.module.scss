@@ -1,0 +1,270 @@
+// OrderSuccess.module.scss
+.successContainer {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    position: relative;
+  }
+  
+  .successCard {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    padding: 2rem;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+    
+    h1 {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin: 1rem 0 0.5rem;
+    }
+  }
+  
+  .checkmark {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    
+    svg {
+      width: 80px;
+      height: 80px;
+      
+      circle {
+        stroke-dasharray: 166;
+        stroke-dashoffset: 166;
+        stroke-width: 2;
+        stroke-miterlimit: 10;
+        stroke: #4CAF50;
+        fill: none;
+        animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+      }
+      
+      path {
+        transform-origin: 50% 50%;
+        stroke-dasharray: 48;
+        stroke-dashoffset: 48;
+        stroke-width: 3;
+        stroke: #4CAF50;
+        animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+      }
+    }
+  }
+  
+  .orderNumber {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin-top: 0.5rem;
+  }
+  
+  .deliveryInfo {
+    margin-bottom: 2rem;
+    
+    h2 {
+      font-size: 1.5rem;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+      position: relative;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background-color: #3498db;
+      }
+    }
+  }
+  
+  .infoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .infoItem {
+    display: flex;
+    flex-direction: column;
+    
+    .label {
+      font-size: 0.9rem;
+      color: #7f8c8d;
+      margin-bottom: 0.25rem;
+    }
+  }
+  
+  .orderSummary {
+    margin-bottom: 2rem;
+    
+    h2 {
+      font-size: 1.5rem;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+      position: relative;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background-color: #3498db;
+      }
+    }
+  }
+  
+  .productList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .productItem {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ecf0f1;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .productImage {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    margin-right: 1rem;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+  }
+  
+  .productDetails {
+    flex-grow: 1;
+    
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+  }
+  
+  .productMeta {
+    display: flex;
+    gap: 1rem;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+  }
+  
+  .productTotal {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .priceSummary {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  
+  .priceRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    &.total {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #2c3e50;
+      padding-top: 0.75rem;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 0.75rem;
+    }
+  }
+  
+  .actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    
+    button {
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+  }
+  
+  .continueButton {
+    background-color: white;
+    color: #3498db;
+    border: 2px solid #3498db;
+    
+    &:hover {
+      background-color: #eaf2fa;
+    }
+  }
+  
+  .trackButton {
+    background-color: #3498db;
+    color: white;
+    border: 2px solid #3498db;
+    
+    &:hover {
+      background-color: #2980b9;
+      border-color: #2980b9;
+    }
+  }
+  
+  @keyframes stroke {
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .successCard {
+      padding: 1.5rem;
+    }
+    
+    .actions {
+      flex-direction: column;
+    }
+    
+    .productItem {
+      flex-wrap: wrap;
+    }
+    
+    .productTotal {
+      margin-top: 0.5rem;
+      width: 100%;
+      text-align: right;
+    }
+  }

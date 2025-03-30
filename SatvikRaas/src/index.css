@@ -1,0 +1,45 @@
+@import url("./assets/Fonts/Zodiak/css/zodiak.css"); 
+@import url("./assets/Fonts/Santoshi/css/satoshi.css"); 
+
+/* 🌍 Global Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+
+}
+
+
+
+  &::-webkit-scrollbar {
+    width: 0px; 
+    display: block !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
+h1{
+  font-family: 'Zodiak', sans-serif;
+}
+a ,svg{
+  background-color: transparent;
+  width: 30px; 
+  height: 30px; 
+  aspect-ratio: 1 / 1;
+  object-fit: contain; 
+}

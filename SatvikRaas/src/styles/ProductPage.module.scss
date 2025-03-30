@@ -1,0 +1,385 @@
+@use "sass:map"; // Import the map module
+// Define breakpoints
+$breakpoints: ("mobile": 560px,
+  "tablet": 768px,
+  "laptop": 1024px,
+  "desktop": 1280px);
+
+// Mixin for responsive design
+@mixin respond($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    // Use map.has-key()
+    $value: map.get($breakpoints, $breakpoint); // Use map.get()
+
+    @media (max-width: $value) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "⚠️ Warning: Breakpoint #{$breakpoint} is not defined!";
+  }
+}
+
+
+
+.productsPage {
+    width: 100%;
+    margin-top: 55px;
+    background-color: rgba(255, 255, 255, 0.514);
+    @include respond("mobile") {
+      margin-top: 40px;
+    }
+}
+
+.pageContainer {
+    width: 100%;
+    padding: 0px;
+
+    .headerSection {
+        width: 100%;
+
+
+        .HeroBanner {
+            width: 100%;
+            margin-bottom: 0;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+
+    }
+
+    .headerText {
+        text-align: center;
+        font-family: 'Zodiak-Regular';
+        color: rgb(34, 97, 96);
+        margin: 20px;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 100;
+        line-height: 150%;
+        /* 96px */
+        text-align: center;
+        margin: 50px 0 0 0;
+        margin: 30px 0;
+      
+        @include respond("tablet") {
+          font-size: 23px;
+        }
+        @include respond("mobile") {
+            font-size: 17px;
+            margin: 17px
+          }
+    }
+
+    .productsContainer {
+
+        padding: 20px 70px 40px 70px;
+        gap: 30px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        @include respond("tablet") {
+            padding: 40px;
+            padding: 0 20px 20px 20px;
+          grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+        }
+@include respond("mobile") {
+  padding-top: 0;
+  padding: 0 10px 20px 10px;
+  gap: 10px;
+}
+        .product {
+            width: 100%;
+            height: auto;
+            background-color: #22616018;
+
+            .productCard {
+                // background-color: white;
+                width: 100%;
+
+                img {
+                    width: 100%;
+                    mix-blend-mode: multiply;
+                }
+
+                .variantButtons {
+
+                    display: flex;
+                    width: 60%;
+                    gap: 10px;
+                    margin: 0;
+                    padding: 0 10px;
+                    margin-left: 10px;
+@include respond("mobile") {
+  width: 100%;
+  gap: 0;
+  margin-left: 0;
+}
+                    button {
+                        width: 100%;
+                        padding: 7px;
+                        // background-color: white;
+
+                        border: none;
+                        cursor: pointer;
+                        color: var(--Brand-Colour-Sub-Heading, #333434);
+                        font-family: Satoshi-Regular;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 500;
+
+                        :focus,
+                        :active,
+                        :visited {
+                            outline: none;
+                        }
+                      @include respond("mobile") {
+                        font-size: 14px;
+                        padding:2px;
+                      }
+                    }
+
+                    .activeVariantButton {
+                        background-color: #166451f5;
+                        border-radius: 20px;
+                        color: white;
+                    }
+                }
+
+                .productDetails {
+                    // background-color: rgb(255, 255, 255);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    // align-items: flex-start;
+                    .productName {
+                        color: var(--Brand-Colour-Sub-Heading, #333434);
+                        font-feature-settings: 'liga'off, 'clig'off;
+                        font-family: Satoshi;
+                        font-size: 20px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 150%;
+                        margin: 5px 0 7px 0;
+
+                        padding-left: 10%;
+                        @include respond("tablet") {
+                          font-size: 18px;
+                        //   padding-left: 10px;
+                        margin: 5px 0 5px 0;
+                        }
+                        @include respond("mobile") {
+                          font-size: 14px;
+                        }
+                    }
+
+                    .priceAmount {
+
+                        width: fit-content;
+                        text-wrap: nowrap;
+                        text-align: center;
+                        margin: 0 auto;
+                        font-family: Satoshi;
+                        font-size: 20px;
+                        font-style: normal;
+                        font-weight: 400;
+                        color: var(--Brand-Colour-Sub-Heading, #333434);   @include respond("tablet") {
+                            font-size: 18px;
+                         margin: 0 auto;
+                          }
+                    }
+                }
+
+                .buyButton {
+                    display: flex;
+                    width: 100%;
+                    margin: 0 auto;
+                    padding: 7.492px 0px 7.508px 0px;
+                    justify-content: center;
+                    align-items: center;
+                    // border-radius: 31.754px;
+                    background: var(--Brand-Colour-1st-Colour, #226160);
+                    color: #FFF;
+                    font-feature-settings: 'liga'off, 'clig'off;
+                    font-family: Satoshi;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 150%;
+                    /* 27px */
+                    border: none;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+              @include respond("tablet") {
+                // width: 0%;
+              }
+                } .addButton {
+                    display: flex;
+                    width: 90%;
+                    margin: 0 auto;
+                    padding: 7.492px 0px 7.508px 0px;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 31.754px;
+                    background: var(--Brand-Colour-1st-Colour, #257472);
+                    color: #FFF;
+                    font-feature-settings: 'liga'off, 'clig'off;
+                    font-family: Satoshi;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 150%;
+                    /* 27px */
+                    border: none;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+              @include respond("tablet") {
+                // width: 0%;
+              }
+              @include respond("mobile") {
+                padding: 5px 0px 5px 0px;
+              }
+                }
+            }
+        }
+
+        .combo {
+            width: 100%;
+            height: auto;
+            display: flex;
+            border-radius: 15px;
+
+            background-color: #22616018;
+            align-items: stretch;
+
+            .productCard {
+
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                // height: max-content;
+                justify-content: space-between;
+
+                img {
+                    margin-top: 10px;
+                    width: 100%;
+                    max-height: 310px;
+                    object-fit: contain;
+                }
+
+                .variantButtons {
+
+                    display: flex;
+                    width: 15%;
+                    gap: 10px;
+                    margin: 0;
+                    padding: 0 10px;
+                    margin-left: 5%;
+
+                    button {
+
+                        width: 100%;
+                        padding: 7px;
+                        background-color: transparent;
+
+                        border: none;
+                        cursor: pointer;
+                        color: var(--Brand-Colour-Sub-Heading, #333434);
+                        font-family: Satoshi-Regular;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 500;
+
+                        :focus,
+                        :active,
+                        :visited {
+                            outline: none;
+                        }
+                    }
+
+                    .activeVariantButton {
+                        background-color: #166451f5;
+                        border-radius: 20px;
+                        color: white;
+                    }
+                }
+
+                .productDetails {
+                    background-color: transparent;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    // align-items: flex-start;
+                    .productName {
+                        color: var(--Brand-Colour-Sub-Heading, #333434);
+                        font-feature-settings: 'liga'off, 'clig'off;
+                        font-family: Satoshi;
+                        font-size: 20px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 150%;
+                        margin: 0 0;
+                        background-color: transparent;
+                        padding-left: 10%;
+
+                        @include respond("tablet") {
+                          font-size: 14px;
+                        }
+                        @include respond("mobile") {
+                          font-size: 12px;
+                        }
+                    }
+
+                    .priceAmount {
+                        background-color: transparent;
+                        width: fit-content;
+                        text-wrap: nowrap;
+                        text-align: center;
+                        margin: 0 auto;
+                        font-family: Satoshi;
+                        font-size: 20px;
+                        font-style: normal;
+                        font-weight: 400;
+                        color: var(--Brand-Colour-Sub-Heading, #333434);
+                    }
+                }
+
+                .buyButton {
+                    display: flex;
+                    width: 90%;
+                    margin: 0 auto;
+                    padding: 7.492px 0px 7.508px 0px;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 31.754px;
+                    background-color: var(--Brand-Colour-1st-Colour, #226160);
+                    color: #FFF;
+                    font-feature-settings: 'liga'off, 'clig'off;
+                    font-family: Satoshi;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 150%;
+                    /* 27px */
+                    border: none;
+                    margin-top: 0px;
+                    margin-bottom: 10px;
+                    cursor: pointer;
+
+
+                }
+
+                .buyButton:hover {
+                    background-color: rgb(49, 109, 109);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,334 @@
+@use "sass:map"; // Import the map module
+// Define breakpoints
+$breakpoints: ("mobile": 576px,
+  "tablet": 768px,
+  "laptop": 1024px,
+  "desktop": 1280px);
+
+// Mixin for responsive design
+@mixin respond($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    // Use map.has-key()
+    $value: map.get($breakpoints, $breakpoint); // Use map.get()
+
+    @media (max-width: $value) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "⚠️ Warning: Breakpoint #{$breakpoint} is not defined!";
+  }
+}
+
+
+// Colors
+$primary-color: #222;
+$secondary-color: #555;
+$accent-color: #b0b3b1b2;
+$border-color: #ddd;
+$background-light: #fff;
+$error-color: #ff8826;
+$overlay-color: rgba(0, 0, 0, 0.5);
+
+.darkColor {
+  background: linear-gradient(to top, #00000023, transparent);
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  bottom: 70px;
+  left: 0;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $overlay-color;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  z-index: +99;
+
+  @include respond("mobile") {}
+
+  &.showOverlay {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Side Cart Panel
+.cartPage {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  max-width: 500px;
+  width: 500px;
+  height: 100vh;
+  background: $background-light;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  transition: right 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+@include respond("tablet") {
+  padding-right: 5px;
+}
+  @include respond("mobile") {
+    width: 100vw;
+    padding-right: 5px;
+  }
+
+  &.open {
+    right: 0;
+  }
+
+  h2 {
+    color: var(--Brand-Colour-Heading, #0A0C0C);
+    font-feature-settings: 'liga'off, 'clig'off;
+    font-family: Satoshi;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 540;
+    line-height: 150%;
+    /* 96px */
+  }
+
+  .header {
+    border-bottom: 1.5px solid rgba(109, 109, 109, 0.39);
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 15px;
+    height: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $primary-color;
+    font-weight: normal;
+
+    svg {
+      width: auto !important;
+      height: auto;
+    }
+  }
+}
+
+// Cart Items
+.cartContainer {
+  flex-grow: 1;
+  overflow-y: scroll !important;
+  padding: 5px;
+  max-height: 100%;
+  position: relative;
+
+  @include respond("mobile") {
+    &::-webkit-scrollbar {
+      width: 8px; 
+      display: block !important;
+    }  &::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+  
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  
+  }
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid $border-color;
+  position: relative;
+
+  .cartImage {
+    width: 60px;
+    height: 80px;
+    // height: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+
+  }
+
+  .cartInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @include respond("mobile") {
+      overflow: hidden;
+    }
+
+    h3 {
+      color: var(--Brand-Colour-Heading, #0A0C0C);
+      font-feature-settings: 'liga'off, 'clig'off;
+      font-family: Satoshi;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+      /* 27px */
+
+      @include respond("mobile") {
+        font-size: 12px;
+        white-space: nowrap; // Prevent text from wrapping
+        overflow: hidden; // Hide overflow text
+        text-overflow: ellipsis; // Add "..." at the end
+        // width: 30%;
+      }
+    }
+
+    p {
+      color: var(--Brand-Colour-Input-Field, #545555);
+      font-feature-settings: 'liga'off, 'clig'off;
+      font-family: Satoshi;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%;
+      /* 25.2px */
+    }
+
+    .priceText {
+      color: var(--Brand-Colour-Input-Field, #000000);
+      font-feature-settings: 'liga'off, 'clig'off;
+      font-family: Satoshi;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%;
+      /* 25.2px */
+
+      span {
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .qtyControls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+
+    @include respond("mobile") {
+      position: absolute;
+      right: 5px;
+      bottom: 20%;
+    }
+
+    .qtycontrolsbtn {
+      gap: 5px;
+      background-color: white;
+      display: flex;
+      padding: 5px 8px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 30px;
+      border: 0.5px solid var(--Brand-Colour-Input-Field, #545555);
+    }
+
+    button {
+      width: 20px;
+      height: 20px;
+      font-size: 18px;
+      border: none;
+      background-color: transparent;
+      color: black;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.3s;
+
+      &:hover {
+        background: rgba(128, 128, 128, 0.233);
+      }
+
+
+    }
+  }
+
+
+}
+
+// Total Amount & Checkout Button
+.totalAmount {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.removeBtn {
+  width: auto !important;
+  height: auto !important;
+  font-size: 20px;
+  border: none;
+
+  color: black;
+  cursor: pointer;
+  border-radius: 10px !important;
+
+  // margin: auto;
+
+}
+
+
+.bottomContent {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .totalAmount {
+    color: var(--Brand-Colour-Heading, #000000);
+
+    font-family: Satoshi;
+    font-size: 18px;
+
+    font-weight: 400;
+    margin-left: 5%;
+
+  }
+
+  .checkoutBtn {
+    text-wrap: nowrap;
+    display: flex;
+    padding: 20px 29px ;
+    align-items: center;
+    gap: 8px;
+    color: #FFF;
+    text-align: center;
+    font-feature-settings: 'liga'off, 'clig'off;
+    font-family: Satoshi;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px;
+    /* 144.444% */
+    border-radius: 30px;
+    background: var(--Brand-Colour-1st-Colour, #226160);
+    text-decoration: none;
+    width: auto;
+  }
+}

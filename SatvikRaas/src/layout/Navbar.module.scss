@@ -1,0 +1,161 @@
+.Navbar { z-index: +999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 20px;
+    transition: transform 0.5s ease-in-out;
+     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.164);
+    &.hide {
+        transform: translateY(-100%);
+    }
+    &.show {
+        transform: translateY(0);
+    }
+}
+.Navbarlogo{
+    background-color: transparent;
+    position: fixed;
+  margin-top: 70px;
+  left: 1%;
+    width: 150px;
+    object-fit: cover;
+    margin-left: 0px;
+    height: auto;  
+     transition: transform 0.5s ease-in-out;
+    &.hide {
+       opacity: 0;  transform: translateY(-100%);
+    }
+    &.show {
+   opacity: 90%; transform: translateY(0);
+    }
+}
+// scroll
+.scrollDiv {
+    width: 100%;
+    height: 20px;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+    // box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.212);
+    border-bottom: 1px solid rgba(146, 146, 146, 0.171);
+    display: flex;
+    justify-content: center;
+
+    .scrollingtext {
+        width: auto;
+        margin: auto;
+
+        animation: scrollText 500s linear infinite;
+
+        p {
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: center;
+            align-content: center;
+
+            span {
+                font-size: 16px;
+                width: 100%;
+                text-wrap: nowrap;
+            }
+        }
+    }
+}
+
+@keyframes scrollText {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+.NavbarMain {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    top: 0;
+}
+
+.NavbarDiv {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.logoDiv {
+    width: 20%;
+    max-width: 7%;
+    height: 100%;
+    position: absolute;
+    left: 10px;
+
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+}
+
+.navContent{
+    width: 100%;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ul {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 5%;
+        list-style-type: none;
+      
+        li {
+           
+          font-size: 20px;
+      
+          cursor: pointer;
+          transition: 0.5s;
+      
+          a {  font-family: Satoshi-Medium;
+font-weight: 550;
+            text-decoration: none !important; // Removes underline from links
+            color: rgb(0, 0, 0) !important; // Ensures text stays black
+            transition: color 0.3s ease-in-out;
+      
+            &:hover {
+                font-weight: 800;
+            
+            }
+          }
+        }
+      }
+      
+}
+
+// Right Side Buttons
+.rightContent{
+    position: absolute;
+    width: 100px;
+  
+    height: 100%;
+    right: 0;
+    display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+align-items: center;
+
+}

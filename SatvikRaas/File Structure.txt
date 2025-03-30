@@ -1,0 +1,65 @@
+ /src                                                                                
+-------------------------------------------------------------------------------------
+ │── /assets               # Stores all static assets like images, fonts, icons      
+ │   ├── /images           # All images used in the website                          
+ │   │   ├── logo.png      # Logo of the website                                     
+ │   │   ├── banner.jpg    # Homepage banner image                                   
+ │   │   ├── product1.jpg  # Example product image                                   
+ │   ├── /icons            # SVG/PNG icons                                           
+ │   │   ├── cart-icon.svg # Shopping cart icon                                      
+ │   │   ├── user.svg      # User profile icon                                       
+ │   ├── /fonts            # Custom fonts used in the website                        
+ │                                                                                   
+ │── /components           # Reusable UI components (Navbar, Footer, Buttons, etc.)  
+ │   ├── Navbar.jsx        # Navigation bar (used globally)                          
+ │   ├── Footer.jsx        # Footer (used globally)                                  
+ │   ├── Layout.jsx        # Wraps pages with Navbar & Footer                        
+ │   ├── Sidebar.jsx       # Sidebar for checkout/cart                               
+ │   ├── MessageAlert.jsx  # Global message/alert component                          
+ │   ├── Popup.jsx         # Popup/modal component                                   
+ │                                                                                   
+ │── /pages                # Main website pages (each represents a route)            
+ │   ├── Home.jsx          # Homepage with featured products                         
+ │   ├── Products.jsx      # Products listing page                                   
+ │   ├── ProductDetail.jsx # Single product detail page                              
+ │   ├── Cart.jsx          # Shopping cart page                                      
+ │   ├── Checkout.jsx      # Checkout page                                           
+ │   ├── Login.jsx         # Login page                                              
+ │   ├── Signup.jsx        # Signup/registration page                                
+ │   ├── About.jsx         # About Us page                                           
+ │   ├── Contact.jsx       # Contact Us page                                         
+ │   ├── NotFound.jsx      # 404 Page not found                                      
+ │                                                                                   
+ │── /context              # Global state management using React Context API         
+ │   ├── CartContext.js    # Manages cart state (add/remove/update)                  
+ │   ├── AuthContext.js    # Manages authentication state (login/logout)             
+ │                                                                                   
+ │── /hooks                # Custom hooks for easier state management                
+ │   ├── useCart.js        # Custom hook to use CartContext easily                   
+ │   ├── useAuth.js        # Custom hook to use AuthContext easily                   
+ │   ├── useFetch.js       # Custom hook for fetching API data                       
+ │                                                                                   
+ │── /api                  # API service to handle all API calls                     
+ │   ├── apiService.js     # Centralized API functions (GET, POST, PUT, DELETE)      
+ │                                                                                   
+ │── /utils                # Utility/helper functions                                
+ │   ├── helpers.js        # Common helper functions (format currency, etc.)         
+ │   ├── constants.js      # Define constant values like currency, API URLs          
+ │                                                                                   
+ │── /styles               # Stores all SCSS files (global and modular styles)       
+ │   ├── index.scss        # Global SCSS file (variables, resets, base styles)       
+ │   ├── Navbar.module.scss# Styles for Navbar                                       
+ │   ├── Footer.module.scss# Styles for Footer                                       
+ │   ├── Home.module.scss  # Styles for Home page                                    
+ │   ├── Product.module.scss# Styles for Product page                                
+ │                                                                                   
+ │── /routes               # Handles application routing                             
+ │   ├── Router.jsx        # Defines all routes using React Router                   
+ │                                                                                   
+ │── App.jsx               # Root component, wraps everything with context providers 
+ │── main.jsx              # Entry point for React (renders App.jsx)                 
+ │── index.css             # Global CSS styles (if needed)                           
+ │── vite.config.js        # Vite configuration                                      
+ │── package.json          # Project dependencies and scripts                        
+ │── .gitignore            # Files to ignore in Git                                  
+

@@ -1,0 +1,29 @@
+// Define breakpoints
+$breakpoints: (
+  "mobile": 576px,
+  "tablet": 768px,
+  "laptop": 1024px,
+  "desktop": 1280px
+);
+
+// Mixin for responsive design
+@mixin respond($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+
+// EXAMPLES 
+// @include respond("tablet") {
+
+//   }
+
+//   @include respond("mobile") {
+ 
+//   }
+//   @include respond("laptop") {
+ 
+//   }

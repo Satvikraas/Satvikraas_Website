@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "./Aboutus.module.scss"; // For styling
-import bg from "../Assets/Images/abthero.jpg";
-import mascott from "../Assets/Images/mascott.png";
-import sec1 from "../Assets/Images/abt1.png";
-import sec2 from "../Assets/Images/abt2.png";
-import sec3 from "../Assets/Images/abt3.png";
+import styles from "../styles/Aboutus.module.scss"; // For styling
+
+import mascott from "../Assets/Images/AboutMascott.png";
+import sec1 from "../Assets/Images/AboutSec1.png";
+import sec2 from "../Assets/Images/AboutSec2.png";
+import sec3 from "../Assets/Images/AboutSec3.png";
 
 const Aboutus = () => {
   return (

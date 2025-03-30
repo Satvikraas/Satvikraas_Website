@@ -1,0 +1,643 @@
+@use "sass:map"; // Import the map module
+// Define breakpoints
+$breakpoints: ("mobile": 576px,
+  "tablet": 768px,
+  "laptop": 1024px,
+  "desktop": 1280px);
+
+// Mixin for responsive design
+@mixin respond($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    // Use map.has-key()
+    $value: map.get($breakpoints, $breakpoint); // Use map.get()
+
+    @media (max-width: $value) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "⚠️ Warning: Breakpoint #{$breakpoint} is not defined!";
+  }
+}
+.backbtn img{
+  width: 40px;
+  height: 40px;
+  margin: 10px 30px;
+ 
+}
+.checkoutPage {
+  display: flex;
+  // max-width: 100%;
+  background: #f9f9f9;
+  margin: 0 auto;
+  padding: 0px;
+
+  // padding-top: 50px;
+
+  .leftSection {
+    flex: 5600; // 53.86% of available space
+  }
+
+  .rightSection {
+    flex: 4400; // 46.14% of available space
+  }
+
+  @media (max-width: 768px) {
+    // Mobile view
+    flex-direction: column;
+    padding: 20px; // Reduce padding for smaller screens
+
+    .leftSection,
+    .rightSection {
+      flex: 1;
+      width: 100%; // Full width on mobile
+    }
+  }
+
+  .leftSection {
+    background-color: #FFFFFF;
+    // padding: 20px 0 20px 10px;
+    border-radius: 8px;
+    padding-top: 20px;
+    border-right: 1;
+
+    &::-webkit-scrollbar {
+      width: 0px;
+      display: block !important;
+    }
+
+    h2 {
+      color: var(--Brand-Colour-Input-Field, #000000);
+      font-feature-settings: 'liga'off, 'clig'off;
+      font-family: Satoshi;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 150%;
+      /* 27px */
+    }
+  }
+
+  .checkoutForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 580px;
+
+    margin-left: auto;
+    margin-right: 40px;
+  }
+
+  .nameRow {
+    display: flex;
+    gap: 15px;
+
+    .inputGroup {
+      flex: 1;
+      position: relative;
+    }
+  }
+
+  .addressRow {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+    .inputGroup {
+      flex: 1;
+      position: relative;
+    }
+
+    .stateSelect {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      margin-bottom: 8px;
+      display: flex;
+      padding: 3px 3px 3px 20px;
+      justify-content: flex-end;
+      align-items: center;
+
+      //    border-radius: 30px;
+      border: 0.5px solid var(--Brand-Colour-Input-Field, #54555556);
+      color: var(--Brand-Colour-Input-Field, #545555);
+      text-align: center;
+      font-family: Satoshi;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+
+      text-align: left;
+
+    }
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 8px;
+    width: 100%;
+    display: flex;
+    padding: 3px 3px 3px 10px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 114px;
+    //    border-radius: 30px;
+    border: 0.5px solid var(--Brand-Colour-Input-Field, #54555556);
+    color: var(--Brand-Colour-Input-Field, #545555);
+    text-align: center;
+    font-family: Satoshi;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 27px */
+    text-align: left;
+
+
+  }
+
+  .errorInput {
+    border-color: #dc3545;
+  }
+
+  .errorText {
+    color: #dc3545;
+    font-size: 12px;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    margin-left: 10px;
+  }
+
+  .serviceableText {
+    color: green;
+    font-size: 14px;
+    margin-top: 5px;
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-100%);
+  }
+
+  .unserviceableText {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-100%);
+  }
+
+  .paymentSection {
+    margin-top: 15px;
+
+    h3 {
+      color: var(--Brand-Colour-Input-Field, #000000);
+      font-feature-settings: 'liga'off, 'clig'off;
+      font-family: Satoshi;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 150%;
+      margin-bottom: 10px;
+    }
+
+    .paymentOptions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      input[type="radio"] {
+        appearance: none;
+        /* Removes default radio button */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 5px !important;
+        height: 5px !important;
+        border: 2px solid #0e612a;
+        /* Outer circle */
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 8px;
+        // margin-right: auto;
+      }
+
+      input[type="radio"]::before {
+        content: "";
+        width: 8px;
+        /* Inner dot size */
+        height: 8px;
+        background-color: #265C5C;
+        /* Inner dot color */
+        border-radius: 50%;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+      }
+
+      input[type="radio"]:checked::before {
+        opacity: 1;
+      }
+
+      label {
+        color: var(--Brand-Colour-Heading, #363636);
+        font-family: Satoshi;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 150%;
+        /* 30px */
+      }
+    }
+
+    .radioLabel {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+
+      input {
+        width: auto;
+        margin-right: 10px;
+      }
+
+      .subtext {
+        color: #666;
+        font-size: 12px;
+        margin-left: auto;
+      }
+    }
+  }
+
+  .checkoutButton {
+    margin-left: auto;
+    display: flex;
+    width: 180px;
+    height: 40px;
+    padding: 10px 0px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    border: none;
+    color: #FFF;
+    text-align: center;
+    font-feature-settings: 'liga'off, 'clig'off;
+    font-family: Satoshi;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px;
+    /* 130% */
+    background: var(--Brand-Colour-1st-Colour, #226160);
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  .rightSection {
+    position: sticky;
+    top: 0;
+    background: #F5F5F5;
+    padding: 30px 30px 30px 40px;
+
+    // border-radius: 8px;
+    height: 90vh;
+    border-left: 1px solid #cfcdcd;
+
+    .detailsRight {
+      max-width: 430px;
+    }
+
+    h3 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      color: #333;
+    }
+  }
+
+  .cartSummary {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+    max-height: 60vh;
+
+    @include respond("tablet") {
+      overflow-y: auto;
+      max-height: 100%;
+    }
+  }
+
+  .cartItem {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+
+    .cartImage {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid #D6D6D6;
+    }
+
+    .itemDetails {
+      flex: 1;
+
+      h4 {
+        color: var(--Brand-Colour-Heading, #0A0C0C);
+        font-feature-settings: 'liga' off, 'clig' off;
+        font-family: Satoshi;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 150%; /* 30px */
+      
+      }
+      h6 {
+        color: var(--Brand-Colour-Heading, #0A0C0C);
+        font-feature-settings: 'liga' off, 'clig' off;
+        font-family: Satoshi;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 150%; /* 30px */
+        width: 100%;
+      
+        /* Truncate text with ellipsis */
+        // white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+    } p {
+      color: var(--Brand-Colour-Heading, #0A0C0C);
+      font-family: Satoshi;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 150%; /* 30px */ margin-right: 10px;
+    }
+  }
+
+  .orderTotal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 15px;
+  }
+
+  .totalRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+
+    .grandTotal {
+      font-weight: bold;
+      color: #007bff;
+    }
+  }
+}
+
+.addresstype {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: start;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 10px;
+
+    input:focus {
+      outline: none;
+    }
+
+    input[type="radio"] {
+      appearance: none;
+      /* Removes default radio button */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 5px !important;
+      height: 5px !important;
+      border: 2px solid #0e612a;
+      /* Outer circle */
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 8px;
+      margin: auto;
+    }
+
+    input[type="radio"]::before {
+      content: "";
+      width: 8px;
+      /* Inner dot size */
+      height: 8px;
+      background-color: #265C5C;
+      /* Inner dot color */
+      border-radius: 50%;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    input[type="radio"]:checked::before {
+      opacity: 1;
+    }
+
+    label {
+      color: var(--Brand-Colour-Heading, #0A0C0C);
+      font-family: Satoshi;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+      /* 30px */
+    }
+  }
+}
+
+.labelheadtxt {
+
+
+  color: var(--Brand-Colour-Heading, #0A0C0C);
+
+  font-family: Satoshi;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  // line-height: 150%; /* 27px */
+
+}
+
+
+
+
+// form 
+.inputGroup {
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+
+  input {
+    height: 48px;
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+
+    position: relative;
+
+    &:focus {
+      border-color: #226160;
+    }
+
+    &:focus+label,
+    &:not(:placeholder-shown)+label {
+      top: -0px;
+      left: 10px;
+      font-size: 12px;
+      color: #226160;
+    }
+  }
+
+  label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    padding: 0 5px;
+    font-size: 16px;
+    color: #888;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+  }
+}
+
+
+// ----------------------------------------------------------------
+
+
+.payementInfo{
+  width: 100%;
+margin-bottom: 30px;
+  h3 {
+    color: var(--Brand-Colour-Input-Field, #000000);
+    font-feature-settings: 'liga'off, 'clig'off;
+    font-family: Satoshi;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    margin-bottom:5px;
+    margin-top: 20px;
+  }
+  p{
+    
+      color: var(--Brand-Colour-Input-Field, #686868);
+      font-feature-settings: 'liga'off, 'clig'off;
+      font-family: monospace;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 150%;
+    width: 100%;
+    
+  }
+  .headDiv{ border: 1px solid rgb(179, 176, 176) ;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: #F6F6F6;
+    display: flex;
+flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+    padding: 10px 20px;
+
+    p{
+      color: var(--Brand-Colour-Input-Field, #000000);
+      font-feature-settings: 'liga'off, 'clig'off;
+      font-family: Satoshi;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 150%;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      width: 90%;
+    }.right{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-content: center;
+      gap: 5px;
+      img{
+       width: 38px;
+       height: 24px; 
+       margin: auto 0;
+border: 1px solid rgb(179, 176, 176) ;
+      }
+      h2{
+        width: 38px;
+       height: 24px; 
+       background-color: white;
+       margin: auto 0;;
+       font-size: 14px; border: 1px solid rgb(179, 176, 176) ;
+       text-align: center;
+
+      }
+    }
+  }
+  .bottomDiv{
+    background-color: #F6F6F6;
+    display: flex;
+flex-direction: column;
+    justify-content: space-evenly;
+    align-content: center;
+    padding: 10px 20px;
+    svg{
+      height: 81px;
+      width:  160px;
+      margin: auto;
+color: hsla(0, 0%, 44%, 0.637);
+    }
+    p{
+      text-align: justify;
+      width: 80%;
+      margin: auto;
+      margin-top: 15px;
+      font-family: Satoshi;
+      font-size: 14px;
+      font-style: normal;
+    }
+  }
+}

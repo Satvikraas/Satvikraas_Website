@@ -1,0 +1,127 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .card {
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    margin-bottom: 16px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .inputGroup {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .button {
+    padding: 10px 16px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .orderDetails {
+    margin-top: 16px;
+  }
+  
+  .orderHeader {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .trackingStatus {
+    color: #16a34a;
+    font-weight: 500;
+    margin-top: 8px;
+  }
+  
+  .productInfo {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 12px;
+  }
+  
+  .productImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+  }
+  
+  .productName {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .estimatedDelivery {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .timeline {
+    margin-top: 16px;
+    padding-left: 12px;
+    border-left: 3px solid #3b82f6;
+  }
+  
+  .timelineItem {
+    padding: 8px 0;
+    position: relative;
+  }
+  
+  .timelineItem::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background-color: #3b82f6;
+    border-radius: 50%;
+  }
+  
+  .timelineItem:last-child::before {
+    background-color: #16a34a;
+  }
+  
+  .location {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .detailedJourney {
+    display: flex;
+    align-items: center;
+    color: #2563eb;
+    cursor: pointer;
+    margin-top: 8px;
+    font-weight: 500;
+  }
