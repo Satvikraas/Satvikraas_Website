@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import certified from "../Assets/Images/certified.svg";
 import alogo from "../Assets/Images/amazonlogo.png"
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 const getProductLink = (productName) => {
   if (productName === "Red Chilli Powder") {
     return "https://www.amazon.in/SatvikRaas-Red-Chilli-Powder/dp/B0DS51CWCK?ref_=ast_sto_dp";
@@ -47,9 +48,8 @@ console.log(product);
   };
 
  
-
+//QTY CHANGE
   const [quantity, setQuantity] = useState(1);
-
   const handleQuantityChange = (action) => {
     if (action === "increment") {
       setQuantity((prev) => prev + 1);
@@ -59,10 +59,9 @@ console.log(product);
   };
 
  
-
+// BUY NOW BTN
   const handleBuyNow = () => {
-    
-    const items = [{ productId: selectedVariant.id, qty: 1, weight: selectedVariant.weight }]; // Correct structure
+    const items = [{ productId: selectedVariant.id, qty: quantity, weight: selectedVariant.weight }]; // Correct structure
   console.log(items);
     navigate("/checkout", {
       state: { items }, // Pass items to checkout page
@@ -70,11 +69,15 @@ console.log(product);
     
   };
 
+const PImages =[selectedVariant.mainImage, selectedVariant.subImages]
+
+
   return (
     <div className={styles.productPage}>
       <div className={styles.productContainer}>
         {/* Left Section: Image Carousel */}
-        <div className={styles.imageSection}>
+      
+ <div className={styles.imageSection}>
           {/* Main Image Display */}
           <div className={styles.mainImageContainer}>
             <img
@@ -95,8 +98,8 @@ console.log(product);
 
           {/* Image Carousel */}
           <Swiper
-            slidesPerView={4}
-            spaceBetween={10}
+            slidesPerView={3}
+         
             className={styles.imageCarousel}
           >
             {/* Main Thumbnail */}
@@ -110,7 +113,7 @@ console.log(product);
                   src={`data:image/jpeg;base64,${
                     currentView === "main"
                       ? selectedVariant.mainImage
-                      : selectedVariant.subImages[subImageIndex].imageData
+                      :  selectedVariant.mainImage
                   }`}
                   alt="Main Thumbnail"
                   onClick={() => setCurrentView("main")}
@@ -143,6 +146,8 @@ console.log(product);
             ))}
           </Swiper>
         </div>
+     
+        
 
         {/* Right Section: Product Details */}
         <div className={styles.detailsSection}>

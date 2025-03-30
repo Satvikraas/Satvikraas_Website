@@ -300,15 +300,7 @@ const validateForm = () => {
 
       const FinaltotalAmount = totalAmount + deliveryCharge;
       console.log(formData);
-      navigate('/ordersuccess', {
-        state: {
-          orderId: 10,
-          cartProducts: cartProducts,
-          formData: formData,
-          finalTotalAmount: FinaltotalAmount,
-          deliveryCharge: deliveryCharge
-        }
-      });
+     
      
 
       const orderData = await payOnline(
@@ -332,9 +324,18 @@ const validateForm = () => {
           // if(completeOrderResponse)
           // navigate("/ordersuccess");
 
+          // navigate('/ordersuccess', {
+          //   state: {
+          //     // orderId: orderData.id,
+          //     cartProducts: cartProducts,
+          //     formData: formData,
+          //     finalTotalAmount: FinaltotalAmount,
+          //     deliveryCharge: deliveryCharge
+          //   }
+          // });
           navigate('/ordersuccess', {
             state: {
-              // orderId: orderData.id,
+              orderId: orderData.id,
               cartProducts: cartProducts,
               formData: formData,
               finalTotalAmount: FinaltotalAmount,
@@ -375,11 +376,20 @@ const validateForm = () => {
       const orderData = await createCODOrder(
         cartProducts,
         formData,
-        totalAmount,
+        FinaltotalAmount,
         0, deliveryCharge
       );
 
-      if (orderData) navigate("/ordersuccess");
+      if (orderData){  navigate('/ordersuccess', {
+        state: {
+          orderId: orderData.id,
+          cartProducts: cartProducts,
+          formData: formData,
+          finalTotalAmount: FinaltotalAmount,
+          deliveryCharge: deliveryCharge
+        }
+      });
+    }
       else alert("Order failed!");
     } catch (error) {
       console.error("Payment failed:", error);
