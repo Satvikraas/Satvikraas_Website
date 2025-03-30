@@ -37,7 +37,7 @@ export default function Navbar() {
                 10% Discount on All Products! Hurry Up! &nbsp; &nbsp; &nbsp;
                 &nbsp;
               </span>
-            ))}
+            ))} 
           </p>
         </div>
       </div>
