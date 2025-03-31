@@ -52,7 +52,17 @@ const OrderSuccessPage = () => {
 
   const { orderId, cartProducts, formData, finalTotalAmount, deliveryCharge } =
     location.state;
-  console.log(location.state);
+  // console.log(location.state);
+
+
+  // copy id 
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(orderId);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // Reset copy status after 2 sec
+  };
   return (
     <div className={styles.successContainer}>
       {showConfetti && (
@@ -73,7 +83,13 @@ const OrderSuccessPage = () => {
             </svg>
           </div>
           <h1>Order Successful!</h1>
-          <p className={styles.orderNumber}>Order #{orderId}</p>
+        <div className={styles.orderDiv}>
+        <p className={styles.orderNumber}>Order #{orderId}</p>
+          <button className={styles.copyButton} onClick={handleCopy}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-icon lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+      </button>
+        </div>
+      {copied && <span className={styles.copiedText}>Copied!</span>}
         </div>
 
         <div className={styles.deliveryInfo}>
@@ -84,10 +100,7 @@ const OrderSuccessPage = () => {
                 <span className={styles.label}>Name:</span>
                 <span>{formData.name}</span>
               </div>
-              <div className={styles.infoItem}>
-                <span className={styles.label}>Address:</span>
-                <span>{formData.street}, {formData.landmark},{formData.city}</span>
-              </div>
+             
               <div className={styles.infoItem}>
                 <span className={styles.label}>Phone:</span>
                 <span>{formData.phone}</span>
@@ -95,6 +108,9 @@ const OrderSuccessPage = () => {
               <div className={styles.infoItem}>
                 <span className={styles.label}>Email:</span>
                 <span>{formData.emailId}</span>
+              </div> <div className={styles.infoItem}>
+                <span className={styles.label}>Address:</span>
+                <span>{formData.street}, {formData.landmark},{formData.city}</span>
               </div>
             </div>
           )}

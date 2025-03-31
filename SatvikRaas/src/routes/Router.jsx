@@ -21,7 +21,9 @@ const RouterComponent = () => {
   const location = useLocation(); 
   return (
     <>
-      {location.pathname !== "/checkout" && <Navbar />}
+      {/* {location.pathname !== "/checkout" && <Navbar />} */}
+      {!["/checkout", "/ordersuccess"].includes(location.pathname) && <Navbar />}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />

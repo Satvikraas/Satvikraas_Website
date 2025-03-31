@@ -7,7 +7,7 @@
     padding: 2rem;
     background-color: #f8f9fa;
     position: relative;
-    margin-top: 70px;
+    padding-top: 5rem;
   }
   
   .successCard {
@@ -82,10 +82,11 @@
         content: '';
         position: absolute;
         bottom: -8px;
-        left: 0;
-        width: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50%;
         height: 3px;
-        background-color: #3498db;
+        background-color: #229694;
       }
     }
   }
@@ -98,8 +99,16 @@
   
   .infoItem {
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: row;
+     
+    span{color: var(--Brand-Colour-Input-Field, #3c3d3d);
+      font-feature-settings: 'liga' off, 'clig' off;
+      font-family: Satoshi;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      margin-left: 5px;
+      line-height: 100%; /* 24px */}
     .label {
       font-size: 0.9rem;
       color: #7f8c8d;
@@ -121,9 +130,9 @@
         position: absolute;
         bottom: -8px;
         left: 0;
-        width: 40px;
+        width: 100%;
         height: 3px;
-        background-color: #3498db;
+        background-color: #229694;
       }
     }
   }
@@ -164,7 +173,7 @@
     flex-grow: 1;
     
     h3 {
-      font-size: 1.1rem;
+      font-size: 16px;
       font-weight: 500;
       margin-bottom: 0.5rem;
       color: #2c3e50;
@@ -269,3 +278,32 @@
       text-align: right;
     }
   }
+
+  
+.copyButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.orderDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  svg{
+    width: 25px;
+    margin-left: 7px;
+    color: rgb(102, 102, 102);
+  }
+}
+.copiedText {
+  font-size: 12px;
+  color: green;
+  animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
