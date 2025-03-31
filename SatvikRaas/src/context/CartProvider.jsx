@@ -29,7 +29,7 @@ export const CartProvider = ({ children }) => {
       const existingItem = prevCart.find(
         (item) => item.productId === productId && item.weight === weight
       );
-  console.log(cartItems);
+ // console.log(cartItems);
   
       const minQtyProductsId = [1, 2, 8]; // Product IDs that require a minimum quantity of 2
       const minQty = minQtyProductsId.includes(productId) && weight === 100 ? 2 : 1;

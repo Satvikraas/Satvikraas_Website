@@ -110,19 +110,19 @@ export default function Home() {
       name: "Kashmiri Chilli Powder",
     },
     {
-      id: 1,
+      id: 4,
       frame: frame2, // Replace with actual image paths,
       pimg: product6,
       name: "Sabji Masala",
     },
     {
-      id: 2,
+      id: 5,
       frame: frame1,
       pimg: product1,
       name: "Coriander Powder",
     },
     {
-      id: 3,
+      id: 6,
       frame: frame2,
       pimg: product2,
       name: "Turmeric Powder",
@@ -179,9 +179,9 @@ const faqs = [
           swipeable={false}
         >
           {CarouselImages.map((image, index) => (
-            <div onClick={image.function}>
+            <div key={index} onClick={image.function}>
               {" "}
-              <div key={index}>
+              <div >
                 <img
                   src={image.img}
                   alt={`Slide ${index + 1}`}

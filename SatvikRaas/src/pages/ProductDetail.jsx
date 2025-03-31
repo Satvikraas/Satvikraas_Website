@@ -50,29 +50,34 @@ console.log(product);
   };
 
  
-//QTY CHANGE
-const [quantity, setQuantity] = useState(1);
-const minQtyProductsId = [1, 2, 8];
-
-useEffect(() => {
-  setQuantity(minQtyProductsId.includes(product.id) && selectedVariant.weight === 100 ? 2 : 1);
-}, [product.id, selectedVariant]);
 
 
-  const handleQuantityChange = (action) => {
+ //QTY CHANGE
 
-  
+ const minQtyProductsId = [1, 2, 8];
+ const [quantity, setQuantity] = useState(1);
  
-    if (action === "increment") {
-      setQuantity((prev) => prev + 1);
-    } else if (action === "decrement" && quantity > 1) {
-
-      
-      setQuantity((prev) => prev - 1);
-    }
-  };
-
+ useEffect(() => {
+   if (selectedVariant) {
+     const minQuantity = minQtyProductsId.includes(selectedVariant.id) && selectedVariant.weight === 100 ? 2 : 1;
+     setQuantity(minQuantity);
+   }
+ }, [selectedVariant]); // Runs when selectedVariant changes
  
+ const handleQuantityChange = (action) => {
+   const minQuantity = minQtyProductsId.includes(selectedVariant.id) && selectedVariant.weight === 100 ? 2 : 1;
+ 
+   setQuantity((prevQuantity) => {
+     if (action === "increment") {
+       return prevQuantity + 1;
+     } else if (action === "decrement" && prevQuantity > minQuantity) {
+       return prevQuantity - 1;
+     }
+     return prevQuantity; // Ensures quantity never goes below the minimum
+   });
+ };
+ 
+
 // BUY NOW BTN
   const handleBuyNow = () => {
     const items = [{ productId: selectedVariant.id, qty: quantity, weight: selectedVariant.weight }]; // Correct structure

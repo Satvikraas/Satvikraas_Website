@@ -20,14 +20,14 @@ export const ProductProvider = ({ children }) => {
       // Step 1️⃣: Get products from IndexedDB first
       const cachedProducts = await getProductsFromDB();
       if (cachedProducts.length > 0) {
-        console.log("⚡ Using products from IndexedDB");
+       // console.log("⚡ Using products from IndexedDB");
         setProducts(cachedProducts);
       }
 
       // Step 2️⃣: Fetch latest products from API in the background
       const apiProducts = await fetchProductsAPI();
       if (apiProducts.length > 0) {
-        console.log("🌍 Fetched fresh products from API");
+       // console.log("🌍 Fetched fresh products from API");
         setProducts(apiProducts);
         await saveProductsToDB(apiProducts); // ✅ Save new data to IndexedDB
       }
