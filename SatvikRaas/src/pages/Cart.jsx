@@ -147,6 +147,7 @@ const CartPage = () => {
                 </div>
               )
             )}
+            
             {/* <div className={styles.darkColor}></div> */}
           </div>
         )}
@@ -154,13 +155,22 @@ const CartPage = () => {
           <h3 className={styles.totalAmount}>
             Total: ₹{totalAmount.toFixed(2)}
           </h3>
-          <Link
-            to="/checkout"
-            onClick={() => setIsCartSidebarOpen(false)}
-            className={styles.checkoutBtn}
-          >
-            Check Out
-          </Link>
+          {cartItems.length === 0 ? (
+          <p>  <Link
+          to="/products"
+          onClick={() => setIsCartSidebarOpen(false)}
+          className={styles.checkoutBtn}
+        >
+          Add Products
+        </Link></p>
+        ) : (  <Link
+          to="/checkout"
+          onClick={() => setIsCartSidebarOpen(false)}
+          className={styles.checkoutBtn}
+        >
+          Check Out
+        </Link>)}
+        
         </div>
       </div>
     </>

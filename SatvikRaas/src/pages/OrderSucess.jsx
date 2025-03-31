@@ -117,12 +117,12 @@ const OrderSuccessPage = () => {
                   <div className={styles.productDetails}>
                     <h3>{product.name}</h3>
                     <div className={styles.productMeta}>
-                      <span>Qty: {product.quantity}</span>
+                      <span>Qty: {product.qty}</span>
                       <span>₹{product.price.toFixed(2)} each</span>
                     </div>
                   </div>
                   <div className={styles.productTotal}>
-                    ₹{(product.price * product.quantity).toFixed(2)}
+                    ₹{(product.price * product.qty).toFixed(2)}
                   </div>
                 </div>
               ))}
@@ -138,7 +138,9 @@ const OrderSuccessPage = () => {
             <span>Delivery Charge</span>
             <span>₹{deliveryCharge.toFixed(2)}</span>
           </div>
-          <div className={`₹{styles.priceRow} ₹{styles.total}`}>
+          <hr />
+          <br />
+          <div className={styles.priceRow }>
             <span>Total</span>
             <span>₹{finalTotalAmount.toFixed(2)}</span>
           </div>
@@ -147,13 +149,13 @@ const OrderSuccessPage = () => {
         <div className={styles.actions}>
           <button
             className={styles.continueButton}
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/products")}
           >
             Continue Shopping
           </button>
           <button
             className={styles.trackButton}
-            onClick={() => navigate("/orders")}
+            onClick={() => navigate("/trackorder")}
           >
             Track Order
           </button>
