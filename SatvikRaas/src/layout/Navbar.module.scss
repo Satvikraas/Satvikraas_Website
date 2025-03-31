@@ -38,7 +38,10 @@ $breakpoints: ("mobile": 476px,
         transform: translateY(0);
     }
     @include respond("mobile") {
-      top: calc(100dvh - 50px);  padding-bottom: env(safe-area-inset-bottom, 10px); // Fix for mobile browsers
+    top: auto;
+    bottom: 0;
+      // top: calc(100dvh - 50px); 
+       padding-bottom: env(safe-area-inset-bottom, 10px); // Fix for mobile browsers
     }
 }
 .icons{
