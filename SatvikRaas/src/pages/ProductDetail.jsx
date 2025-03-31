@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../styles/ProductDetails.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -29,8 +29,10 @@ const getProductLink = (productName) => {
   }
 };
 
-const ProductDetailPage = () => {
 
+
+const ProductDetailPage = () => { 
+ 
   const location = useLocation();
   const navigate = useNavigate();
   const product = location.state.product;
@@ -49,8 +51,18 @@ console.log(product);
 
  
 //QTY CHANGE
-  const [quantity, setQuantity] = useState(1);
+const [quantity, setQuantity] = useState(1);
+const minQtyProductsId = [1, 2, 8];
+
+useEffect(() => {
+  setQuantity(minQtyProductsId.includes(product.id) && selectedVariant.weight === 100 ? 2 : 1);
+}, [product.id, selectedVariant]);
+
+
   const handleQuantityChange = (action) => {
+
+  
+ 
     if (action === "increment") {
       setQuantity((prev) => prev + 1);
     } else if (action === "decrement" && quantity > 1) {
@@ -170,6 +182,8 @@ const PImages =[selectedVariant.mainImage, selectedVariant.subImages]
 
           {/* Quantity Selector */}
           <div className={styles.quantity}>
+      
+
             <label htmlFor="variantSelect">Quantity:</label>
             <select
               id="variantSelect"

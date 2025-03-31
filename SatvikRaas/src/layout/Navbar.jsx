@@ -7,8 +7,9 @@ import {UserIcon , CartIcon , LogOutIcon} from "../assets/ICONS.jsx";
 import { useCart } from "../context/CartProvider";
 import shop from "../assets/Images/shop.svg"
 export default function Navbar() {
- 
-   const {  isCartSidebarOpen, setIsCartSidebarOpen } = useCart();
+  const { cartItems, isCartSidebarOpen, setIsCartSidebarOpen } = useCart();
+  const totalItemsInCart = cartItems.length;
+
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
   
@@ -63,6 +64,9 @@ export default function Navbar() {
           </ul>
         </div>
         <div className={styles.rightContent}>
+        {
+          totalItemsInCart !== 0 &&   <h2 className={styles.qtynumber}>{totalItemsInCart}</h2>
+        }
           <button onClick={() => setIsCartSidebarOpen(true)}>
             <img src={shop} alt="" />
          </button>
