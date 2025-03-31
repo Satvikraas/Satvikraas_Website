@@ -38,8 +38,11 @@ $breakpoints: ("mobile": 476px,
         transform: translateY(0);
     }
     @include respond("mobile") {
-      top: calc(100dvh - 50px);
+      top: calc(100dvh - 50px);  padding-bottom: env(safe-area-inset-bottom, 10px); // Fix for mobile browsers
     }
+}
+.icons{
+  display: none;
 }
 // .Navbar {
 //   z-index: 999;
