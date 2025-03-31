@@ -87,6 +87,9 @@ $breakpoints: ("mobile": 576px,
 
     margin-left: auto;
     margin-right: 40px;
+    @include respond("mobile") {
+      width: 100%;
+    }
   }
 
   .nameRow {
@@ -302,6 +305,7 @@ $breakpoints: ("mobile": 576px,
     font-style: normal;
     font-weight: 500;
     line-height: 26px;
+  margin-top: 20px;
     /* 130% */
     background: var(--Brand-Colour-1st-Colour, #226160);
 
