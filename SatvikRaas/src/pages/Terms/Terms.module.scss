@@ -26,7 +26,9 @@ $breakpoints: ("mobile": 576px,
     width: 100%;
     background-color: #FFFFFF;
 margin-top: 70px;
-
+span{
+    font-weight: 700;
+}
 }
 
 .heroSection{
@@ -176,9 +178,7 @@ h2{color: var(--Brand-Colour-Heading, #ffffff);
 }
 
 
-    span{
-        font-weight: 700;
-    }
+   
 
 
     ul{

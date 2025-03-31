@@ -5,7 +5,7 @@ import styles from "./Navbar.module.scss";
 import Logo from "./logo.png";
 import {UserIcon , CartIcon , LogOutIcon} from "../assets/ICONS.jsx";
 import { useCart } from "../context/CartProvider";
-
+import shop from "../assets/Images/shop.svg"
 export default function Navbar() {
  
    const {  isCartSidebarOpen, setIsCartSidebarOpen } = useCart();
@@ -28,7 +28,7 @@ export default function Navbar() {
   
   return (
     <div className={`${styles.Navbar} ${isVisible ? styles.show : styles.hide}`}>
-  <img src={Logo} className={`${styles.Navbarlogo} ${isVisible ? styles.hide : styles.show}`} alt="" />
+  <img src={Logo} className={styles.Navbarlogo }alt="" />
       <div className={styles.scrollDiv}>
         <div className={styles.scrollingtext}>
           <p>
@@ -64,8 +64,8 @@ export default function Navbar() {
         </div>
         <div className={styles.rightContent}>
           <button onClick={() => setIsCartSidebarOpen(true)}>
-           <CartIcon />
-          </button>
+            <img src={shop} alt="" />
+         </button>
         
       
         
@@ -73,6 +73,24 @@ export default function Navbar() {
         </div>
 
       
+      </div>
+      <div className={styles.MobileNavabr}>
+      <div className={styles.navContent}>
+          <ul>
+            <li>
+              <Link to={"/"}>Home</Link>
+            </li>
+            <li>
+              <Link to={"/products"}>Shop</Link>
+            </li>
+            <li>
+              <Link to={"/about"}>About</Link>
+            </li>
+            <li>
+              <Link to={"/contact"}>Contact</Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
