@@ -6,6 +6,10 @@ import Logo from "./logo.png";
 import {UserIcon , CartIcon , LogOutIcon} from "../assets/ICONS.jsx";
 import { useCart } from "../context/CartProvider";
 import shop from "../assets/Images/shop.svg"
+import Abouticon from "../assets/Images/Abouticon.svg"
+import Homeicon from "../assets/Images/HomeIcon.svg"
+import Contacticon from "../assets/Images/ContactIcon.svg"
+import Shopicon from "../assets/Images/ShopIcon.svg"
 export default function Navbar() {
   const { cartItems, isCartSidebarOpen, setIsCartSidebarOpen } = useCart();
   const totalItemsInCart = cartItems.length;
@@ -49,17 +53,14 @@ export default function Navbar() {
           </div>
           <div className={styles.navContent}>
           <ul>
-            <li><span className={styles.icons}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house-icon lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+            <li><span className={styles.icons}><img src={Homeicon} alt="" /></span>
               <Link to={"/"}>Home</Link>
             </li>
-            <li><span className={styles.icons}> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag-icon lucide-shopping-bag"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
-              <Link to={"/products"}>Shop</Link>
+            <li><span className={styles.icons}><img src={Shopicon} alt="" /></span>   <Link to={"/products"}>Shop</Link>
             </li>
-            <li><span className={styles.icons}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-contact-round-icon lucide-contact-round"><path d="M16 2v2"/><path d="M17.915 22a6 6 0 0 0-12 0"/><path d="M8 2v2"/><circle cx="12" cy="12" r="4"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg></span>
-              <Link to={"/about"}>About</Link>
+            <li><span className={styles.icons}><img src={Abouticon} alt="" /></span>  <Link to={"/about"}>About</Link>
             </li>
-            <li><span className={styles.icons}></span>
-              <Link to={"/contact"}>Contact</Link>
+            <li><span className={styles.icons}><img src={Contacticon} alt="" /></span>   <Link to={"/contact"}>Contact</Link>
             </li>
           </ul>
         </div>

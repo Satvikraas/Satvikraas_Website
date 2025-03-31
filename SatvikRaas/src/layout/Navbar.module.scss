@@ -43,6 +43,15 @@ $breakpoints: ("mobile": 476px,
 }
 .icons{
   display: none;
+  img{margin: 0;
+    width: 20px;
+    height: 20px;
+
+  }
+  @include respond("mobile") {
+    display: block;
+  
+  }
 }
 // .Navbar {
 //   z-index: 999;
@@ -178,37 +187,56 @@ font-family: serif;
     justify-content: center;
     align-items: center;
     @include respond("mobile") {
-        max-width: 10%;
+        max-width: 100%;
       }
   
     ul {
-        // width: 100%;
+        width: 40%;
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         gap: 5%;
         list-style-type: none;
-      
-       
-        li {
-           
+    @include respond("mobile") {
+      width: 90%;
+       margin-left: 0;
+    }
+        li { 
+          
           font-size: 20px;
-      
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      align-items: center;
           cursor: pointer;
           transition: 0.5s;
-      
+      @include respond("mobile") {
+        justify-content: start;
+        height: 40px;
+        min-width: 50px;
+        margin-left: 0;
+      }
           a {  color: var(--Brand-Colour-1st-Colour, #226160);
             font-family: Satoshi;
             font-size: 20px;
             font-style: normal;
             font-weight: 700;
-            line-height: normal;
+            line-height: 100%;
             text-decoration: none; 
             &:hover { 
                 font-weight: 800;
             font-size: 22px;
+            @include respond("mobile") {
+              font-weight: normal;
+              font-size: 18px;
+            }
             }
             @include respond("mobile") {
               font-size: 14px;
+              margin: 0;
+              line-height: 100%;
+              text-align: center;
+              margin: auto;
+              width: fit-content;              
             }
           }
          
