@@ -31,10 +31,10 @@ const CartPage = () => {
           const variant = product.variants.find((v) => v.weight === weight);
           if (!variant) return null;
 
-          return { ...variant, name: product.name, productId, weight, qty };
+          return { ...variant, name: product.name, productId, weight, qty ,category:product.category};
         })
         .filter(Boolean);
-
+        console.log(processedCart)
       setCartProducts(processedCart);
       setTotalAmount(
         processedCart.reduce((sum, item) => sum + item.price * item.qty, 0)
@@ -86,13 +86,20 @@ const CartPage = () => {
         ) : (
           <div className={styles.cartContainer}>
             {cartProducts.map(
-              ({ productId, weight, qty, name, price, mainImage }) => (
+              ({ productId, weight, qty, name, price, mainImage ,category}) => (
                 <div key={`${productId}-${weight}`} className={styles.cartItem}>
-                  <img
+
+            {category=="COMBO" ?<img
                     src={`data:image/jpeg;base64,${mainImage}`}
                     alt={name}
-                    className={styles.cartImage}
-                  />
+                    className={styles.cartImage1}
+                  /> :<img
+                  src={`data:image/jpeg;base64,${mainImage}`}
+                  alt={name}
+                  className={styles.cartImage}
+                />}
+                  
+                 
                   <div className={styles.cartInfo}>
                     <div className={styles.productText}>
                       <h3>{name}</h3>

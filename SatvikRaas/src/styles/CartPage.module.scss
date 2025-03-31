@@ -166,7 +166,14 @@ $overlay-color: rgba(0, 0, 0, 0.5);
     object-fit: cover;
 
   }
+  .cartImage1 {
+    width: 60px;
+    height: 80px;
+    // height: 100%;
+    border-radius: 6px;
+    object-fit: contain;
 
+  }
   .cartInfo {
     flex: 1;
     display: flex;
