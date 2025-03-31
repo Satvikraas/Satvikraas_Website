@@ -6,10 +6,10 @@ import Logo from "./logo.png";
 import {UserIcon , CartIcon , LogOutIcon} from "../assets/ICONS.jsx";
 import { useCart } from "../context/CartProvider";
 import shop from "../assets/Images/shop.svg"
-import Abouticon from "./Abouticon.svg"
-import Homeicon from "./HomeIcon.svg"
-import Contacticon from "./ContactIcon.svg"
-import Shopicon from "./ShopIcon.svg"
+import AboutIcon from "./AboutIcon.svg"
+import HomeIcon from "./HomeIcon.svg"
+import ContactIcon from "./ContactIcon.svg"
+import ShopIcon from "./ShopIcon.svg"
 export default function Navbar() {
   const { cartItems, isCartSidebarOpen, setIsCartSidebarOpen } = useCart();
   const totalItemsInCart = cartItems.length;
@@ -53,14 +53,14 @@ export default function Navbar() {
           </div>
           <div className={styles.navContent}>
           <ul>
-            <li><span className={styles.icons}><img src={Homeicon} alt="" /></span>
+            <li><span className={styles.icons}><img src={HomeIcon} alt="" /></span>
               <Link to={"/"}>Home</Link>
             </li>
-            <li><span className={styles.icons}><img src={Shopicon} alt="" /></span>   <Link to={"/products"}>Shop</Link>
+            <li><span className={styles.icons}><img src={ShopIcon} alt="" /></span>   <Link to={"/products"}>Shop</Link>
             </li>
-            <li><span className={styles.icons}><img src={Abouticon} alt="" /></span>  <Link to={"/about"}>About</Link>
+            <li><span className={styles.icons}><img src={AboutIcon} alt="" /></span>  <Link to={"/about"}>About</Link>
             </li>
-            <li><span className={styles.icons}><img src={Contacticon} alt="" /></span>   <Link to={"/contact"}>Contact</Link>
+            <li><span className={styles.icons}><img src={ContactIcon} alt="" /></span>   <Link to={"/contact"}>Contact</Link>
             </li>
           </ul>
         </div>
