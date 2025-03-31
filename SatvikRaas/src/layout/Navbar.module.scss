@@ -20,27 +20,53 @@ $breakpoints: ("mobile": 476px,
     @warn "⚠️ Warning: Breakpoint #{$breakpoint} is not defined!";
   }
 }
-.Navbar { z-index: +999;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    font-size: 20px;
-    transition: transform 0.5s ease-in-out;
-     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.164);
-    &.hide {
-        transform: translateY(-100%);
-    }
-    &.show {
-        transform: translateY(0);
-    }
-    @include respond("mobile") {
-      top: calc(100dvh - 50px);
-    }
+// .Navbar { z-index: +999;
+//     width: 100vw;
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     color: rgb(0, 0, 0);
+//     text-align: center;
+//     font-size: 20px;
+//     transition: transform 0.5s ease-in-out;
+//      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.164);
+//     &.hide {
+//         transform: translateY(-100%);
+//     }
+//     &.show {
+//         transform: translateY(0);
+//     }
+//     @include respond("mobile") {
+//       top: calc(100dvh - 50px);
+//     }
+// }
+.Navbar {
+  z-index: 999;
+  width: 100vw;
+  position: fixed;
+  bottom: 0; // Changed from top to bottom
+  left: 0;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-size: 20px;
+  transition: transform 0.5s ease-in-out;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.164);
+  background: white; // Ensure background color is set
+  padding-bottom: env(safe-area-inset-bottom, 10px); // Fix for mobile browsers
+
+  &.hide {
+      transform: translateY(100%); // Move down instead of up
+  }
+  &.show {
+      transform: translateY(0);
+  }
+
+  @include respond("mobile") {
+      bottom: 0; // Stick to the absolute bottom
+  }
 }
+
 .Navbarlogo{
  
    position: absolute;
