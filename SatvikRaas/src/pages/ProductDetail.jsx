@@ -54,6 +54,8 @@ console.log(product);
     if (action === "increment") {
       setQuantity((prev) => prev + 1);
     } else if (action === "decrement" && quantity > 1) {
+
+      
       setQuantity((prev) => prev - 1);
     }
   };

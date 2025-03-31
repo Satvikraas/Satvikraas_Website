@@ -25,10 +25,10 @@ $breakpoints: ("mobile": 560px,
 
 .productsPage {
     width: 100%;
-    margin-top: 55px;
+    margin-top: 70px;
     background-color: rgba(255, 255, 255, 0.514);
     @include respond("mobile") {
-      margin-top: 40px;
+      margin-top: 70px;
     }
 }
 

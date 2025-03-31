@@ -371,8 +371,9 @@ const validateForm = () => {
     if (validateForm()) { try {
       console.log("in COD payment");
 
-      const FinaltotalAmount = totalAmount + 30;
-      // Create order in backend
+      const FinaltotalAmount = totalAmount + deliveryCharge;
+      // console.log("final price ",FinaltotalAmount);
+    
       const orderData = await createCODOrder(
         cartProducts,
         formData,
@@ -797,7 +798,6 @@ export default CheckoutPage;
 export const payOnline = async (
   items,
   selectedAddress,
-  
   totalAmount,
   totalDiscount,
   deliveryCharges

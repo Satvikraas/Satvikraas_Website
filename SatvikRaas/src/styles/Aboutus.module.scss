@@ -1,22 +1,25 @@
-// Breakpoints 
-$breakpoint-mobile: 576px; // Small devices (phones)
-$breakpoint-tablet: 768px; // Medium devices (tablets)
+@use "sass:map"; // Import the map module
+// Define breakpoints
+$breakpoints: ("mobile": 576px,
+  "tablet": 768px,
+  "laptop": 1024px,
+  "desktop": 1280px);
 
-// Mixin for responsive media queries
-@mixin respond-to($device) {
-  @if $device==mobile {
-    @media (max-width: $breakpoint-mobile) {
+// Mixin for responsive design
+@mixin respond($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    // Use map.has-key()
+    $value: map.get($breakpoints, $breakpoint); // Use map.get()
+
+    @media (max-width: $value) {
       @content;
     }
   }
 
-  @else if $device==tablet {
-    @media (max-width: $breakpoint-tablet) {
-      @content;
-    }
+  @else {
+    @warn "⚠️ Warning: Breakpoint #{$breakpoint} is not defined!";
   }
 }
-
 .AbtPage {
     width: 100%;
     height: auto;
@@ -33,11 +36,20 @@ $breakpoint-tablet: 768px; // Medium devices (tablets)
     justify-content: space-between;
     align-items: center;
     background-size: cover;
-     @include respond-to(mobile) { 
+   @include respond("tablet") {
+     width: 100%;
+     flex-direction: column;
+     height: auto;
+
+   }
+    @include respond("mobile") {
     flex-direction: column;
     height: auto;
     justify-content: space-evenly;
     }
+
+
+  
 
     div {
         height: 100%;
@@ -45,7 +57,11 @@ $breakpoint-tablet: 768px; // Medium devices (tablets)
         .mascott {
             margin-right: 100px;
             height: 100%;
-             @include respond-to(mobile) { 
+            @include respond("tablet") {
+              width:  100%;
+              height: auto;
+            }
+           @include respond("mobile") {
             margin-right: 0;
             }
         }
@@ -61,15 +77,24 @@ $breakpoint-tablet: 768px; // Medium devices (tablets)
         // justify-content: center;
         height: 100%;
         text-align: left;
- @include respond-to(mobile) { 
+        @include respond("tablet") {
+            width: 100%;
+            padding: 15px;
+            flex-direction: column;
+        }
+        @include respond("mobile") { 
 width: 100%;
 padding: 15px;
 }
         div {
             padding-left: 100px;
             padding-top: 100px;
-             @include respond-to(mobile) { 
-            padding: 0;
+            @include respond("tablet") {
+                padding: 0;
+                width: 100%;
+            }
+           @include respond("mobile") {
+        
             }
         }
 
@@ -84,7 +109,7 @@ padding: 15px;
             margin: 0;
             line-height: 130%;
             /* 96px */
-             @include respond-to(mobile) { 
+           @include respond("mobile") {
                 color: #FFF;
                 text-align: center;
                 font-feature-settings: 'liga' off, 'clig' off;
@@ -106,7 +131,7 @@ padding: 15px;
             font-weight: 400;
             line-height: 100%;
             /* 36px */
-             @include respond-to(mobile) { 
+           @include respond("mobile") {
                 color: #FFF;
                 font-feature-settings: 'liga' off, 'clig' off;
                 font-family: Corbel;
@@ -129,7 +154,12 @@ padding: 15px;
     padding: 50px 70px;
     margin:  0;
     gap: 50px;
-   @include respond-to(mobile) { 
+    @include respond("tablet") {
+        flex-direction: column ;
+        width: 100%;
+        padding: 15px;
+    }
+ @include respond("mobile") {
   flex-direction: column
   ;
   padding: 15px;
@@ -153,7 +183,10 @@ padding: 15px;
       
     .textContent {
         width: 70%;
-         @include respond-to(mobile) { 
+        @include respond("tablet") {
+          width: 100%;
+        }
+       @include respond("mobile") {
         width: 100%;
         }
 
@@ -165,7 +198,7 @@ padding: 15px;
             font-style: normal;
             font-weight: 540;
             line-height: 150%;
-             @include respond-to(mobile) { 
+           @include respond("mobile") {
                 color: var(--Brand-Colour-Heading, #0A0C0C);
                 font-feature-settings: 'liga' off, 'clig' off;
                 font-family: Zodiak;
@@ -187,7 +220,7 @@ padding: 15px;
             font-weight: 400;
             line-height: 130%;
             /* 30px */
-             @include respond-to(mobile) { 
+           @include respond("mobile") {
                 color: var(--Brand-Colour-Sub-Heading, #333434);
                 font-feature-settings: 'liga' off, 'clig' off;
                 font-family: Corbel;
@@ -210,7 +243,7 @@ padding: 15px;
             padding-left: 20px; // Ensure there's enough space for bullets
             line-height: 130%;
             margin-top: 10px;
-             @include respond-to(mobile) { 
+           @include respond("mobile") {
                 color: var(--Brand-Colour-Sub-Heading, #333434);
                 font-feature-settings: 'liga' off, 'clig' off;
                 font-family: Corbel;
