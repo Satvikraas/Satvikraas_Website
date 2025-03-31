@@ -53,14 +53,14 @@ export default function Navbar() {
           </div>
           <div className={styles.navContent}>
           <ul>
-            <li><span className={styles.icons}><img src={HomeIcon} alt="" /></span>
-              <Link to={"/"}>Home</Link>
+            <li>
+              <Link to={"/"}><span className={styles.icons}><img src={HomeIcon} alt="" /></span> Home</Link>
             </li>
-            <li><span className={styles.icons}><img src={ShopIcon} alt="" /></span>   <Link to={"/products"}>Shop</Link>
+            <li>   <Link to={"/products"}><span className={styles.icons}><img src={ShopIcon} alt="" /></span> Shop</Link>
             </li>
-            <li><span className={styles.icons}><img src={AboutIcon} alt="" /></span>  <Link to={"/about"}>About</Link>
+            <li>  <Link to={"/about"}><span className={styles.icons}><img src={AboutIcon} alt="" /></span> About</Link>
             </li>
-            <li><span className={styles.icons}><img src={ContactIcon} alt="" /></span>   <Link to={"/contact"}>Contact</Link>
+            <li>   <Link to={"/contact"}><span className={styles.icons}><img src={ContactIcon} alt="" /></span> Contact</Link>
             </li>
           </ul>
         </div>
