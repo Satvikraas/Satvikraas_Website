@@ -1,6 +1,6 @@
 @use "sass:map"; // Import the map module
 // Define breakpoints
-$breakpoints: ("mobile": 576px,
+$breakpoints: ("mobile": 576px,"mobile1": 476px,
     "tablet": 768px,
     "laptop": 1024px,
     "desktop": 1280px);
@@ -23,8 +23,10 @@ $breakpoints: ("mobile": 576px,
 
 .HomePage {
     width: 100%;
-    margin-top: 70px;
-  
+    margin-top: 110px;
+  @include respond("mobile1") {
+    margin-top: 0;
+  }
 }
 
 .heroSection {
