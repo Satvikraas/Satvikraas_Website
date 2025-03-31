@@ -42,9 +42,9 @@ const CartPage = () => {
     }
   }, [products, cartItems]);
 
-  if (!isProductLoaded) {
-    return <p>Loading cart items...</p>;
-  }
+  // if (!isProductLoaded) {
+  //   return <p>Loading cart items...</p>;
+  // }
 
   return (
     <>
