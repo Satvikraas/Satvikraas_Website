@@ -74,24 +74,7 @@ export default function Navbar() {
 
       
       </div>
-      <div className={styles.MobileNavabr}>
-      <div className={styles.navContent}>
-          <ul>
-            <li>
-              <Link to={"/"}>Home</Link>
-            </li>
-            <li>
-              <Link to={"/products"}>Shop</Link>
-            </li>
-            <li>
-              <Link to={"/about"}>About</Link>
-            </li>
-            <li>
-              <Link to={"/contact"}>Contact</Link>
-            </li>
-          </ul>
-        </div>
-      </div>
+   
     </div>
   );
 }

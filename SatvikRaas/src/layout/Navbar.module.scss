@@ -205,6 +205,8 @@ align-items: center;
 }
 @include respond("mobile") {
   top: calc(-100dvh + 60px);
+  background-color: white;
+  padding: 0;
 }
 button{
 border: none !important;
