@@ -6,10 +6,10 @@ import Logo from "./logo.png";
 import {UserIcon , CartIcon , LogOutIcon} from "../assets/ICONS.jsx";
 import { useCart } from "../context/CartProvider";
 import shop from "../assets/Images/shop.svg"
-import Abouticon from "../assets/Images/Abouticon.svg"
-import Homeicon from "../assets/Images/HomeIcon.svg"
-import Contacticon from "../assets/Images/ContactIcon.svg"
-import Shopicon from "../assets/Images/ShopIcon.svg"
+import Abouticon from "./Abouticon.svg"
+import Homeicon from "./HomeIcon.svg"
+import Contacticon from "./ContactIcon.svg"
+import Shopicon from "./ShopIcon.svg"
 export default function Navbar() {
   const { cartItems, isCartSidebarOpen, setIsCartSidebarOpen } = useCart();
   const totalItemsInCart = cartItems.length;

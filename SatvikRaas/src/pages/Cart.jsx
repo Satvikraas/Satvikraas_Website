@@ -34,7 +34,7 @@ const CartPage = () => {
           return { ...variant, name: product.name, productId, weight, qty ,category:product.category};
         })
         .filter(Boolean);
-        console.log(processedCart)
+        // console.log(processedCart)
       setCartProducts(processedCart);
       setTotalAmount(
         processedCart.reduce((sum, item) => sum + item.price * item.qty, 0)
