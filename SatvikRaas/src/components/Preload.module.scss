@@ -1,0 +1,42 @@
+@keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  
+  .preloadContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff; // Adjust as needed
+    z-index: 9999;
+    animation: fadeOut 0.5s ease-out 2.5s forwards;
+  }
+  
+  .logo {
+    width: 150px; // Adjust as needed
+    max-width: 80%;
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  

@@ -24,6 +24,7 @@ const App = () => {
     <>
       {" "}
       <BrowserRouter>
+      <Preloader/>
       <ScrollToTop/>
         <CartProvider>
           <MessageAlert />
