@@ -199,6 +199,7 @@ export default function TrackOrder() {
       {/* Show Order Details if data is available */}
       {orderDetails && (
         <div className={styles.orderDetails}>
+              
           <div className={styles.card}>
             <div className={styles.sec1Card}>
                <p> Order ID: <strong>{orderDetails.razorpayOrderId}</strong></p>
@@ -210,10 +211,11 @@ export default function TrackOrder() {
 
             {/* Order Timeline */}
             <div className={styles.timeline}>
-              {orderDetails.deliveryStatusUpdates.map((update) => (
+            <h2>Order Status</h2>              {orderDetails.deliveryStatusUpdates.map((update) => (
                 <div key={update.id} className={styles.timelineItem}>
-                  <strong>{update.currentStatus}</strong>
-                  <p>{update.currentTimestamp}</p>
+                  <h4>{update.currentStatus}</h4>
+                  <p>{new Date(update.currentTimestamp).toLocaleDateString("en-GB").replace(/\//g, "-")}</p>
+
                 </div>
               ))}
             </div>

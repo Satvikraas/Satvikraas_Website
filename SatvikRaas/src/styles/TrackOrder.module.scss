@@ -307,19 +307,28 @@ h2{
   color: $primary-color;
   text-align: center;
   margin-top: 1rem;
+  
 }
 
 // Timeline Styling
-.timeline {
+.timeline { position: relative;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin-top: 1rem;
-  padding-left: 1rem;
-  border-left: 3px solid $primary-color;
-
+  padding-left: 0;
+  // border-left: 2px solid $primary-color;
+  // &:not(:last-child)::after {
+  //   content: "";
+  //   position: absolute;
+  //   left: -3px;
+  //   top: 20px;
+  //   width: 2px;
+  //   height: calc(100% + 10px);
+  //   background: rgb(2, 138, 86);
+  // }
   .timelineItem {
-    padding-left: 1rem;
+    padding-left: 10px;
     position: relative;
 
     strong {
@@ -336,7 +345,7 @@ h2{
     &::before {
       content: "";
       position: absolute;
-      left: -9px;
+      left: -8px;
       top: 5px;
       width: 12px;
       height: 12px;
@@ -434,4 +443,42 @@ h2{
       gap: 3px;
     }
   }
+}
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  position: relative;
+
+  .timelineItem {
+    position: relative;
+    padding-left: 1.5rem; // Space for the vertical line
+    &::before {
+      content: "";
+      position: absolute;
+      left: -0.75rem; 
+      top: 10px;
+      width: 10px;
+      height: 10px;
+      background-color: rgb(2, 138, 86);
+      border-radius: 50%;
+    }
+
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 20px;
+      width: 2px;
+      height: calc(100% + 10px);
+      background: rgb(2, 138, 86);
+    }
+  }
+}
+h4{
+  font-size: 18px;
+  color: rgb(6, 102, 81);
+  text-transform: uppercase;
 }
