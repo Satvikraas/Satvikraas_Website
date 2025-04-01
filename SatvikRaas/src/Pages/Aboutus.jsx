@@ -10,7 +10,7 @@ const Aboutus = () => {
   return (
     <div className={styles.AbtPage}>
       <div className={styles.heroSec}>
-        <img className={styles.bgImg} src={bg} alt="" />
+      
         <div className={styles.content}>
           <div>
             <h1>Taste in Every Pinch</h1>
@@ -21,7 +21,7 @@ const Aboutus = () => {
           </div>
         </div>
         <div>
-          {" "}
+        {" "}<img className={styles.bgImg} src={bg} alt="" />
           <img className={styles.mascott} src={mascott} alt="" />
         </div>
       </div>
