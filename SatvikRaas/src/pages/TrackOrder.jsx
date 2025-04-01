@@ -186,7 +186,7 @@ export default function TrackOrder() {
               {/* Order Total */}
               <div className={styles.orderTotal}>
               <p><strong>SubTotal:</strong> ₹{orderDetails.totalAmount.toFixed(2)-50}</p>
-              <p><strong>delivery Charges:</strong> ₹ 50</p>
+              <p><strong>Delivery Charges:</strong> ₹ 50</p>
               <p><strong>Total:</strong> ₹{orderDetails.totalAmount.toFixed(2)}</p>
                 {orderDetails.totalWeight && (
                   <p><strong>Total Weight:</strong> {orderDetails.totalWeight}g</p>
