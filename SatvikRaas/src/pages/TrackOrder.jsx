@@ -203,13 +203,10 @@ export default function TrackOrder() {
             <div className={styles.sec1Card}>
                <p> Order ID: <strong>{orderDetails.razorpayOrderId}</strong></p>
               <p>User Name: <span>{orderDetails.userName}</span></p>
+              <p> Type: <span>{orderDetails.status}</span></p>
             </div>
 
-            <div className={styles.sec2}>
-              <h4 className={styles.orderHeader}> Delivery Status  </h4>
-              {/* <p>Razorpay Order ID: <strong>{orderDetails.razorpayOrderId}</strong></p> */}
-              <p className={styles.trackingStatus}>{orderDetails.deliveryStatusUpdates.slice(-1)[0]?.currentStatus}</p>
-            </div>
+        
 
             {/* Order Timeline */}
             <div className={styles.timeline}>
@@ -223,14 +220,14 @@ export default function TrackOrder() {
 
             {/* Product List */}
             <div className={styles.productList}>
-              
+              <h2>Order Summary</h2>
               {orderDetails.orderItems.map((item) => (
                 <div key={item.orderItemId} className={styles.productItem}>
                   <div className={styles.productDetails}>
                     <h3>Product ID: {item.productVariantId}</h3>
                     <div className={styles.productMeta}>
                       <span>Qty: {item.quantity}</span>
-                      <span>₹{item.priceAtOrder.toFixed(2)} each</span>
+                      {/* <span>₹{item.priceAtOrder.toFixed(2)} each</span> */}
                     </div>
                   </div>
                   <div className={styles.productTotal}>

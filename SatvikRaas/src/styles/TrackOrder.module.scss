@@ -221,9 +221,11 @@ $background-color: #f9f9f9;
     @media (max-width: 768px) { @content; }
   }
 }
-
+h2{
+  font-family: satoshi;
+}
 .container {
-  font-family: Zodiak;
+  font-family: Satoshi;
   max-width: 800px;
   margin: 2rem auto;
   padding: 1.5rem;
