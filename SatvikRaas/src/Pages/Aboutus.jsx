@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/Aboutus.module.scss"; // For styling
-
+import bg from "../Assets/Banners/AboutHero.jpg"
 import mascott from "../Assets/Images/AboutMascott.png";
 import sec1 from "../Assets/Images/AboutSec1.png";
 import sec2 from "../Assets/Images/AboutSec2.png";
@@ -10,6 +10,7 @@ const Aboutus = () => {
   return (
     <div className={styles.AbtPage}>
       <div className={styles.heroSec}>
+        <img className={styles.bgImg} src={bg} alt="" />
         <div className={styles.content}>
           <div>
             <h1>Taste in Every Pinch</h1>
