@@ -21,7 +21,7 @@ const Aboutus = () => {
           </div>
         </div>
         <div>
-        {" "}<img className={styles.bgImg} src={bg} alt="" />
+        {/* {" "}<img className={styles.bgImg} src={bg} alt="" /> */}
           <img className={styles.mascott} src={mascott} alt="" />
         </div>
       </div>
