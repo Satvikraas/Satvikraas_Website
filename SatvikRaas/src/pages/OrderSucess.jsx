@@ -50,7 +50,7 @@ const OrderSuccessPage = () => {
     return null;
   }
 
-  const { orderId, cartProducts, formData, finalTotalAmount, deliveryCharge } =
+  const { orderId, cartProducts, formData, finalTotalAmount, deliveryCharge ,    discountCharge} =
     location.state;
   // console.log(location.state);
 
@@ -148,11 +148,15 @@ const OrderSuccessPage = () => {
         <div className={styles.priceSummary}>
           <div className={styles.priceRow}>
             <span>Subtotal</span>
-            <span>₹{(finalTotalAmount - deliveryCharge).toFixed(2)}</span>
+            <span>₹{(finalTotalAmount - deliveryCharge+discountCharge).toFixed(2)}</span>
           </div>
           <div className={styles.priceRow}>
             <span>Delivery Charge</span>
             <span>₹{deliveryCharge.toFixed(2)}</span>
+          </div>
+          <div className={styles.priceRow}>
+            <span>Discount </span>
+            <span>₹{discountCharge.toFixed(2)}</span>
           </div>
           <hr />
           <br />

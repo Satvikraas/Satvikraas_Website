@@ -3,10 +3,10 @@ import { useCart } from "../context/CartProvider";
 import { useProductContext } from "../context/ProductContext.jsx";
 import styles from "../styles/CheckoutPage.module.scss";
 import axios from "axios";
-import {  Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 // import api from "../api/apiService.js"
-import backbtn from "../assets/Images/back-button.png"
+import backbtn from "../assets/Images/back-button.png";
 const api = axios.create({
   // baseURL: "http://localhost:8080"
   // baseURL: "https://15.207.46.61:443",
@@ -23,27 +23,27 @@ const api = axios.create({
   },
 });
 
-
 const CheckoutPage = () => {
+  //------------ Fetch product and Cart
+  const location = useLocation();
+  const { cartItems: cartContextItems } = useCart();
 
-//------------ Fetch product and Cart
-const location = useLocation();
-const { cartItems: cartContextItems } = useCart();
-
-const cartItems = location.state?.items?.length ? location.state.items : cartContextItems;
+  const cartItems = location.state?.items?.length
+    ? location.state.items
+    : cartContextItems;
 
   // const { cartItems } = useCart();
   const { products } = useProductContext();
-//------------ product Const
+  //------------ product Const
   const [cartProducts, setCartProducts] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [deliveryCharge] = useState(50);
-//------------ Address Const 
+  //------------ Address Const
   const [selectedAddress, setSelectedAddress] = useState({});
   const [isServiceable, setIsServiceable] = useState(null);
   // const [paymentMethod, setPaymentMethod] = useState("prepaid");
-  const [errors, setErrors] = useState({}); //Error Forms 
- const navigate = useNavigate();
+  const [errors, setErrors] = useState({}); //Error Forms
+  const navigate = useNavigate();
   // Existing state for form and other checkout logic
 
   const [formData, setFormData] = useState({
@@ -51,7 +51,7 @@ const cartItems = location.state?.items?.length ? location.state.items : cartCon
     addressType: "Home",
     postalCode: "",
     fname: "",
-    lname:""  ,
+    lname: "",
     name: "",
     street: "",
     landmark: "",
@@ -100,7 +100,6 @@ const cartItems = location.state?.items?.length ? location.state.items : cartCon
         })
         .filter(Boolean); // Remove any null items
 
-
       // Update cart products state
 
       setCartProducts(processedCart);
@@ -114,8 +113,7 @@ const cartItems = location.state?.items?.length ? location.state.items : cartCon
     }
   }, [products, cartItems]);
 
-
-  // Check Pincode is Servicable 
+  // Check Pincode is Servicable
   const checkServiceability = async (numericPincode) => {
     try {
       const response = await fetch(
@@ -126,48 +124,59 @@ const cartItems = location.state?.items?.length ? location.state.items : cartCon
 
       const data = await response.json();
       setIsServiceable(data.serviceable);
-  
-      // Set City and State in Form Data 
-      formData.city =data.details.location.city;
-      formData.state =getFullStateName(data.details.location.state);
-      document.getElementById("formCity").value=getFullStateName(data.details.location.city);
-   
+
+      // Set City and State in Form Data
+      formData.city = data.details.location.city;
+      formData.state = getFullStateName(data.details.location.state);
+      document.getElementById("formCity").value = getFullStateName(
+        data.details.location.city
+      );
     } catch (error) {
       console.error("Error checking serviceability:", error);
       setIsServiceable(false);
     }
   };
 
-
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
-  
+
     setFormData((prevData) => {
       const updatedData = {
         ...prevData,
         [name]: value,
       };
-  
+
       // Automatically update `name` when `fname` or `lname` changes
       if (name === "fname" || name === "lname") {
         updatedData.name = `${updatedData.fname} ${updatedData.lname}`.trim();
       }
-  
+
       return updatedData;
     });
   };
-  
-  const handleBlur = (e) => {
+
+  const handleBlur = async (e) => {
     const { name, value } = e.target;
     validateField(name, value);
-      // If the field is "postalCode", check serviceability
-  if (name === "postalCode" && value.trim().length === 6) {
-    checkServiceability(value);
-  }
+    // If the field is "postalCode", check serviceability
+    if (name === "postalCode" && value.trim().length === 6) {
+      checkServiceability(value);
+    }
     // console.log("validation check ",name)
+    if (name === "emailId" && value.trim()) {
+      try {
+        const response = await fetch(
+          `https://api.satvikraas.com/api/public/isFirstOrder?email=${value}`
+        );
+        const data = await response.json();
+        setOffer(data === true);
+      } catch (error) {
+        console.error("Error checking first order:", error);
+        setOffer(false);
+      }
+    }
   };
- 
+
   const saveAddress = () => {
     setAddressData({
       emailId: formData.emailId,
@@ -181,82 +190,79 @@ const cartItems = location.state?.items?.length ? location.state.items : cartCon
       phone: formData.phone,
     });
   };
-  
 
- const validateField = (name, value) => {
-  if (!value) value = ""; // Prevent undefined values
-  let errorMsg = "";
+  const validateField = (name, value) => {
+    if (!value) value = ""; // Prevent undefined values
+    let errorMsg = "";
 
-  if (name === "emailId") {
-    if (!value.trim()) errorMsg = "Enter an Email";
-    else if (!/^\S+@\S+\.\S+$/.test(value)) errorMsg = "Enter a valid email";
-  } else if (name === "fname") {
-    if (!value.trim()) errorMsg = "Enter a first name";
-  } else if (name === "lname") {
-    if (!value.trim()) errorMsg = "Enter a last name";
-  } else if (name === "street") {
-    if (!value.trim()) errorMsg = "Enter an address";
-  } else if (name === "city") {
-    if (!value.trim()) errorMsg = "Enter a city";
-  } else if (name === "state") {
-    if (!value.trim()) errorMsg = "Enter a state";
-  } else if (name === "postalCode") {
-    if (!value.trim()) {
-      errorMsg = "Enter a pincode";
-    } else if (!/^\d{6}$/.test(value)) {
-      errorMsg = "Pincode must be 6 digits";
+    if (name === "emailId") {
+      if (!value.trim()) errorMsg = "Enter an Email";
+      else if (!/^\S+@\S+\.\S+$/.test(value)) errorMsg = "Enter a valid email";
+    } else if (name === "fname") {
+      if (!value.trim()) errorMsg = "Enter a first name";
+    } else if (name === "lname") {
+      if (!value.trim()) errorMsg = "Enter a last name";
+    } else if (name === "street") {
+      if (!value.trim()) errorMsg = "Enter an address";
+    } else if (name === "city") {
+      if (!value.trim()) errorMsg = "Enter a city";
+    } else if (name === "state") {
+      if (!value.trim()) errorMsg = "Enter a state";
+    } else if (name === "postalCode") {
+      if (!value.trim()) {
+        errorMsg = "Enter a pincode";
+      } else if (!/^\d{6}$/.test(value)) {
+        errorMsg = "Pincode must be 6 digits";
+      }
+    } else if (name === "phone") {
+      if (!value.trim()) {
+        errorMsg = "Enter a phone number";
+      } else if (!/^\d{10}$/.test(value)) {
+        errorMsg = "Phone number must be 10 digits";
+      }
     }
-  } else if (name === "phone") {
-    if (!value.trim()) {
-      errorMsg = "Enter a phone number";
-    } else if (!/^\d{10}$/.test(value)) {
-      errorMsg = "Phone number must be 10 digits";
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: errorMsg,
+    }));
+  };
+
+  const validateForm = () => {
+    if (!formData) return false; // Prevent errors if formData is undefined
+
+    const newErrors = {};
+
+    if (!formData.emailId?.trim()) {
+      newErrors.emailId = "Enter an Email";
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.emailId)) {
+      newErrors.emailId = "Enter a valid email";
     }
-  }
 
-  setErrors((prevErrors) => ({
-    ...prevErrors,
-    [name]: errorMsg,
-  }));
-};
+    if (!formData.fname?.trim()) newErrors.fname = "Enter a first name";
+    if (!formData.lname?.trim()) newErrors.lname = "Enter a last name";
+    if (!formData.street?.trim()) newErrors.street = "Enter an address";
+    if (!formData.city?.trim()) newErrors.city = "Enter a city";
+    if (!formData.state?.trim()) newErrors.state = "Enter a state";
 
-const validateForm = () => {
-  if (!formData) return false; // Prevent errors if formData is undefined
-  
-  const newErrors = {};
+    if (!formData.postalCode?.trim()) {
+      newErrors.postalCode = "Enter a pincode";
+    } else if (!/^\d{6}$/.test(formData.postalCode)) {
+      newErrors.postalCode = "Pincode must be 6 digits";
+    }
 
-  if (!formData.emailId?.trim()) {
-    newErrors.emailId = "Enter an Email";
-  } else if (!/^\S+@\S+\.\S+$/.test(formData.emailId)) {
-    newErrors.emailId = "Enter a valid email";
-  }
+    if (!formData.phone?.trim()) {
+      newErrors.phone = "Enter a phone number";
+    } else if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = "Phone number must be 10 digits";
+    }
 
-  if (!formData.fname?.trim()) newErrors.fname = "Enter a first name";
-  if (!formData.lname?.trim()) newErrors.lname = "Enter a last name";
-  if (!formData.street?.trim()) newErrors.street = "Enter an address";
-  if (!formData.city?.trim()) newErrors.city = "Enter a city";
-  if (!formData.state?.trim()) newErrors.state = "Enter a state";
-  
-  if (!formData.postalCode?.trim()) {
-    newErrors.postalCode = "Enter a pincode";
-  } else if (!/^\d{6}$/.test(formData.postalCode)) {
-    newErrors.postalCode = "Pincode must be 6 digits";
-  }
+    setErrors(newErrors);
 
-  if (!formData.phone?.trim()) {
-    newErrors.phone = "Enter a phone number";
-  } else if (!/^\d{10}$/.test(formData.phone)) {
-    newErrors.phone = "Phone number must be 10 digits";
-  }
-
-  setErrors(newErrors);
-  
-  return Object.keys(newErrors).length === 0;
-};
-
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleCheckout = (e) => {
-   
     e.preventDefault();
     if (validateForm()) {
       if (isServiceable === false) {
@@ -268,7 +274,6 @@ const validateForm = () => {
       // Proceed with checkout
       // handlePayment()
     }
-   
   };
 
   // Raxorpay
@@ -289,126 +294,133 @@ const validateForm = () => {
     loadRazorpayScript();
   }, []);
 
-  
-
-
   // ✅
   const handleOnlinePayment = async () => {
     if (validateForm()) {
-    try {
-      console.log("in Online payment");
+      try {
+        console.log("in Online payment");
 
-      const FinaltotalAmount = totalAmount + deliveryCharge;
-      console.log(formData);
-     
-     
+        const FinaltotalAmount = totalAmount + deliveryCharge -discount;
+        console.log(formData);
 
-      const orderData = await payOnline(
-        cartProducts,
-        formData,
-        FinaltotalAmount,
-        0, deliveryCharge
-      );
+        const orderData = await payOnline(
+          cartProducts,
+          formData,
+          FinaltotalAmount,
+          discount,
+          deliveryCharge
+        );
 
-      // console.log(orderData);
-      const options = {
-        // key: "rzp_live_mJcffWL1hLYxgL",
-        key: "rzp_test_YH8zCfwQrn8l5q",
-        amount: FinaltotalAmount * 100, // Amount in paise
-        currency: "INR",
-        name: "SATVIK RASS",
-        description: "Purchase Description",
-        order_id: orderData.id,
-        handler: async function (response) {
-          console.log("orderData.id" + orderData.id);
-          // if(completeOrderResponse)
-          // navigate("/ordersuccess");
+        // console.log(orderData);
+        const options = {
+          // key: "rzp_live_mJcffWL1hLYxgL",
+          key: "rzp_test_YH8zCfwQrn8l5q",
+          amount: FinaltotalAmount * 100, // Amount in paise
+          currency: "INR",
+          name: "SATVIK RASS",
+          description: "Purchase Description",
+          order_id: orderData.id,
+          handler: async function (response) {
+            console.log("orderData.id" + orderData.id);
+            // if(completeOrderResponse)
+            // navigate("/ordersuccess");
 
-          // navigate('/ordersuccess', {
-          //   state: {
-          //     // orderId: orderData.id,
-          //     cartProducts: cartProducts,
-          //     formData: formData,
-          //     finalTotalAmount: FinaltotalAmount,
-          //     deliveryCharge: deliveryCharge
-          //   }
-          // });
-          navigate('/ordersuccess', {
-            state: {
-              orderId: orderData.id,
-              cartProducts: cartProducts,
-              formData: formData,
-              finalTotalAmount: FinaltotalAmount,
-              deliveryCharge: deliveryCharge
-            }
-          });
-        },
-        prefill: {
-          name: selectedAddress.name,
-          email: "customer@example.com",
-          contact: selectedAddress.phone,
-        },
-        theme: {
-          color: "#3399cc",
-        },
-      };
+            // navigate('/ordersuccess', {
+            //   state: {
+            //     // orderId: orderData.id,
+            //     cartProducts: cartProducts,
+            //     formData: formData,
+            //     finalTotalAmount: FinaltotalAmount,
+            //     deliveryCharge: deliveryCharge
+            //   }
+            // });
+            navigate("/ordersuccess", {
+              state: {
+                orderId: orderData.id,
+                cartProducts: cartProducts,
+                formData: formData,
+                finalTotalAmount: FinaltotalAmount,
+                discountCharge: discount,
+                deliveryCharge: deliveryCharge,
+              },
+            });
+          },
+          prefill: {
+            name: selectedAddress.name,
+            email: "customer@example.com",
+            contact: selectedAddress.phone,
+          },
+          theme: {
+            color: "#3399cc",
+          },
+        };
 
-      const rzp = new window.Razorpay(options);
-      rzp.open();
-    } catch (error) {
-      console.error("Payment failed:", error);
-      alert("Payment failed!");
-    }
-  }else{
-    alert("Please fill the required fields");
-    validateForm();
-  }
-  };
-
-
-  // downside cod
-  const handleCodPayment = async () => {
-    if (validateForm()) { try {
-      console.log("in COD payment");
-
-      const FinaltotalAmount = totalAmount + deliveryCharge;
-      // console.log("final price ",FinaltotalAmount);
-    
-      const orderData = await createCODOrder(
-        cartProducts,
-        formData,
-        FinaltotalAmount,
-        0, deliveryCharge
-      );
-
-      console.log("order data ",orderData);
-      if (orderData){  navigate('/ordersuccess', {
-        state: {
-          orderId: orderData,
-          cartProducts: cartProducts,
-          formData: formData,
-          finalTotalAmount: FinaltotalAmount,
-          deliveryCharge: deliveryCharge
-        }
-      });
-    }
-      else alert("Order failed!");
-    } catch (error) {
-      console.error("Payment failed:", error);
-      alert("Order failed!");
-    }}else{
+        const rzp = new window.Razorpay(options);
+        rzp.open();
+      } catch (error) {
+        console.error("Payment failed:", error);
+        alert("Payment failed!");
+      }
+    } else {
       alert("Please fill the required fields");
       validateForm();
     }
   };
 
+  // downside cod
+  const handleCodPayment = async () => {
+    if (validateForm()) {
+      try {
+        console.log("in COD payment");
+
+        const FinaltotalAmount = totalAmount + deliveryCharge -discount;
+        // console.log("final price ",FinaltotalAmount);
+
+        const orderData = await createCODOrder(
+          cartProducts,
+          formData,
+          FinaltotalAmount,
+          discount,
+          deliveryCharge
+        );
+
+        console.log("order data ", orderData);
+        if (orderData) {
+          navigate("/ordersuccess", {
+            state: {
+              orderId: orderData,
+              cartProducts: cartProducts,
+              formData: formData,
+              discountCharge: discount,
+              finalTotalAmount: FinaltotalAmount,
+              deliveryCharge: deliveryCharge,
+            },
+          });
+        } else alert("Order failed!");
+      } catch (error) {
+        console.error("Payment failed:", error);
+        alert("Order failed!");
+      }
+    } else {
+      alert("Please fill the required fields");
+      validateForm();
+    }
+  };
+  // offer order
+  const [offer, setOffer] = useState(null);
+  const calculateDiscount = () => {
+    return  Math.floor(totalAmount * 0.1);; // 10% discount
+  };
+
+  const discount = calculateDiscount();
+
   return (
     <div className={styles.checkoutPage}>
       <div className={styles.leftSection}>
-        <Link className={styles.backbtn} to={"/products"}> 
-        <img src={backbtn} alt="" />
+        <Link className={styles.backbtn} to={"/products"}>
+          <img src={backbtn} alt="" />
         </Link>
-        <form  onSubmit={handleCheckout} className={styles.checkoutForm}>
+        <form onSubmit={handleCheckout} className={styles.checkoutForm}>
           <h2>Contact</h2>
           {/*  */}
           <div className={styles.inputGroup}>
@@ -418,7 +430,8 @@ const validateForm = () => {
               placeholder=" " // Important for :not(:placeholder-shown)
               value={formData.emailId}
               onChange={handleChange}
-              onBlur={handleBlur} className={errors.emailId ? styles.errorInput : ""}
+              onBlur={handleBlur}
+              className={errors.emailId ? styles.errorInput : ""}
             />
             <label>Email</label>
             {errors.emailId && (
@@ -452,39 +465,38 @@ const validateForm = () => {
               <span className={styles.errorText}>{errors.name}</span>
             )}
           </div> */}
-  <div className={styles.addressRow}>
-          <div className={styles.inputGroup}>
-            <input
-              type="text"
-              name="fname"
-              placeholder=" " // Important for :not(:placeholder-shown)
-              value={formData.fname}
-              onChange={handleChange}
-              onBlur={handleBlur} className={errors.fname ? styles.errorInput : ""}
-            />
-            <label>First Name</label>
-            {errors.fname && (
-              <span className={styles.errorText}>{errors.fname}</span>
-            )}
+          <div className={styles.addressRow}>
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                name="fname"
+                placeholder=" " // Important for :not(:placeholder-shown)
+                value={formData.fname}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.fname ? styles.errorInput : ""}
+              />
+              <label>First Name</label>
+              {errors.fname && (
+                <span className={styles.errorText}>{errors.fname}</span>
+              )}
+            </div>
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                name="lname"
+                placeholder=" " // Important for :not(:placeholder-shown)
+                value={formData.lname}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.lname ? styles.errorInput : ""}
+              />
+              <label>Last Name</label>
+              {errors.lname && (
+                <span className={styles.errorText}>{errors.lname}</span>
+              )}
+            </div>
           </div>
-          <div className={styles.inputGroup}>
-            <input
-              type="text"
-              name="lname"
-              placeholder=" " // Important for :not(:placeholder-shown)
-              value={formData.lname}
-              onChange={handleChange}
-              onBlur={handleBlur}   className={errors.lname ? styles.errorInput : ""}
-            />
-            <label>Last Name</label>
-            {errors.lname && (
-              <span className={styles.errorText}>{errors.lname}</span>
-            )}
-          </div>
-          </div>
-        
-
-
 
           {/* <div className={styles.inputGroup}>
             <input
@@ -499,13 +511,15 @@ const validateForm = () => {
           </div> */}
 
           <div className={styles.inputGroup}>
-            <input maxLength="10"
+            <input
+              maxLength="10"
               type="tel"
               name="phone"
               placeholder=" " // Important for :not(:placeholder-shown)
               value={formData.phone}
               onChange={handleChange}
-              onBlur={handleBlur}  className={errors.phone ? styles.errorInput : ""}
+              onBlur={handleBlur}
+              className={errors.phone ? styles.errorInput : ""}
             />
             <label>Phone</label>
             {errors.phone && (
@@ -513,17 +527,18 @@ const validateForm = () => {
             )}
           </div>
 
-
           <h2>Delivery</h2>
           <div className={styles.addresstype}>
-          {["Home", "Office", "Others"].map((type, index) => (
-    <div key={index}>  {/* Add key here */}
+            {["Home", "Office", "Others"].map((type, index) => (
+              <div key={index}>
+                {" "}
+                {/* Add key here */}
                 <input
                   type="radio"
                   name="addressType"
                   value={type}
                   checked={formData.addressType === type}
-                  onChange={handleChange} 
+                  onChange={handleChange}
                 />{" "}
                 <label htmlFor="">{type}</label>
               </div>
@@ -548,40 +563,31 @@ const validateForm = () => {
               <p className={styles.unserviceableText}>❌ Not Serviceable</p>
             )}
           </div> */}
-  
 
-
-
-          <div className={styles.inputGroup}> 
+          <div className={styles.inputGroup}>
             <input
               type="text"
-                key={formData.city} // Forces React to re-render when city changes
+              key={formData.city} // Forces React to re-render when city changes
               name="postalCode"
               placeholder=" " // Important for :not(:placeholder-shown)
               value={formData.postalCode}
-              onChange={handleChange} 
-              // onBlur={handleBlur} 
+              onChange={handleChange}
+              // onBlur={handleBlur}
               onBlur={(e) => checkServiceability(e.target.value)}
-               maxLength={6}
-               className={errors.postalCode ? styles.errorInput : ""}
-
+              maxLength={6}
+              className={errors.postalCode ? styles.errorInput : ""}
             />
             <label> Pincode (Check Delivery Availability)</label>
             {errors.postalCode && (
               <span className={styles.errorText}>{errors.postalCode}</span>
             )}
-             {isServiceable === true && (
+            {isServiceable === true && (
               <p className={styles.serviceableText}>✅ Delivery Available!</p>
             )}
             {isServiceable === false && (
               <p className={styles.unserviceableText}>❌ Not Serviceable</p>
             )}
           </div>
-
-
-
-
-
 
           {/* <div className={styles.inputGroup}>
             <input
@@ -600,14 +606,15 @@ const validateForm = () => {
               placeholder=" " // Important for :not(:placeholder-shown)
               value={formData.street}
               onChange={handleChange}
-              onBlur={handleBlur}   className={errors.street ? styles.errorInput : ""}
+              onBlur={handleBlur}
+              className={errors.street ? styles.errorInput : ""}
             />
             <label>Full Address (House no., Area,etc)</label>
             {errors.street && (
               <span className={styles.errorText}>{errors.street}</span>
             )}
           </div>
-{/* 
+          {/* 
           <div className={styles.inputGroup}>
             <input
               type="text"
@@ -624,16 +631,14 @@ const validateForm = () => {
               placeholder=" " // Important for :not(:placeholder-shown)
               value={formData.landmark}
               onChange={handleChange}
-              onBlur={handleBlur} className={errors.landmark ? styles.errorInput : ""}
+              onBlur={handleBlur}
+              className={errors.landmark ? styles.errorInput : ""}
             />
             <label>Landmark (optional)</label>
             {errors.landmark && (
               <span className={styles.errorText}>{errors.landmark}</span>
             )}
           </div>
-
-
-
 
           <div className={styles.addressRow}>
             {/* <div className={styles.inputGroup}>
@@ -648,20 +653,21 @@ const validateForm = () => {
             </div> */}
 
             <div className={styles.inputGroup}>
-            <input
-            id="formCity"
-              type="text"
-              name="city"
-              placeholder=" " // Important for :not(:placeholder-shown)
-              value={formData.city}
-              onChange={handleChange}
-              onBlur={handleBlur} className={errors.city ? styles.errorInput : ""}
-            />
-            <label>City</label>
-            {errors.city && (
-              <span className={styles.errorText}>{errors.city}</span>
-            )}
-          </div>
+              <input
+                id="formCity"
+                type="text"
+                name="city"
+                placeholder=" " // Important for :not(:placeholder-shown)
+                value={formData.city}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.city ? styles.errorInput : ""}
+              />
+              <label>City</label>
+              {errors.city && (
+                <span className={styles.errorText}>{errors.city}</span>
+              )}
+            </div>
             {/* <div className={styles.inputGroup}>
               <input
                 type="text"
@@ -672,20 +678,21 @@ const validateForm = () => {
                 className={errors.state ? styles.errorInput : ""}
               />
             </div> */}
-             <div className={styles.inputGroup}>
-            <input
-              type="text"
-              name="state"
-              placeholder=" " // Important for :not(:placeholder-shown)
-              value={formData.state}
-              onChange={handleChange}
-              onBlur={handleBlur} className={errors.state ? styles.errorInput : ""}
-            />
-            <label>State</label>
-            {errors.state && (
-              <span className={styles.errorText}>{errors.state}</span>
-            )}
-          </div>
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                name="state"
+                placeholder=" " // Important for :not(:placeholder-shown)
+                value={formData.state}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.state ? styles.errorInput : ""}
+              />
+              <label>State</label>
+              {errors.state && (
+                <span className={styles.errorText}>{errors.state}</span>
+              )}
+            </div>
           </div>
           <div className={styles.paymentSection}>
             <h3>Prepaid or COD</h3>
@@ -709,87 +716,156 @@ const validateForm = () => {
             </div>
           </div>
 
-       
           {/* <a
               onClick={(e) => formData.paymentMethod === "prepaid" ? handleOnlinePayment(e) : handleCodPayment(e)}
             className={styles.checkoutButton}
           >
             Checkout
           </a> */}
-     
-     <div className={styles.payementInfo}>
-      <h3>Payemnt </h3>
-      <p>All transactions are secure and encrypted.</p>
-      <div className={styles.headDiv}>
-        <div className={styles.left}>
-          <p>Pay Now - via UPI, Cards, Wallets, NetBanking and more</p>
-        </div>
-        <div className={styles.right}>
-          <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/upi.CmgCfll8.svg" alt="" />
-          <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/master.CzeoQWmc.svg" alt="" />
-      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/visa.sxIq5Dot.svg" alt="" />
-       <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/rupay.Bl62X6PG.svg" alt="" />
-      <h2>+4</h2>  </div>
-      </div>
-      <div className={styles.bottomDiv}>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-270.8 371 102 52" class="zjrzY"><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" d="M-182 404v16.8c0 .7-.4 1.2-1 1.2h-75.7c-.7 0-1.2-.6-1.2-1.2v-47.6c0-.7.6-1.2 1.2-1.2h75.7c.7 0 1 .6 1 1.2V395m-78-14h78m-17 18h27m-3.9-4.6 4.5 4.6-4.5 4.6"></path><circle cx="-255.5" cy="376.5" r="1.5" fill="currentColor"></circle><circle cx="-250.5" cy="376.5" r="1.5" fill="currentColor"></circle><circle cx="-245.5" cy="376.5" r="1.5" fill="currentColor"></circle></svg>
-      <p>After clicking “PAY NOW”, you will be redirected to Pay Now - via UPI, Cards, Wallets, NetBanking and more to complete your purchase securely.</p>
-      </div>
-     </div>
+
+          <div className={styles.payementInfo}>
+            <h3>Payemnt </h3>
+            <p>All transactions are secure and encrypted.</p>
+            <div className={styles.headDiv}>
+              <div className={styles.left}>
+                <p>Pay Now - via UPI, Cards, Wallets, NetBanking and more</p>
+              </div>
+              <div className={styles.right}>
+                <img
+                  src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/upi.CmgCfll8.svg"
+                  alt=""
+                />
+                <img
+                  src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/master.CzeoQWmc.svg"
+                  alt=""
+                />
+                <img
+                  src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/visa.sxIq5Dot.svg"
+                  alt=""
+                />
+                <img
+                  src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/rupay.Bl62X6PG.svg"
+                  alt=""
+                />
+                <h2>+4</h2>{" "}
+              </div>
+            </div>
+            <div className={styles.bottomDiv}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="-270.8 371 102 52"
+                class="zjrzY"
+              >
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-miterlimit="10"
+                  stroke-width="2"
+                  d="M-182 404v16.8c0 .7-.4 1.2-1 1.2h-75.7c-.7 0-1.2-.6-1.2-1.2v-47.6c0-.7.6-1.2 1.2-1.2h75.7c.7 0 1 .6 1 1.2V395m-78-14h78m-17 18h27m-3.9-4.6 4.5 4.6-4.5 4.6"
+                ></path>
+                <circle
+                  cx="-255.5"
+                  cy="376.5"
+                  r="1.5"
+                  fill="currentColor"
+                ></circle>
+                <circle
+                  cx="-250.5"
+                  cy="376.5"
+                  r="1.5"
+                  fill="currentColor"
+                ></circle>
+                <circle
+                  cx="-245.5"
+                  cy="376.5"
+                  r="1.5"
+                  fill="currentColor"
+                ></circle>
+              </svg>
+              <p>
+                After clicking “PAY NOW”, you will be redirected to Pay Now -
+                via UPI, Cards, Wallets, NetBanking and more to complete your
+                purchase securely.
+              </p>
+            </div>
+          </div>
         </form>
       </div>
 
       <div className={styles.rightSection}>
         <div className={styles.detailsRight}>
-        <h3>Order Summary</h3>
-        <div className={styles.cartSummary}>
-          {cartProducts.map((item) => (
-            <div
-              key={`${item.productId}-${item.weight}`}
-              className={styles.cartItem}
-            >
-              {/* {     console.log(item)} */}
-
-              <img
-                src={`data:image/jpeg;base64,${item.mainImage}`}
-                alt={item.name}
-                className={styles.cartImage}
-              />
-              <div className={styles.itemDetails}>
-           {item.productId=== 9||item.productId=== 10 ?    <h6>{item.name}</h6> :     <h4>{item.name}</h4>
-           
-           }
-           {/* {console.log(item)} */}
-                <p>
-                  Quantity: {item.qty} | {item.weight}g
-                </p>
-               
-              </div> <p>₹{item.price}</p>
+          <h3>Order Summary</h3>
+          <div className={styles.cartSummary}>
+            {cartProducts.map((item) => (
+              <div
+                key={`${item.productId}-${item.weight}`}
+                className={styles.cartItem}
+              >
+                {/* {     console.log(item)} */}
+                <img
+                  src={`data:image/jpeg;base64,${item.mainImage}`}
+                  alt={item.name}
+                  className={styles.cartImage}
+                />
+                <div className={styles.itemDetails}>
+                  {item.productId === 9 || item.productId === 10 ? (
+                    <h6>{item.name}</h6>
+                  ) : (
+                    <h4>{item.name}</h4>
+                  )}
+                  {/* {console.log(item)} */}
+                  <p>
+                    Quantity: {item.qty} | {item.weight}g
+                  </p>
+                </div>{" "}
+                <p>₹{item.price}</p>
+              </div>
+            ))}
+          </div>
+          <div className={styles.orderTotal}>
+            <div className={styles.totalRow}>
+              <span>Subtotal</span>
+              <span>₹{totalAmount.toLocaleString()}</span>
             </div>
-          ))}
-        </div>
-        <div className={styles.orderTotal}>
-          <div className={styles.totalRow}>
-            <span>Subtotal</span>
-            <span>₹{totalAmount.toLocaleString()}</span>
-          </div>
-          <div className={styles.totalRow}>
-            <span>Shipping</span>
-            <span>₹ {deliveryCharge}</span>
-          </div>
-          <div className={styles.totalRow}>
-            <span>Total</span>
-            <span className={styles.grandTotal}>
-              ₹{(totalAmount + deliveryCharge).toLocaleString()}
-            </span>
-          </div>
-        </div> <a
-              onClick={(e) => formData.paymentMethod === "prepaid" ? handleOnlinePayment(e) : handleCodPayment(e)}
+            <div className={styles.totalRow}>
+              <span>Shipping Charges</span>
+              <span>₹ {deliveryCharge}</span>
+            </div>
+
+            {offer !== null && (
+              <p>
+                {offer ? (  <div className={styles.totalRow}>
+              <span>First Order Discount </span>
+              <span>₹ {discount}</span>
+            </div>
+) : ``}
+              </p>
+            )}
+            <div className={styles.totalRow}>
+              <span>Total</span>
+              <span className={styles.grandTotal}>
+                {offer
+                  ? `₹${(
+                      totalAmount +
+                      deliveryCharge -
+                      discount
+                    ).toLocaleString()}`
+                  : `₹${(totalAmount + deliveryCharge).toLocaleString()}`}
+              </span>
+            </div>
+          </div>{" "}
+          <a
+            onClick={(e) =>
+              formData.paymentMethod === "prepaid"
+                ? handleOnlinePayment(e)
+                : handleCodPayment(e)
+            }
             className={styles.checkoutButton}
           >
             Checkout
           </a>
-      </div></div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -803,7 +879,7 @@ export const payOnline = async (
   totalDiscount,
   deliveryCharges
 ) => {
-  console.log("items=====>",totalAmount)
+  console.log("items=====>", totalAmount);
 
   // Prepare the request payload
   const requestPayload = {
@@ -836,10 +912,10 @@ export const payOnline = async (
 
       landmark: selectedAddress.landmark || "",
     },
-    
+
     totalAmount,
     totalDiscount,
-    deliveryCharges
+    deliveryCharges,
   };
 
   console.log("requestPayload===", selectedAddress);
@@ -898,7 +974,7 @@ export const createCODOrder = async (
     },
     totalAmount,
     totalDiscount,
-    deliveryCharges
+    deliveryCharges,
   };
   console.log("request COD Payload===", requestPayload);
   try {
@@ -910,13 +986,12 @@ export const createCODOrder = async (
         withCredentials: true,
       }
     );
- 
+
     return response.data;
   } catch (error) {
     throw error;
   }
 };
-
 
 // States
 const getFullStateName = (shortCode) => {
@@ -960,5 +1035,5 @@ const stateMapping = {
   TR: "Tripura",
   UP: "Uttar Pradesh",
   UK: "Uttarakhand",
-  WB: "West Bengal"
+  WB: "West Bengal",
 };
