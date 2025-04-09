@@ -12,7 +12,6 @@ const api = axios.create({
   // baseURL: "https://15.207.46.61:443",
   baseURL: "https://api.satvikraas.com:443",
   // baseURL: "http://localhost:8080",
-
   // , // Backend URL
   withCredentials: true, // Allows cookies to be sent
   headers: {
@@ -22,16 +21,13 @@ const api = axios.create({
     return (status >= 200 && status < 300) || status === 302; // Accepts 302 as valid
   },
 });
-
 const CheckoutPage = () => {
   //------------ Fetch product and Cart
   const location = useLocation();
   const { cartItems: cartContextItems } = useCart();
-
   const cartItems = location.state?.items?.length
     ? location.state.items
     : cartContextItems;
-
   // const { cartItems } = useCart();
   const { products } = useProductContext();
   //------------ product Const
@@ -45,7 +41,6 @@ const CheckoutPage = () => {
   const [errors, setErrors] = useState({}); //Error Forms
   const navigate = useNavigate();
   // Existing state for form and other checkout logic
-
   const [formData, setFormData] = useState({
     emailId: "",
     addressType: "Home",
@@ -60,7 +55,6 @@ const CheckoutPage = () => {
     phone: "",
     paymentMethod: "prepaid",
   });
-
   const [addressData, setAddressData] = useState({
     emailId: "",
     addressType: "Home",
@@ -72,7 +66,6 @@ const CheckoutPage = () => {
     state: "",
     phone: "",
   });
-
   // Process cart items when products are loaded
   useEffect(() => {
     if (products.length > 0) {
@@ -83,7 +76,6 @@ const CheckoutPage = () => {
             (p) => p.productId === productId || p.id === productId
           );
           if (!product) return null;
-
           // Find the specific variant matching the weight
           const variant = product.variants.find((v) => v.weight === weight);
           if (!variant) return null;
@@ -99,11 +91,8 @@ const CheckoutPage = () => {
           };
         })
         .filter(Boolean); // Remove any null items
-
       // Update cart products state
-
       setCartProducts(processedCart);
-
       // Calculate total amount
       const total = processedCart.reduce(
         (sum, item) => sum + item.price * item.qty,
@@ -112,19 +101,15 @@ const CheckoutPage = () => {
       setTotalAmount(total);
     }
   }, [products, cartItems]);
-
   // Check Pincode is Servicable
   const checkServiceability = async (numericPincode) => {
     try {
       const response = await fetch(
         ` https://api.satvikraas.com/api/delhiveryOne/checkServiceability?postalcode=${numericPincode}`
       );
-
       if (!response.ok) throw new Error("Failed to fetch serviceability");
-
       const data = await response.json();
       setIsServiceable(data.serviceable);
-
       // Set City and State in Form Data
       formData.city = data.details.location.city;
       formData.state = getFullStateName(data.details.location.state);
@@ -136,25 +121,20 @@ const CheckoutPage = () => {
       setIsServiceable(false);
     }
   };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prevData) => {
       const updatedData = {
         ...prevData,
         [name]: value,
       };
-
       // Automatically update `name` when `fname` or `lname` changes
       if (name === "fname" || name === "lname") {
         updatedData.name = `${updatedData.fname} ${updatedData.lname}`.trim();
       }
-
       return updatedData;
     });
   };
-
   const handleBlur = async (e) => {
     const { name, value } = e.target;
     validateField(name, value);
@@ -176,7 +156,6 @@ const CheckoutPage = () => {
       }
     }
   };
-
   const saveAddress = () => {
     setAddressData({
       emailId: formData.emailId,
@@ -190,11 +169,9 @@ const CheckoutPage = () => {
       phone: formData.phone,
     });
   };
-
   const validateField = (name, value) => {
     if (!value) value = ""; // Prevent undefined values
     let errorMsg = "";
-
     if (name === "emailId") {
       if (!value.trim()) errorMsg = "Enter an Email";
       else if (!/^\S+@\S+\.\S+$/.test(value)) errorMsg = "Enter a valid email";
@@ -221,47 +198,37 @@ const CheckoutPage = () => {
         errorMsg = "Phone number must be 10 digits";
       }
     }
-
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: errorMsg,
     }));
   };
-
   const validateForm = () => {
     if (!formData) return false; // Prevent errors if formData is undefined
-
     const newErrors = {};
-
     if (!formData.emailId?.trim()) {
       newErrors.emailId = "Enter an Email";
     } else if (!/^\S+@\S+\.\S+$/.test(formData.emailId)) {
       newErrors.emailId = "Enter a valid email";
     }
-
     if (!formData.fname?.trim()) newErrors.fname = "Enter a first name";
     if (!formData.lname?.trim()) newErrors.lname = "Enter a last name";
     if (!formData.street?.trim()) newErrors.street = "Enter an address";
     if (!formData.city?.trim()) newErrors.city = "Enter a city";
     if (!formData.state?.trim()) newErrors.state = "Enter a state";
-
     if (!formData.postalCode?.trim()) {
       newErrors.postalCode = "Enter a pincode";
     } else if (!/^\d{6}$/.test(formData.postalCode)) {
       newErrors.postalCode = "Pincode must be 6 digits";
     }
-
     if (!formData.phone?.trim()) {
       newErrors.phone = "Enter a phone number";
     } else if (!/^\d{10}$/.test(formData.phone)) {
       newErrors.phone = "Phone number must be 10 digits";
     }
-
     setErrors(newErrors);
-
     return Object.keys(newErrors).length === 0;
   };
-
   const handleCheckout = (e) => {
     e.preventDefault();
     if (validateForm()) {
@@ -275,9 +242,7 @@ const CheckoutPage = () => {
       // handlePayment()
     }
   };
-
   // Raxorpay
-
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -288,21 +253,17 @@ const CheckoutPage = () => {
     });
   };
   const API_URL = "https://api.satvikraas.com/api/razorpay";
-
   // razorpay  ✅
   useEffect(() => {
     loadRazorpayScript();
   }, []);
-
   // ✅
   const handleOnlinePayment = async () => {
     if (validateForm()) {
       try {
         console.log("in Online payment");
-
         const FinaltotalAmount = totalAmount + deliveryCharge -discount;
         console.log(formData);
-
         const orderData = await payOnline(
           cartProducts,
           formData,
@@ -310,11 +271,10 @@ const CheckoutPage = () => {
           discount,
           deliveryCharge
         );
-
         // console.log(orderData);
         const options = {
-          // key: "rzp_live_mJcffWL1hLYxgL",
-          key: "rzp_test_YH8zCfwQrn8l5q",
+          key: "rzp_live_mJcffWL1hLYxgL",
+          // key: "rzp_test_YH8zCfwQrn8l5q",
           amount: FinaltotalAmount * 100, // Amount in paise
           currency: "INR",
           name: "SATVIK RASS",
@@ -324,7 +284,6 @@ const CheckoutPage = () => {
             console.log("orderData.id" + orderData.id);
             // if(completeOrderResponse)
             // navigate("/ordersuccess");
-
             // navigate('/ordersuccess', {
             //   state: {
             //     // orderId: orderData.id,
@@ -354,7 +313,6 @@ const CheckoutPage = () => {
             color: "#3399cc",
           },
         };
-
         const rzp = new window.Razorpay(options);
         rzp.open();
       } catch (error) {
@@ -366,16 +324,13 @@ const CheckoutPage = () => {
       validateForm();
     }
   };
-
   // downside cod
   const handleCodPayment = async () => {
     if (validateForm()) {
       try {
         console.log("in COD payment");
-
         const FinaltotalAmount = totalAmount + deliveryCharge -discount;
         // console.log("final price ",FinaltotalAmount);
-
         const orderData = await createCODOrder(
           cartProducts,
           formData,
@@ -383,7 +338,6 @@ const CheckoutPage = () => {
           discount,
           deliveryCharge
         );
-
         console.log("order data ", orderData);
         if (orderData) {
           navigate("/ordersuccess", {
@@ -411,9 +365,7 @@ const CheckoutPage = () => {
   const calculateDiscount = () => {
     return  Math.floor(totalAmount * 0.1);; // 10% discount
   };
-
   const discount = calculateDiscount();
-
   return (
     <div className={styles.checkoutPage}>
       <div className={styles.leftSection}>
@@ -497,7 +449,6 @@ const CheckoutPage = () => {
               )}
             </div>
           </div>
-
           {/* <div className={styles.inputGroup}>
             <input
               type="tel"
@@ -509,7 +460,6 @@ const CheckoutPage = () => {
               className={errors.phone ? styles.errorInput : ""}
             />
           </div> */}
-
           <div className={styles.inputGroup}>
             <input
               maxLength="10"
@@ -526,7 +476,6 @@ const CheckoutPage = () => {
               <span className={styles.errorText}>{errors.phone}</span>
             )}
           </div>
-
           <h2>Delivery</h2>
           <div className={styles.addresstype}>
             {["Home", "Office", "Others"].map((type, index) => (
@@ -563,7 +512,6 @@ const CheckoutPage = () => {
               <p className={styles.unserviceableText}>❌ Not Serviceable</p>
             )}
           </div> */}
-
           <div className={styles.inputGroup}>
             <input
               type="text"
@@ -588,7 +536,6 @@ const CheckoutPage = () => {
               <p className={styles.unserviceableText}>❌ Not Serviceable</p>
             )}
           </div>
-
           {/* <div className={styles.inputGroup}>
             <input
               type="text"
@@ -639,7 +586,6 @@ const CheckoutPage = () => {
               <span className={styles.errorText}>{errors.landmark}</span>
             )}
           </div>
-
           <div className={styles.addressRow}>
             {/* <div className={styles.inputGroup}>
               <input
@@ -651,7 +597,6 @@ const CheckoutPage = () => {
                 className={errors.city ? styles.errorInput : ""}
               />
             </div> */}
-
             <div className={styles.inputGroup}>
               <input
                 id="formCity"
@@ -715,14 +660,12 @@ const CheckoutPage = () => {
               ))}
             </div>
           </div>
-
           {/* <a
               onClick={(e) => formData.paymentMethod === "prepaid" ? handleOnlinePayment(e) : handleCodPayment(e)}
             className={styles.checkoutButton}
           >
             Checkout
           </a> */}
-
           <div className={styles.payementInfo}>
             <h3>Payemnt </h3>
             <p>All transactions are secure and encrypted.</p>
@@ -791,7 +734,6 @@ const CheckoutPage = () => {
           </div>
         </form>
       </div>
-
       <div className={styles.rightSection}>
         <div className={styles.detailsRight}>
           <h3>Order Summary</h3>
@@ -831,7 +773,6 @@ const CheckoutPage = () => {
               <span>Shipping Charges</span>
               <span>₹ {deliveryCharge}</span>
             </div>
-
             {offer !== null && (
               <p>
                 {offer ? (  <div className={styles.totalRow}>
@@ -869,9 +810,7 @@ const CheckoutPage = () => {
     </div>
   );
 };
-
 export default CheckoutPage;
-
 export const payOnline = async (
   items,
   selectedAddress,
@@ -880,7 +819,6 @@ export const payOnline = async (
   deliveryCharges
 ) => {
   console.log("items=====>", totalAmount);
-
   // Prepare the request payload
   const requestPayload = {
     items: items.map((item) => ({
@@ -890,14 +828,11 @@ export const payOnline = async (
         price: item.price,
         discount: item.discount,
         weight: item.weight,
-
         finalPrice: item.price * item.quantity,
       },
     })),
-
     selectedAddress: {
       ...selectedAddress,
-
       // Ensure all properties are included
       id: selectedAddress.id || 0,
       name: selectedAddress.name || "",
@@ -909,17 +844,13 @@ export const payOnline = async (
       state: selectedAddress.state || "",
       country: "INDIA",
       addressType: selectedAddress.addressType || "",
-
       landmark: selectedAddress.landmark || "",
     },
-
     totalAmount,
     totalDiscount,
     deliveryCharges,
   };
-
   console.log("requestPayload===", selectedAddress);
-
   try {
     const response = await axios.post(
       `https://api.satvikraas.com:443/api/razorpay/createorder`,
@@ -934,7 +865,6 @@ export const payOnline = async (
     throw error;
   }
 };
-
 // cod down
 export const createCODOrder = async (
   items,
@@ -952,7 +882,6 @@ export const createCODOrder = async (
         price: item.price,
         discount: item.discount,
         weight: item.weight,
-
         finalPrice: item.price * item.quantity,
       },
     })),
@@ -969,7 +898,6 @@ export const createCODOrder = async (
       state: selectedAddress.state || "",
       country: "INDIA",
       addressType: selectedAddress.addressType || "",
-
       landmark: selectedAddress.landmark || "",
     },
     totalAmount,
@@ -986,18 +914,15 @@ export const createCODOrder = async (
         withCredentials: true,
       }
     );
-
     return response.data;
   } catch (error) {
     throw error;
   }
 };
-
 // States
 const getFullStateName = (shortCode) => {
   return stateMapping[shortCode.toUpperCase()] || shortCode;
 };
-
 const stateMapping = {
   AN: "Andaman and Nicobar Islands",
   AP: "Andhra Pradesh",
