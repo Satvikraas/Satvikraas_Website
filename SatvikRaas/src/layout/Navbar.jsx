@@ -6,6 +6,7 @@ import Logo from "./logo.png";
 import {UserIcon , CartIcon , LogOutIcon} from "../assets/ICONS.jsx";
 import { useCart } from "../context/CartProvider";
 import shop from "../assets/Images/shop.svg"
+import Checklist from "../assets/Images/CheckOrder.png"
 import AboutIcon from "./AboutIcon.svg"
 import HomeIcon from "./HomeIcon.svg"
 import ContactIcon from "./ContactIcon.svg"
@@ -13,10 +14,8 @@ import ShopIcon from "./ShopIcon.svg"
 export default function Navbar() {
   const { cartItems, isCartSidebarOpen, setIsCartSidebarOpen } = useCart();
   const totalItemsInCart = cartItems.length;
-
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
-  
     useEffect(() => {
       const handleScroll = () => {
         if (window.scrollY > lastScrollY) {
@@ -26,11 +25,9 @@ export default function Navbar() {
         }
         setLastScrollY(window.scrollY);
       };
-  
       window.addEventListener("scroll", handleScroll);
       return () => window.removeEventListener("scroll", handleScroll);
     }, [lastScrollY]);
-  
   return (
     <div className={`${styles.Navbar} ${isVisible ? styles.show : styles.hide}`}>
   <img src={Logo} className={styles.Navbarlogo }alt="" />
@@ -67,19 +64,15 @@ export default function Navbar() {
         <div className={styles.rightContent}>
         {
           totalItemsInCart !== 0 &&   <h2 className={styles.qtynumber}>{totalItemsInCart}</h2>
-        }
+        } <Link to={"/trackorder"}>
+        <img src={Checklist} alt="" />
+      </Link>
           <button onClick={() => setIsCartSidebarOpen(true)}>
             <img src={shop} alt="" />
          </button>
-        
-      
-        
         </div>
         </div>
-
-      
       </div>
-   
     </div>
   );
 }

@@ -305,9 +305,9 @@ const CheckoutPage = () => {
             });
           },
           prefill: {
-            name: selectedAddress.name,
-            email: "customer@example.com",
-            contact: selectedAddress.phone,
+            name: formData.name,
+            email: formData.emailId,
+            contact: formData.phone,
           },
           theme: {
             color: "#3399cc",
