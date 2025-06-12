@@ -67,40 +67,45 @@ const CheckoutPage = () => {
     phone: "",
   });
   // Process cart items when products are loaded
-  useEffect(() => {
-    if (products.length > 0) {
-      const processedCart = cartItems
-        .map(({ productId, weight, qty }) => {
-          // Find the product in the product context
-          const product = products.find(
-            (p) => p.productId === productId || p.id === productId
-          );
-          if (!product) return null;
-          // Find the specific variant matching the weight
-          const variant = product.variants.find((v) => v.weight === weight);
-          if (!variant) return null;
-          // console.log(product);
-          // Return processed cart item with all necessary details
-          return {
-            ...variant,
-            name: product.name,
-            productId,
-            weight,
-            qty,
-            mainImage: variant.mainImage, // Assuming mainImage is in the product object
-          };
-        })
-        .filter(Boolean); // Remove any null items
-      // Update cart products state
-      setCartProducts(processedCart);
-      // Calculate total amount
-      const total = processedCart.reduce(
-        (sum, item) => sum + item.price * item.qty,
-        0
-      );
-      setTotalAmount(total);
-    }
-  }, [products, cartItems]);
+useEffect(() => {
+  if (products.length > 0 && cartItems.length > 0) {
+    const processedCart = cartItems
+      .map(({ productId, weight, qty }) => {
+        let matchedProduct = null;
+        let matchedVariant = null;
+        let variantId = productId;
+        // Loop through each product to find the variant by ID
+        for (const product of products) {
+          const variant = product.variants.find((v) => v.id === variantId);
+          if (variant) {
+            matchedProduct = product;
+            matchedVariant = variant;
+            break; // Stop searching once matched
+          }
+        }
+        if (!matchedProduct || !matchedVariant) return null;
+        return {
+          productId: matchedProduct.productId,
+          name: matchedProduct.name,
+          description: matchedProduct.description,
+          category: matchedProduct.category,
+          weight: matchedVariant.weight,
+          price: matchedVariant.price,
+          qty,
+          variantId: matchedVariant.id,
+          mainImage: matchedVariant.mainImage,
+          subImages: matchedVariant.subImages,
+        };
+      })
+      .filter(Boolean); // Remove nulls
+    setCartProducts(processedCart);
+    const total = processedCart.reduce(
+      (sum, item) => sum + item.price * item.qty,
+      0
+    );
+    setTotalAmount(total);
+  }
+}, [products, cartItems]);
   // Check Pincode is Servicable
   const checkServiceability = async (numericPincode) => {
     try {

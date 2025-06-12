@@ -1,4 +1,3 @@
-
 import React, { useState , useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../styles/ProductDetails.module.scss";
@@ -28,45 +27,32 @@ const getProductLink = (productName) => {
     return null;
   }
 };
-
-
-
 const ProductDetailPage = () => { 
- 
   const location = useLocation();
   const navigate = useNavigate();
   const product = location.state.product;
-console.log(product);
   const [selectedVariant, setSelectedVariant] = useState(
     product?.variants?.[0] || {}
   );
   const [currentView, setCurrentView] = useState("main"); // 'main' or 'sub'
   const [subImageIndex, setSubImageIndex] = useState(0);
-
   const handleVariantChange = (variant) => {
     setSelectedVariant(variant);
     setCurrentView("main"); // Reset to main image when variant changes
     setSubImageIndex(0); // Reset sub-image index
   };
-
- 
-
-
  //QTY CHANGE
-
  const minQtyProductsId = [1, 2, 8];
  const [quantity, setQuantity] = useState(1);
- 
  useEffect(() => {
    if (selectedVariant) {
+    console.log("Selected Variant:", selectedVariant);
      const minQuantity = minQtyProductsId.includes(selectedVariant.id) && selectedVariant.weight === 100 ? 2 : 1;
      setQuantity(minQuantity);
    }
  }, [selectedVariant]); // Runs when selectedVariant changes
- 
  const handleQuantityChange = (action) => {
    const minQuantity = minQtyProductsId.includes(selectedVariant.id) && selectedVariant.weight === 100 ? 2 : 1;
- 
    setQuantity((prevQuantity) => {
      if (action === "increment") {
        return prevQuantity + 1;
@@ -76,26 +62,18 @@ console.log(product);
      return prevQuantity; // Ensures quantity never goes below the minimum
    });
  };
- 
-
 // BUY NOW BTN
   const handleBuyNow = () => {
     const items = [{ productId: selectedVariant.id, qty: quantity, weight: selectedVariant.weight }]; // Correct structure
-  console.log(items);
     navigate("/checkout", {
       state: { items }, // Pass items to checkout page
     });
-    
   };
-
 const PImages =[selectedVariant.mainImage, selectedVariant.subImages]
-
-
   return (
     <div className={styles.productPage}>
       <div className={styles.productContainer}>
         {/* Left Section: Image Carousel */}
-      
  <div className={styles.imageSection}>
           {/* Main Image Display */}
           <div className={styles.mainImageContainer}>
@@ -114,11 +92,9 @@ const PImages =[selectedVariant.mainImage, selectedVariant.subImages]
     </span>
   )} */}
           </div>
-
           {/* Image Carousel */}
           <Swiper
             slidesPerView={3}
-         
             className={styles.imageCarousel}
           >
             {/* Main Thumbnail */}
@@ -140,7 +116,6 @@ const PImages =[selectedVariant.mainImage, selectedVariant.subImages]
                 />
               </div>
             </SwiperSlide>
-
             {/* Sub Thumbnails */}
             {selectedVariant.subImages?.map((img, index) => (
               <SwiperSlide key={index}>
@@ -165,9 +140,6 @@ const PImages =[selectedVariant.mainImage, selectedVariant.subImages]
             ))}
           </Swiper>
         </div>
-     
-        
-
         {/* Right Section: Product Details */}
         <div className={styles.detailsSection}>
           <h1 className={styles.productTitle}>{product.name}</h1>
@@ -184,11 +156,8 @@ const PImages =[selectedVariant.mainImage, selectedVariant.subImages]
             <span>⭐⭐⭐⭐☆</span>
             <span>4.5</span>
           </div>
-
           {/* Quantity Selector */}
           <div className={styles.quantity}>
-      
-
             <label htmlFor="variantSelect">Quantity:</label>
             <select
               id="variantSelect"
@@ -203,7 +172,6 @@ const PImages =[selectedVariant.mainImage, selectedVariant.subImages]
                 </option>
               ))}
             </select>
-
             <div className={styles.quantityContainer}>
               <button
                 onClick={() => handleQuantityChange("decrement")}
@@ -220,7 +188,6 @@ const PImages =[selectedVariant.mainImage, selectedVariant.subImages]
               </button>
             </div>
           </div>
-{console.log(product)}
           <button className={styles.buyNow} onClick={handleBuyNow}>
             Buy Now
           </button>
@@ -237,7 +204,6 @@ const PImages =[selectedVariant.mainImage, selectedVariant.subImages]
           >
          <img src={alogo} alt="" />   Buy From Amazon
           </button>
-
           <div>
             <img src={certified} alt="" className={styles.certimg} />
           </div>
@@ -246,5 +212,4 @@ const PImages =[selectedVariant.mainImage, selectedVariant.subImages]
     </div>
   );
 };
-
 export default ProductDetailPage;
