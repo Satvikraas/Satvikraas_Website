@@ -15,9 +15,9 @@ const Products = () => {
             <img src={HeroBanner} alt="Hero Banner" />
           </div>
         </div>
-        <div className={styles.headerText}>
+        {/* <div className={styles.headerText}>
             <h1>Combos</h1>
-          </div>
+          </div> */}
         {/* <div className={styles.productsContainer}>
           {products
             .filter((product) => product.category === "COMBO")
