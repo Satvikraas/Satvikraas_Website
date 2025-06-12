@@ -68,37 +68,36 @@ const CheckoutPage = () => {
   });
   // Process cart items when products are loaded
 useEffect(() => {
-  if (products.length > 0 && cartItems.length > 0) {
+  if (products.length > 0) {
     const processedCart = cartItems
       .map(({ productId, weight, qty }) => {
-        let matchedProduct = null;
-        let matchedVariant = null;
-        let variantId = productId;
-        // Loop through each product to find the variant by ID
-        for (const product of products) {
-          const variant = product.variants.find((v) => v.id === variantId);
-          if (variant) {
-            matchedProduct = product;
-            matchedVariant = variant;
-            break; // Stop searching once matched
-          }
-        }
-        if (!matchedProduct || !matchedVariant) return null;
+        // Treat productId as variantId (rename for clarity)
+        const variantId = productId;
+        // Find the product that contains the variant with this variantId
+        const product = products.find((p) =>
+          p.variants.some((v) => v.id === variantId)
+        );
+        if (!product) return null;
+        // Find the specific variant by id (variantId)
+        const variant = product.variants.find((v) => v.id === variantId);
+        if (!variant) return null;
+        // Optional: match weight too if needed
+        if (variant.weight !== weight) return null;
+        // Return processed cart item
         return {
-          productId: matchedProduct.productId,
-          name: matchedProduct.name,
-          description: matchedProduct.description,
-          category: matchedProduct.category,
-          weight: matchedVariant.weight,
-          price: matchedVariant.price,
+          ...variant,
+          name: product.name,
+          productId: product.productId,
+          variantId,
+          weight,
           qty,
-          variantId: matchedVariant.id,
-          mainImage: matchedVariant.mainImage,
-          subImages: matchedVariant.subImages,
+          mainImage: variant.mainImage,
         };
       })
-      .filter(Boolean); // Remove nulls
+      .filter(Boolean); // Remove any null items
+    // Update cart state
     setCartProducts(processedCart);
+    // Calculate total amount
     const total = processedCart.reduce(
       (sum, item) => sum + item.price * item.qty,
       0
