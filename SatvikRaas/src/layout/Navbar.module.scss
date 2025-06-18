@@ -84,7 +84,7 @@ $breakpoints: ("mobile": 476px,
 // scroll
 .scrollDiv {
     width: 100%;
-    height: 20px;
+    height: 40px;
     background-color: rgb(255, 255, 255);
     overflow: hidden;
     // box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.212);
@@ -96,6 +96,9 @@ $breakpoints: ("mobile": 476px,
 }
     .scrollingtext {
         width: auto;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
         margin: auto;
         animation: scrollText 500s linear infinite;
         p {
@@ -128,7 +131,7 @@ font-family: serif;
 .NavbarMain {
     background-color: rgb(255, 255, 255);
     width: 100%;
-    height: 100px;
+    height: 80px;
     display: flex;
     flex-direction: row;
     top: 0;
@@ -151,7 +154,8 @@ font-family: serif;
     left: 10px;
     img {
         width: 100%;
-        height: 100%;
+        height: 90%;
+        margin: 2% 0;
         object-fit: contain;
     }
     @include respond("mobile") {

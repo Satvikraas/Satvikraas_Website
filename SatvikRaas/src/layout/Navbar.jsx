@@ -40,7 +40,7 @@ export default function Navbar() {
                 &nbsp;
               </span>
             ))} 
-          </p>
+          </p> 
         </div>
       </div>
       <div className={styles.NavbarMain}>
@@ -71,6 +71,17 @@ export default function Navbar() {
             <img src={shop} alt="" />
          </button>
         </div>
+        </div>
+      </div> <div className={styles.scrollDiv} style={{height: "30px", backgroundColor: "#006361"}}>
+        <div className={styles.scrollingtext} style={{ color: "white" , fontSize: "14px" , backgroundColor: "#006361" }}>
+          <p>
+            {[...Array(50)].map((_, index) => (
+              <span key={index} style={{ color: "white" , fontSize: "16px" }}>
+            Join the #SpiceItUpWithSatvik Contest | Win Exciting Prizes | Follow us on Instagram @satvikraas | &nbsp; &nbsp; &nbsp;
+                &nbsp;
+              </span>
+            ))} 
+          </p> 
         </div>
       </div>
     </div>
