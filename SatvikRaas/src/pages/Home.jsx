@@ -18,7 +18,6 @@ import caroImg3 from "../assets/Banners/HomeHero3.jpg";
 import caroImg4 from "../assets/Banners/HomeHero4.jpg";
 import caroImg5 from "../assets/Banners/HomeHero5.jpg";
 import caroImg6 from "../assets/Banners/HomeHero6.jpg";
-
 // frames
 import frame1 from "../assets/frames/frame1.png";
 import frame2 from "../assets/frames/frame2.png";
@@ -35,7 +34,6 @@ import product4 from "../assets/Products/product4.png";
 import product5 from "../assets/Products/product5.png";
 import product6 from "../assets/Products/product6.png";
 import product7 from "../assets/Products/product7.png";
-
 //abt
 import abtbg from "../Assets/Images/aboutbackgoundimg.svg";
 import mascott from "../Assets/Images/mascott.svg";
@@ -43,14 +41,12 @@ import mascott from "../Assets/Images/mascott.svg";
 import up1img from "../assets/Images/up2.png";
 import up2img from "../assets/Images/up3.png";
 import up3img from "../assets/Images/up1.png";
-
 import processImage from "../Assets/Images/howitwork.svg";
 import goodness from "../Assets/Images/goodness.jpg";
 import noAdditives from "../Assets/Images/no-additives.svg"; // Example path, replace with your actual image paths
 import handpicked from "../Assets/Images/handpicked.svg";
 import madeWithLove from "../Assets/Images/made-with-love.svg";
 import packedWithNutrients from "../Assets/Images/packed-with-nutrients.svg";
-
 //insta
 import instimg3 from "../Assets/Images/instimg3.png"
 import instavid1 from "../Assets/vid/isntavid1.mp4"
@@ -59,31 +55,26 @@ import instavid3 from "../Assets/vid/isntavid3.mp4"
 import instavid4 from "../Assets/vid/isntavid4.mp4"
 export default function Home() {
   const navigate = useNavigate();
-
   const offer1BuyHandle = () => {
     console.log("offer 1");
     const items = [
       { productId: 9, qty: 1, weight: 500 }, // Correctly formatted product object
     ];
-
     navigate("/checkout", {
       state: { items },
     });
   };
-
   const offer2BuyHandle = () => {
     console.log("Offer to Buy clicked");
-
     const items = [{ productId: 10, qty: 1, weight: 300 }]; // Correct structure
-
     navigate("/checkout", {
       state: { items }, // Pass items to checkout page
     });
   };
   // Hero Caoursel Images Links
   const CarouselImages = [
-    { img: caroImg1, function: offer1BuyHandle },
-    { img: caroImg2, function: offer2BuyHandle },
+    // { img: caroImg1, function: offer1BuyHandle },
+    // { img: caroImg2, function: offer2BuyHandle },
     { img: caroImg3, function: null },
     { img: caroImg4, function: null },
     { img: caroImg5, function: null },
@@ -128,9 +119,7 @@ export default function Home() {
       name: "Turmeric Powder",
     },
   ];
-
   // Dedication natural
-
   const features = [
     {
       image: noAdditives,
@@ -155,7 +144,6 @@ const [openIndex, setOpenIndex] = useState(null);
 const toggleFAQ = (index) => {
   setOpenIndex(openIndex === index ? null : index);
 };
-
 const faqs = [
   { question: "What makes Satvik Raas spices different from other brands?", answer: "Satvik Raas spices are uniquely crafted with authentic, organic, and high-quality ingredients." },
   // { question: "Are Satvik Raas products certified organic?", answer: "Yes, all our products are certified organic by reputable agencies." },
@@ -257,7 +245,6 @@ const faqs = [
                 <button>Explore All</button>
               </div>
             </div>
-
             <div className={styles.card2}>
               <div className={styles.infoCard}>
                 <h3>Dhaniya Powder</h3>
@@ -318,7 +305,6 @@ const faqs = [
           </div>
         </div>
       </div>
-
       {/* Instagram  */}
 <section>
   <div className={styles.instagramSection}>
@@ -342,7 +328,6 @@ const faqs = [
 </section>
       {/* faq */}
       <div className={styles.faqSection}>
-      
         <h2 className={styles.heading}>FAQ's</h2>
         <div className={styles.faqList}>
           {faqs.map((faq, index) => (
