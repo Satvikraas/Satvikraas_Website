@@ -25,6 +25,7 @@ const CheckoutPage = () => {
   //------------ Fetch product and Cart
   const location = useLocation();
   const { cartItems: cartContextItems } = useCart();
+
   const cartItems = location.state?.items?.length
     ? location.state.items
     : cartContextItems;
@@ -32,6 +33,7 @@ const CheckoutPage = () => {
   const { products } = useProductContext();
   //------------ product Const
   const [cartProducts, setCartProducts] = useState([]);
+
   const [totalAmount, setTotalAmount] = useState(0);
   const [deliveryCharge] = useState(50);
   //------------ Address Const
@@ -67,44 +69,71 @@ const CheckoutPage = () => {
     phone: "",
   });
   // Process cart items when products are loaded
-useEffect(() => {
-  if (products.length > 0) {
-    const processedCart = cartItems
-      .map(({ productId, weight, qty }) => {
-        // Treat productId as variantId (rename for clarity)
-        const variantId = productId;
-        // Find the product that contains the variant with this variantId
-        const product = products.find((p) =>
-          p.variants.some((v) => v.id === variantId)
-        );
-        if (!product) return null;
-        // Find the specific variant by id (variantId)
-        const variant = product.variants.find((v) => v.id === variantId);
-        if (!variant) return null;
-        // Optional: match weight too if needed
-        if (variant.weight !== weight) return null;
-        // Return processed cart item
-        return {
-          ...variant,
-          name: product.name,
-          productId: product.productId,
-          variantId,
-          weight,
-          qty,
-          mainImage: variant.mainImage,
-        };
-      })
-      .filter(Boolean); // Remove any null items
-    // Update cart state
-    setCartProducts(processedCart);
-    // Calculate total amount
-    const total = processedCart.reduce(
-      (sum, item) => sum + item.price * item.qty,
-      0
-    );
-    setTotalAmount(total);
-  }
-}, [products, cartItems]);
+  useEffect(() => {
+    if (products.length > 0) {
+      // const processedCart = cartItems
+      //   .map(({ productId, weight, qty }) => {
+      //     console.log("cart items ", cartItems);
+
+      //     // Treat productId as variantId (rename for clarity)
+      //     const variantId = productId;
+      //     // Find the product that contains the variant with this variantId
+      //     const product = products.find((p) =>
+      //       p.variants.some((v) => v.id === variantId)
+      //     );
+      //     if (!product) return null;
+      //     // Find the specific variant by id (variantId)
+      //     const variant = product.variants.find((v) => v.id === variantId);
+      //     if (!variant) return null;
+      //     // Optional: match weight too if needed
+      //     if (variant.weight !== weight) return null;
+      //     // Return processed cart item
+      //     return {
+      //       ...variant,
+      //       name: product.name,
+      //       productId: product.productId,
+      //       variantId,
+      //       weight,
+      //       qty,
+      //       mainImage: variant.mainImage,
+      //     };
+      //   })
+        // .filter(Boolean); // Remove any null items
+
+        // new logic
+         const processedCart = cartItems.map(({ productId, weight, qty }) => {
+  // 1. Find the product using productId
+  const product = products.find((p) => p.productId === productId);
+  if (!product) return null;
+
+  // 2. Find the variant using weight (and/or id if available)
+  // If variants may have the same weight, you might need an additional check (like id)
+  const variant = product.variants.find((v) => v.weight === weight);
+
+  if (!variant) return null;
+
+  return {
+    ...variant,
+    name: product.name,
+    productId: product.productId,
+    // variantId: variant.id, // If you need
+    weight,
+    qty,
+    mainImage: variant.mainImage,
+  };
+}).filter(Boolean);
+
+      // Update cart state
+      setCartProducts(processedCart);
+      // Calculate total amount
+      const total = processedCart.reduce(
+        (sum, item) => sum + item.price * item.qty,
+        0
+      );
+      setTotalAmount(total);
+    }
+  }, [products, cartItems]);
+  console.log("cart products after ", cartProducts);
   // Check Pincode is Servicable
   const checkServiceability = async (numericPincode) => {
     try {
@@ -266,7 +295,7 @@ useEffect(() => {
     if (validateForm()) {
       try {
         console.log("in Online payment");
-        const FinaltotalAmount = totalAmount + deliveryCharge -discount;
+        const FinaltotalAmount = totalAmount + deliveryCharge - discount;
         console.log(formData);
         const orderData = await payOnline(
           cartProducts,
@@ -333,7 +362,7 @@ useEffect(() => {
     if (validateForm()) {
       try {
         console.log("in COD payment");
-        const FinaltotalAmount = totalAmount + deliveryCharge -discount;
+        const FinaltotalAmount = totalAmount + deliveryCharge - discount;
         // console.log("final price ",FinaltotalAmount);
         const orderData = await createCODOrder(
           cartProducts,
@@ -367,7 +396,7 @@ useEffect(() => {
   // offer order
   const [offer, setOffer] = useState(null);
   const calculateDiscount = () => {
-    return  Math.floor(totalAmount * 0.1);; // 10% discount
+    return Math.floor(totalAmount * 0.1); // 10% discount
   };
   const discount = calculateDiscount();
   return (
@@ -779,11 +808,14 @@ useEffect(() => {
             </div>
             {offer !== null && (
               <p>
-                {offer ? (  <div className={styles.totalRow}>
-              <span>First Order Discount </span>
-              <span>₹ {discount}</span>
-            </div>
-) : ``}
+                {offer ? (
+                  <div className={styles.totalRow}>
+                    <span>First Order Discount </span>
+                    <span>₹ {discount}</span>
+                  </div>
+                ) : (
+                  ``
+                )}
               </p>
             )}
             <div className={styles.totalRow}>
