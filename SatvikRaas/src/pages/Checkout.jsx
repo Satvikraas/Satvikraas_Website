@@ -35,7 +35,7 @@ const CheckoutPage = () => {
   const [cartProducts, setCartProducts] = useState([]);
 
   const [totalAmount, setTotalAmount] = useState(0);
-  const [deliveryCharge] = useState(50);
+  const [deliveryCharge] = useState(0);
   //------------ Address Const
   const [selectedAddress, setSelectedAddress] = useState({});
   const [isServiceable, setIsServiceable] = useState(null);
