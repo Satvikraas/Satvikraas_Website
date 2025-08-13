@@ -117,8 +117,8 @@ export default function Navbar() {
           <p>
             {[...Array(60)].map((_, index) => (
               <span key={index} style={{ color: "white", fontSize: "16px" }}>
-                Join the #SpiceItUpWithSatvik Contest | Win Exciting Prizes |
-                Follow us on Instagram @satvikraas | &nbsp; &nbsp; &nbsp; &nbsp;
+                          Free Delivery on All Orders | Satvikraas Spices at Your Doorstep.
+ &nbsp; &nbsp; &nbsp; &nbsp;
               </span>
             ))}
           </p>
@@ -139,8 +139,9 @@ export default function Navbar() {
           <p>
             {[...Array(60)].map((_, index) => (
               <span key={index} style={{ color: "white", fontSize: "16px" }}>
-                Join the #SpiceItUpWithSatvik Contest | Win Exciting Prizes |
-                Follow us on Instagram @satvikraas | &nbsp; &nbsp; &nbsp; &nbsp;
+              Free Delivery on All Orders | Satvikraas Spices at Your Doorstep
+
+| &nbsp; &nbsp; &nbsp; &nbsp;
               </span>
             ))}
           </p>
