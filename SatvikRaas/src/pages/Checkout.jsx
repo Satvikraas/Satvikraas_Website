@@ -35,7 +35,9 @@ const CheckoutPage = () => {
   const [cartProducts, setCartProducts] = useState([]);
 
   const [totalAmount, setTotalAmount] = useState(0);
-  const [deliveryCharge] = useState(0);
+  // const [deliveryCharge] = useState(50);
+  const deliveryCharge = totalAmount >= 199 ? 0 : 50;
+
   //------------ Address Const
   const [selectedAddress, setSelectedAddress] = useState({});
   const [isServiceable, setIsServiceable] = useState(null);
@@ -254,7 +256,7 @@ const CheckoutPage = () => {
     } else if (!/^\d{6}$/.test(formData.postalCode)) {
       newErrors.postalCode = "Pincode must be 6 digits";
     }
-    if (!formData.phone?.trim()) {
+    if (!formData.phone?.trim()) { 
       newErrors.phone = "Enter a phone number";
     } else if (!/^\d{10}$/.test(formData.phone)) {
       newErrors.phone = "Phone number must be 10 digits";
