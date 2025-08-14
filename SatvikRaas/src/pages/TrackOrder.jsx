@@ -8,7 +8,7 @@ export default function TrackOrder() {
   const [isLoading, setIsLoading] = useState(false);
   const { products } = useProductContext(); // Get all products from context
   const [cartProducts, setCartProducts] = useState([]);
-const deliverycharges = 0;
+const deliverycharges = 50;
   // Process order items and get product details from context
   useEffect(() => {
     if (orderDetails && products && products.length > 0) {
@@ -185,8 +185,8 @@ const deliverycharges = 0;
               
               {/* Order Total */}
               <div className={styles.orderTotal}>
-              <p><strong>SubTotal:</strong> ₹{(orderDetails.totalAmount- deliverycharges+ orderDetails.totalDiscount).toFixed(2)}</p>
-              <p><strong>Delivery Charges:</strong> ₹ {deliverycharges}</p>
+              <p><strong>SubTotal:</strong> ₹{(orderDetails.totalAmount- totalAmount >= 199 ? 0 : deliverycharges+ orderDetails.totalDiscount).toFixed(2)}</p>
+              <p><strong>Delivery Charges:</strong> ₹ {totalAmount >= 199 ? 0 : deliverycharges}</p>
               <p><strong>Discount:</strong> {orderDetails.totalDiscount}</p>
               <p><strong>Total:</strong> ₹{orderDetails.totalAmount.toFixed(2)}</p>
                 {orderDetails.totalWeight && (
