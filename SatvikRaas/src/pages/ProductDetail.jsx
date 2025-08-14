@@ -42,7 +42,8 @@ const ProductDetailPage = () => {
     setSubImageIndex(0); // Reset sub-image index
   };
  //QTY CHANGE
- const minQtyProductsId = [1, 2, 8];
+//  const minQtyProductsId = [1, 2, 8];
+ const minQtyProductsId = [];
  const [quantity, setQuantity] = useState(1);
  useEffect(() => {
    if (selectedVariant) {

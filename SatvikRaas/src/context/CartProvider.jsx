@@ -31,7 +31,8 @@ export const CartProvider = ({ children }) => {
       );
  // console.log(cartItems);
   
-      const minQtyProductsId = [1, 2, 8]; // Product IDs that require a minimum quantity of 2
+      // const minQtyProductsId = [1, 2, 8]; // Product IDs that require a minimum quantity of 2
+      const minQtyProductsId = []; // Product IDs that require a minimum quantity of 2
       const minQty = minQtyProductsId.includes(productId) && weight === 100 ? 2 : 1;
   
       let updatedCart;
@@ -69,7 +70,7 @@ export const CartProvider = ({ children }) => {
   
   // ✅ Update quantity of a product
   const updateCartQty = (productId, weight, newQty) => {
-    const minQtyProductsId = [1, 2, 8]; // Product IDs that require a minimum qty of 2 for 100g
+    const minQtyProductsId = []; // Product IDs that require a minimum qty of 2 for 100g
     const minQty = minQtyProductsId.includes(productId) && weight === 100 ? 2 : 1;
   
     if (newQty < minQty) {
