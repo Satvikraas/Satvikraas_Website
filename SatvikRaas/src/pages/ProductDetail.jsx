@@ -34,6 +34,8 @@ const ProductDetailPage = () => {
   const [selectedVariant, setSelectedVariant] = useState(
     product?.variants?.[0] || {}
   );
+  console.log("pppp",product);
+  
   const [currentView, setCurrentView] = useState("main"); // 'main' or 'sub'
   const [subImageIndex, setSubImageIndex] = useState(0);
   const handleVariantChange = (variant) => {
@@ -42,8 +44,7 @@ const ProductDetailPage = () => {
     setSubImageIndex(0); // Reset sub-image index
   };
  //QTY CHANGE
-//  const minQtyProductsId = [1, 2, 8];
- const minQtyProductsId = [];
+ const minQtyProductsId = [1, 2, 8];
  const [quantity, setQuantity] = useState(1);
  useEffect(() => {
    if (selectedVariant) {
@@ -65,7 +66,7 @@ const ProductDetailPage = () => {
  };
 // BUY NOW BTN
   const handleBuyNow = () => {
-    const items = [{ productId: selectedVariant.id, qty: quantity, weight: selectedVariant.weight }]; // Correct structure
+    const items = [{ productId: product.productId, qty: quantity, weight: selectedVariant.weight }]; // Correct structure
     navigate("/checkout", {
       state: { items }, // Pass items to checkout page
     });

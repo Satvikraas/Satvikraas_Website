@@ -25,10 +25,11 @@ const CheckoutPage = () => {
   //------------ Fetch product and Cart
   const location = useLocation();
   const { cartItems: cartContextItems } = useCart();
-
+  
   const cartItems = location.state?.items?.length
-    ? location.state.items
-    : cartContextItems;
+  ? location.state.items
+  : cartContextItems;
+  console.log("checkout",cartItems);
   // const { cartItems } = useCart();
   const { products } = useProductContext();
   //------------ product Const
