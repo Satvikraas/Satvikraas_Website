@@ -117,7 +117,7 @@ export default function Navbar() {
           <p>
             {[...Array(60)].map((_, index) => (
               <span key={index} style={{ color: "white", fontSize: "16px" }}>
-                          Free Delivery on All Orders | Satvikraas Spices at Your Doorstep.
+                         Free Delivery on Orders Above ₹199 | Satvikraas Spices at Your Doorstep.
  &nbsp; &nbsp; &nbsp; &nbsp;
               </span>
             ))}
@@ -139,7 +139,7 @@ export default function Navbar() {
           <p>
             {[...Array(60)].map((_, index) => (
               <span key={index} style={{ color: "white", fontSize: "16px" }}>
-              Free Delivery on All Orders | Satvikraas Spices at Your Doorstep
+              Free Delivery on Orders Above ₹199 | Satvikraas Spices at Your Doorstep
 
 | &nbsp; &nbsp; &nbsp; &nbsp;
               </span>
